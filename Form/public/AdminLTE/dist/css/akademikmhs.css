@@ -1,0 +1,137 @@
+body {
+    background-color: #D8BFD8; /* Warna ungu pastel */
+  }
+  
+  .content-wrapper {
+    background-color: #D8BFD8; /* Warna ungu pastel untuk konten utama */
+  }
+  
+  .tab-custom {
+    background-color: #4B2E83;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .tab-custom .nav-link {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .tab-custom .nav-link.active {
+    background-color: #9370DB;
+  }
+  
+  .panel {
+    background-color: #9370DB;
+    border-radius: 8px;
+    padding: 20px;
+    color: #FFF;
+  }
+  
+  .info-card {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 15px;
+    color: #4B2E83;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  
+  .info-card h5 {
+    font-weight: bold;
+  }
+  
+  .card-title{
+    color: #343a40;
+  }
+  .button-print {
+    background-color: #E74C3C;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Perbaikan tampilan tabel pada tab IRS */
+  #irs .card {
+    background-color: #ffffff; /* Warna putih untuk kartu */
+    border-radius: 8px; /* Sedikit lengkung pada sudut kartu */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan ringan */
+  }
+
+  #irs .table-hover tr {
+    transition: background-color 0.3s ease; /* Animasi hover */
+  }
+
+  #irs .table-hover tr:hover {
+    background-color: #f3f4f6; /* Warna abu-abu muda saat di-hover */
+  }
+
+  #irs .table thead th {
+    background-color: #6c757d; /* Warna abu-abu gelap untuk header tabel */
+    color: #ffffff; /* Warna teks putih */
+    text-align: center; /* Teks rata tengah */
+  }
+
+  #irs .table tbody td {
+    color: #343a40; /* Warna teks abu-abu gelap untuk isi tabel */
+  }
+
+  #irs .badge {
+    padding: 5px 10px; /* Tambahan padding untuk badge */
+    font-size: 0.9rem; /* Ukuran font badge */
+  }
+
+  /* Tambahan padding untuk tabel */
+  #irs .card-body {
+    padding: 20px;
+  }
+
+  /* Tampilan input search */
+  #irs .input-group .form-control {
+    border: 1px solid #6c757d; /* Warna border abu-abu */
+  }
+
+  #irs .input-group .btn-default {
+    border: 1px solid #6c757d; /* Warna border abu-abu */
+    color: #6c757d; /* Warna teks tombol */
+  }
+
+  #irs .input-group .btn-default:hover {
+    background-color: #6c757d; /* Warna abu-abu gelap saat di-hover */
+    color: #ffffff; /* Teks putih saat di-hover */
+  }
+
+
+  .card-body.table-responsive {
+    border: 1px solid #ddd; /* Memberikan border ringan pada area tabel */
+    border-radius: 4px; /* Menambahkan sudut melengkung */
+    background-color: #ffffff; /* Latar belakang putih */
+  }
+
+  .card-body.table-responsive::-webkit-scrollbar {
+    width: 8px; /* Lebar scrollbar untuk browser Webkit (Chrome, Safari) */
+  }
+
+  .card-body.table-responsive::-webkit-scrollbar-thumb {
+    background-color: #6c757d; /* Warna scrollbar */
+    border-radius: 4px; /* Membuat sudut scrollbar melengkung */
+  }
+
+  .card-body.table-responsive::-webkit-scrollbar-track {
+    background-color: #f3f4f6; /* Warna dasar track scrollbar */
+  }
+
+    /* Membuat header tabel sticky */
+    .sticky-header thead th {
+      position: sticky;
+      top: 0; /* Tetap berada di atas */
+      z-index: 2; /* Agar selalu berada di atas konten lainnya */
+      background-color: #f8f9fa; /* Latar belakang header tabel */
+      color: #343a40; /* Warna teks header */
+      border-bottom: 2px solid #dee2e6; /* Garis bawah untuk pemisahan */
+    }

@@ -1,0 +1,34 @@
+/* custom.css */
+.bg-secondary {
+    background-color: #a793b1 !important; /* warna keunguan */
+  }
+  .text-info {
+    color: #82c9ff !important; /* warna biru terang */
+  }
+  .img-circle {
+    border-radius: 50%;
+  }
+  
+/* Tambahkan di custom.css */
+.tombol-besar {
+    padding: 20px; /* Tambahkan padding untuk memperbesar tombol */
+    font-size: 1.2rem; /* Perbesar ukuran font */
+  }
+  
+  .tombol-besar .info-box-icon {
+    font-size: 2rem; /* Perbesar ukuran ikon */
+    width: 60px; /* Perbesar lebar ikon */
+    height: 60px; /* Perbesar tinggi ikon */
+    line-height: 60px; /* Menyelaraskan ikon ke tengah */
+  }
+  
+  .tombol-besar .info-box-content {
+    font-size: 1.2rem; /* Perbesar teks dalam konten info-box */
+  }
+  
+  /* Jika ingin menambahkan ukuran spesifik pada tombol */
+  .tombol-besar {
+    height: 120px; /* Tentukan tinggi tombol */
+    width: 100%; /* Memastikan tombol mengambil lebar penuh kolom */
+  }
+  
