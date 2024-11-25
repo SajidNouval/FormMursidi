@@ -2,8 +2,6 @@
 <script src="{{asset('AdminLTE/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
 <script src="{{asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <!-- overlayScrollbars -->
 <script src="{{asset('AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
@@ -15,7 +13,5 @@
 <script src="{{asset('AdminLTE/plugins/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
 <script src="{{asset('AdminLTE/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-<!-- SweetAlert2 -->
-<script src="{{ asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{asset('AdminLTE/plugins/chart.js/Chart.min.js')}}"></script>

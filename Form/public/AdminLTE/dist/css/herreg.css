@@ -1,0 +1,15 @@
+.bg-light-purple {
+    background-color: #D8BFD8; /* Warna ungu pastel */
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .info-box {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-white-50 {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  

@@ -24,6 +24,12 @@ body {
     background-color: #9370DB;
   }
   
+  .bg-purpleepanel{
+    background-color: #9370DB !important;
+    border-radius: 20px; /* Membuat sudut lebih landai */
+    padding: 20px
+  }
+
   .panel {
     background-color: #9370DB;
     border-radius: 8px;
@@ -135,3 +141,89 @@ body {
       color: #343a40; /* Warna teks header */
       border-bottom: 2px solid #dee2e6; /* Garis bawah untuk pemisahan */
     }
+
+    .table-bordered th,
+.table-bordered td {
+    vertical-align: middle;
+    height: 80px;
+}
+
+.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+/* Tetapkan ukuran tetap untuk kotak tabel */
+.table-bordered th,
+.table-bordered td {
+    width: 120px; /* Atur lebar kotak */
+    height: 50px; /* Atur tinggi kotak */
+    word-wrap: break-word;
+    overflow: hidden; /* Agar teks tidak meluap */
+    text-align: center; /* Pusatkan teks */
+    vertical-align: middle; /* Vertikal teks di tengah */
+}
+
+/* Untuk header */
+.table-bordered th {
+    background-color: #007bff; /* Warna biru untuk header */
+    color: #fff;
+}
+
+/* Supaya tabel responsif */
+.table-responsive {
+    overflow-x: auto;
+}
+
+#khs .card {
+  background-color: #ffffff; /* Warna putih untuk kartu */
+  border-radius: 8px; /* Sedikit lengkung pada sudut kartu */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan ringan */
+}
+
+#khs .table-hover tr {
+  transition: background-color 0.3s ease; /* Animasi hover */
+}
+
+#khs .table-hover tr:hover {
+  background-color: #f3f4f6; /* Warna abu-abu muda saat di-hover */
+}
+
+#khs .table thead th {
+  background-color: #6c757d; /* Warna abu-abu gelap untuk header tabel */
+  color: #ffffff; /* Warna teks putih */
+  text-align: center; /* Teks rata tengah */
+}
+
+#khs .table tbody td {
+  color: #343a40; /* Warna teks abu-abu gelap untuk isi tabel */
+}
+
+#khs .badge {
+  padding: 5px 10px; /* Tambahan padding untuk badge */
+  font-size: 0.9rem; /* Ukuran font badge */
+}
+
+/* Tambahan padding untuk tabel */
+#khs .card-body {
+  padding: 20px;
+}
+
+/* Tampilan input search */
+#khs .input-group .form-control {
+  border: 1px solid #6c757d; /* Warna border abu-abu */
+}
+
+#khs .input-group .btn-default {
+  border: 1px solid #6c757d; /* Warna border abu-abu */
+  color: #6c757d; /* Warna teks tombol */
+}
+
+#khs .input-group .btn-default:hover {
+  background-color: #6c757d; /* Warna abu-abu gelap saat di-hover */
+  color: #ffffff; /* Teks putih saat di-hover */
+}
+
