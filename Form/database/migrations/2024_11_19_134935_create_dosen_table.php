@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('email')->unique();
             $table->date('tanggal_lahir');
-            $table->enum('role', ['kaprodi', 'pakademik', 'dekan'])->default('kaprodi'); // Role dosen
+            $table->enum('role', ['kaprodi', 'pakademik', 'dekan','dosen'])->default('kaprodi'); // Role dosen
             $table->timestamps();
         });
             
