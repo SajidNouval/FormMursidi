@@ -539,26 +539,96 @@
             </div>
   
             <!-- Tab Transkrip -->
-            <div class="tab-pane fade" id="transkrip" role="tabpanel">
-              <div class="panel">
-                <h4>Transkrip Akademik (Terbaik)</h4>
-                <p>Nama: Tito Dean</p>
-                <p>Program Studi: Informatika</p>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Kode</th>
-                      <th>Mata Kuliah</th>
-                      <th>SKS</th>
-                      <th>Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Isi data transkrip akademik sesuai kebutuhan -->
-                  </tbody>
-                </table>
-                <button class="button-print">PRINT</button>
+          <div class="tab-pane fade" id="transkrip" role="tabpanel">
+            <div class="panel">
+              <!-- Tombol untuk memilih konten -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default" id="btnLengkap">Lengkap</button>
+                <button type="button" class="btn btn-default" id="btnTerbaik">Terbaik</button>
+                <button type="button" class="btn btn-default" id="btnInggris">Inggris</button>
               </div>
+
+              <!-- Konten Tab Transkrip -->
+              <div id="transkripContent" class="tab-content mt-3">
+                <!-- Konten Lengkap -->
+                <div id="contentLengkap" class="tab-pane fade show active">
+                  <h5>Data Lengkap Transkrip</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>183</td>
+                        <td>John Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-success">Approved</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Konten Terbaik -->
+                <div id="contentTerbaik" class="tab-pane fade">
+                  <h5>Data Terbaik Transkrip</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>657</td>
+                        <td>Bob Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-primary">Approved</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Konten Inggris -->
+                <div id="contentInggris" class="tab-pane fade">
+                  <h5>Data dalam Bahasa Inggris</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>175</td>
+                        <td>Mike Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-danger">Denied</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

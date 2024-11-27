@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('nama_mk');
             $table->integer('sks');
             $table->integer('semester');
+            $table->string('jenis');
             $table->string('program_studi_kode_prodi'); // Tambahkan kolom program_studi_kode_prodi
             $table->string('dosen_nip')->nullable();    // Tambahkan kolom dosen_nip
             $table->timestamps();
