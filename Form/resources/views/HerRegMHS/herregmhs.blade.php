@@ -62,34 +62,34 @@
                 <div class="row">
                   <!-- Aktif -->
                   <div class="col-6 col-md-3 mb-3">
-                    <div class="info-box bg-secondary p-4 text-center">
+                    <a href="" class="info-box bg-secondary p-4 text-center">
                       <h5 class="text-white">Aktif</h5>
                       <p class="text-white-50">Anda akan mengikuti kegiatan perkuliahan pada semester ini serta mengisi Isian Rencana Studi (IRS).</p>
-                    </div>
+                    </a>
                   </div>
     
                   <!-- Cuti -->
                   <div class="col-6 col-md-3 mb-3">
-                    <div class="info-box bg-secondary p-4 text-center">
+                    <a href="" class="info-box bg-secondary p-4 text-center">
                       <h5 class="text-white">Cuti</h5>
                       <p class="text-white-50">Menghentikan kuliah sementara untuk semester ini tanpa kehilangan status sebagai mahasiswa.</p>
-                    </div>
+                    </a>
                   </div>
     
                   <!-- Her-Registrasi -->
                   <div class="col-6 col-md-3 mb-3">
-                    <div class="info-box bg-secondary p-4 text-center">
+                    <a href="" class="info-box bg-secondary p-4 text-center">
                       <h5 class="text-white">Her-Registrasi</h5>
                       <p class="text-white-50">Informasi lebih lanjut mengenai Her-Registrasi, atau mekanisme serta pengajuan penangguhan pembayaran dapat ditanyakan melalui Biro Administrasi Akademik (BAA).</p>
-                    </div>
+                    </a>
                   </div>
     
                   <!-- Konsultasi -->
                   <div class="col-6 col-md-3 mb-3">
-                    <div class="info-box bg-secondary p-4 text-center">
+                    <a href="" class="info-box bg-secondary p-4 text-center">
                       <h5 class="text-white">Konsultasi</h5>
                       <p class="text-white-50">Konsultasi dengan Pembimbing Akademik untuk membantu pemilihan IRS.</p>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
