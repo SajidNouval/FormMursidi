@@ -18,4 +18,5 @@ class DashboardController extends Controller
     public function kaprodidb(){
         return view('DashBKAPRODI.DashBKAPRODI');
     }
+
 }
