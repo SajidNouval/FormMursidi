@@ -22,6 +22,7 @@ class Mahasiswa extends Model
         'alamat',
         'email',
         'tanggal_lahir',
+        'tahunMasuk',
         'user_id'
     ];
     
