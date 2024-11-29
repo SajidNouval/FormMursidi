@@ -44,6 +44,12 @@ class userseeder extends Seeder
                 'role'=>'pakademik',
                 'password'=>bcrypt('12345')
             ],
+            [   
+                'name'=>'dosen',
+                'email'=>'dosen@gmail.com',
+                'role'=>'dosen',
+                'password'=>bcrypt('12345')
+            ]
 
         ];
         foreach($userData as $key => $val){

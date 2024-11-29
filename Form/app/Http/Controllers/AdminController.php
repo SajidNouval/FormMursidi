@@ -33,4 +33,8 @@ class AdminController extends Controller
     public function dbpakm(){
         return view('DashBPAKA.DashBPAKA');
     }
+
+    public function dbdosen(){
+        return view('DashBDOSEN.DashBDOSEN');
+    }
 }
