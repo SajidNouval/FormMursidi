@@ -11,6 +11,10 @@ class DashboardController extends Controller
         return view('AkademikMHS.akademikmhs');
     }
 
+    public function herregmhs(){
+        return view('HerRegMHS.herregmhs');
+    }
+
     public function kaprodidb(){
         return view('DashBKAPRODI.DashBKAPRODI');
     }
