@@ -102,8 +102,8 @@
                                       <h5>Matakuliah Ditampilkan</h5>
                                   </div>
                                   <div class="card-body">
-                                      <p><strong>Nama:</strong> Elsa Nur Safila</p>
-                                      <p><strong>NIM:</strong> 24060119120038</p>
+                                      <p class="mb-1"><strong>Nama: </strong>{{ $mahasiswa->nama }}</p>
+                                      <p class="mb-1"><strong>NIM: </strong>{{ $mahasiswa->nim }}</p>
                                       <p><strong>Th. Ajaran:</strong> 2019/2020</p>
                                       <p><strong>Semester:</strong> Ganjil</p>
                                       <div class="d-flex justify-content-between align-items-center mb-2">
