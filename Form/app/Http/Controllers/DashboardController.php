@@ -14,6 +14,8 @@ class DashboardController extends Controller
             return view('AkademikMHS.akademikmhs', ['mahasiswa' => $mahasiswa]);
     }
 
+    ####tesststttttt ini cobacoba
+
 
     public function herregmhs(){
         return view('HerRegMHS.herregmhs');
