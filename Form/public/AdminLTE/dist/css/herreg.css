@@ -13,3 +13,16 @@
     color: rgba(255, 255, 255, 0.7);
   }
   
+  .info-box {
+    min-height: 150px; /* Tinggi minimum untuk menyamakan */
+  }
+  
+  @media (min-width: 768px) {
+    .h-100 {
+      height: 100%;
+    }
+    .col-md-6 .d-flex {
+      height: 300px; /* Pastikan Aktif dan Cuti ada dalam kolom tinggi tetap */
+    }
+  }
+  

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Mahasiswa;
 
 class DashboardController extends Controller
 {
     public function akademikmhs(){
-        return view('AkademikMHS.akademikmhs');
+            $user = Auth::user();
+            $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
+            return view('AkademikMHS.akademikmhs', ['mahasiswa' => $mahasiswa]);
     }
+
+    ####tesststttttt ini cobacoba
+
 
     public function herregmhs(){
         return view('HerRegMHS.herregmhs');
@@ -18,4 +24,5 @@ class DashboardController extends Controller
     public function kaprodidb(){
         return view('DashBKAPRODI.DashBKAPRODI');
     }
+
 }

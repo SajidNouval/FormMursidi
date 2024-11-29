@@ -19,11 +19,11 @@ class AdminController extends Controller
     }
 
     public function dbbakm(){
-        return view('Dashboard.Dashboard');
+        return view("DashBBAKA.DashBBAKA");
     }
 
     public function dbdekan(){
-        return view('Dashboard.Dashboard');
+        return view("DashBDEKAN.DashBDEKAN");
     }
 
     public function dbkaprodi(){
@@ -31,6 +31,6 @@ class AdminController extends Controller
     }
 
     public function dbpakm(){
-        return view('Dashboard.Dashboard');
+        return view('DashBPAKA.DashBPAKA');
     }
 }
