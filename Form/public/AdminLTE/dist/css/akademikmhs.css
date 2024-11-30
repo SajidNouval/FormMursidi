@@ -227,3 +227,12 @@ body {
   color: #ffffff; /* Teks putih saat di-hover */
 }
 
+a {
+  color: inherit; /* Menggunakan warna teks default dari parent */
+  text-decoration: none; /* Menghapus garis bawah */
+}
+
+a:hover {
+  color: inherit; /* Menggunakan warna teks default saat hover */
+  text-decoration: none; /* Menghapus garis bawah saat hover */
+}

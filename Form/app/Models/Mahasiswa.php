@@ -22,8 +22,14 @@ class Mahasiswa extends Model
         'alamat',
         'email',
         'tanggal_lahir',
+        'tahun_masuk',
+        'semester',
         'user_id'
     ];
+    public function irs()
+    {
+        return $this->hasMany(IRS::class, 'mahasiswa_nim', 'nim');
+    }
     
 
     /**
