@@ -19,8 +19,54 @@ class matakuliahseeder extends Seeder
                 'nama_mk' => 'PBP',
                 'sks' => 4,
                 'semester' => 5,
+                'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' => '1234567890', // Sesuaikan dengan kolom yang ada
+            ],
+            [
+                'kode_mk' => 'Paik102',
+                'nama_mk' => 'ML',
+                'sks' => 3,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'dosen_nip' => '2234567890', // Sesuaikan dengan kolom yang ada
+            ],
+            [
+                'kode_mk' => 'Paik103',
+                'nama_mk' => 'KTP',
+                'sks' => 3,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'dosen_nip' => '5234567890', // Sesuaikan dengan kolom yang ada
+            ],
+            [
+                'kode_mk' => 'Paik104',
+                'nama_mk' => 'PPL',
+                'sks' => 3,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'dosen_nip' => '4234567890', // Sesuaikan dengan kolom yang ada
+            ],
+            [
+                'kode_mk' => 'Paik105',
+                'nama_mk' => 'SI',
+                'sks' => 3,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'dosen_nip' => '3234567890', // Sesuaikan dengan kolom yang ada
+            ],
+            [
+                'kode_mk' => 'Paik106',
+                'nama_mk' => 'Basis Data',
+                'sks' => 4,
+                'semester' => 3,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'dosen_nip' => '3234567890', // Sesuaikan dengan kolom yang ada
             ]
         ];
 

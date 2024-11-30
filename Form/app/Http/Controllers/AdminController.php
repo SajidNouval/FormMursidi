@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Jadwal_Kuliah;
+
+use App\Models\Dosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
@@ -26,11 +29,11 @@ class AdminController extends Controller
     }
 
     public function dbbakm(){
-        return view('Dashboard.Dashboard');
+        return view("DashBBAKA.DashBBAKA");
     }
 
     public function dbdekan(){
-        return view('Dashboard.Dashboard');
+        return view("DashBDEKAN.DashBDEKAN");
     }
 
     public function dbkaprodi(){
@@ -38,7 +41,11 @@ class AdminController extends Controller
     }
 
     public function dbpakm(){
-        return view('Dashboard.Dashboard');
+        return view('DashBPAKA.DashBPAKA');
+    }
+
+    public function dbdosen(){
+        return view('DashBDOSEN.DashBDOSEN');
     }
 
 

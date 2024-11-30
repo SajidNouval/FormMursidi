@@ -24,6 +24,7 @@ class Mahasiswa extends Model
         'tanggal_lahir',
         'tahun_masuk',
         'semester',
+        'tahunMasuk',
         'user_id'
     ];
     public function irs()

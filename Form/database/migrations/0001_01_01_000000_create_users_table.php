@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'mahasiswa', 'bakademik', 'kaprodi', 'dekan', 'pakademik','dosen'])->default('admin');
+            $table->enum('role', ['admin', 'mahasiswa', 'bakademik', 'kaprodi', 'dekan', 'pakademik', 'dosen'])->default('admin');
             $table->rememberToken();
             $table->timestamps();
         });

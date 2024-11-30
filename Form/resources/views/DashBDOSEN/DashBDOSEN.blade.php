@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('DashBMHS.header')
+  @include('DashBDOSEN.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Navbar -->
-@include('DashBMHS.navbar')
+@include('DashBDOSEN.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -40,7 +40,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard MHS</h1>
+            <h1 class="m-0">Dashboard Dosen</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -62,11 +62,11 @@
             <div class="card bg-secondary text-white d-flex align-items-center p-2">
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
-                <h4 class="font-weight-bold">Mahasiswa</h4>
-                <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
-                <p class="mb-1">{{ $mahasiswa->nim }}</p>
-                <p class="text-muted">{{ $mahasiswa->email }}</p>
-                <a href="{{ route('profilmhs') }}" class="text-info">Lihat Selengkapnya</a>
+                <h4 class="font-weight-bold">Dosen</h4>
+                <p class="mb-1"><strong>nama</strong></p>
+                <p class="mb-1">nip</p>
+                <p class="text-muted">email</p>
+                <a href="#" class="text-info">Lihat Selengkapnya</a>
               </div>
             </div>
           </div>
@@ -88,9 +88,9 @@
               <!-- Her-Registrasi Box -->
               <div class="col-6 col-md-6 mb-3">
                 <a href="{{ route('herregmhs') }}" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
+                  <span class="info-box-icon"><i class="fa-regular fa-address-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Her-Registrasi</span>
+                    <span class="info-box-text text-white">Konsultasi</span>
                   </div>
                 </a>
               </div>
@@ -127,7 +127,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  @include('DashBMHS.controllersidebar')
+  @include('DashBDOSEN.controllersidebar')
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -142,6 +142,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@include('DashBMHS.scriptdb')
+@include('DashBDOSEN.scriptdb')
 </body>
 </html>

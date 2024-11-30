@@ -40,7 +40,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard MHS</h1>
+            <h1 class="m-0">Dashboard Bagian Akademik</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -62,11 +62,11 @@
             <div class="card bg-secondary text-white d-flex align-items-center p-2">
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
-                <h4 class="font-weight-bold">Mahasiswa</h4>
-                <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
-                <p class="mb-1">{{ $mahasiswa->nim }}</p>
-                <p class="text-muted">{{ $mahasiswa->email }}</p>
-                <a href="{{ route('profilmhs') }}" class="text-info">Lihat Selengkapnya</a>
+                <h4 class="font-weight-bold">Bagian Akademik</h4>
+                <p class="mb-1"><strong>nama</strong></p>
+                <p class="mb-1">nim</p>
+                <p class="text-muted">email</p>
+                <a href="#" class="text-info">Lihat Selengkapnya</a>
               </div>
             </div>
           </div>

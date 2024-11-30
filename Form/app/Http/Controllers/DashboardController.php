@@ -50,6 +50,15 @@ class DashboardController extends Controller
 }
 
     
+use App\Models\Mahasiswa;
+
+class DashboardController extends Controller
+{
+    public function akademikmhs(){
+            $user = Auth::user();
+            $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
+            return view('AkademikMHS.akademikmhs', ['mahasiswa' => $mahasiswa]);
+    }
 
     public function herregmhs(){
         return view('HerRegMHS.herregmhs');
@@ -58,6 +67,13 @@ class DashboardController extends Controller
     public function kaprodidb(){
         return view('DashBKAPRODI.DashBKAPRODI');
     }
+
+    public function profilmhs(){
+        $user = Auth::user();
+        $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
+        return view('DashBMHS.profil', ['mahasiswa' => $mahasiswa]);
+    }
+
 }
 
 
