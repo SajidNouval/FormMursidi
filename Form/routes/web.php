@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/mhsdb/mhsherreg', [DashboardController::class, 'herregmhs'])->middleware('userAkses:mahasiswa')->name('herregmhs');
     Route::get('/sakura/mhsdb/mhsherreg/konsultasi', [HerRegController::class, 'konsultasimhs'])->middleware('userAkses:mahasiswa')->name('konsultasimhs');
     Route::get('/sakura/mhsdb/mhsherreg/compose', [HerRegController::class, 'konsulcompose'])->middleware('userAkses:mahasiswa')->name('konsulcompose');
+    Route::get('/sakura/mhsdb/mhsherreg/read', [HerRegController::class, 'konsulread'])->middleware('userAkses:mahasiswa')->name('konsulread');
+    Route::get('/sakura/mhsdb/mhsherreg/profil', [DashboardController::class, 'profilmhs'])->middleware('userAkses:mahasiswa')->name('profilmhs');
 });
 
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');

@@ -6,3 +6,6 @@
 <link rel="stylesheet" href="{{asset('AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/adminlte.min.css')}}">
+<!-- Tambahkan stylesheet -->
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/custom.css') }}">
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/herreg.css') }}">

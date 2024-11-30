@@ -178,12 +178,22 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <div class="float-right">
-                  <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>
-                  <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
-                </div>
-                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
+                <form action="{{ route('konsultasimhs') }}" method="POST">
+                  @csrf <!-- Token CSRF Laravel untuk keamanan -->
+                  <div class="float-right">
+                    <button type="button" class="btn btn-default">
+                      <i class="fas fa-pencil-alt"></i> Draft
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="far fa-envelope"></i> Send
+                    </button>
+                  </div>
+                </form>
+                <button type="reset" class="btn btn-default">
+                  <i class="fas fa-times"></i> Discard
+                </button>
               </div>
+              
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->

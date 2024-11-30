@@ -66,7 +66,7 @@
                 <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
                 <p class="mb-1">{{ $mahasiswa->nim }}</p>
                 <p class="text-muted">{{ $mahasiswa->email }}</p>
-                <a href="#" class="text-info">Lihat Selengkapnya</a>
+                <a href="{{ route('profilmhs') }}" class="text-info">Lihat Selengkapnya</a>
               </div>
             </div>
           </div>

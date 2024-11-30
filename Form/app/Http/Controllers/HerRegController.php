@@ -13,4 +13,8 @@ class HerRegController extends Controller
     public function konsulcompose(){
         return view('HerRegMHS.konsultasicompose');
     }
+
+    public function konsulread(){
+        return view('HerRegMHS.konsultasiread');
+    }
 }
