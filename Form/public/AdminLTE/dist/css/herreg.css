@@ -26,3 +26,55 @@
     }
   }
   
+  /* Background Warna Custom */
+.bg-light-purple {
+  background-color: #e9d8f4; /* Sesuaikan dengan warna ungu muda dari desain */
+  border-radius: 10px;
+}
+
+/* Info Box Custom */
+.info-box-custom {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan ringan */
+  border-radius: 10px;
+  height: 100%;
+}
+
+/* Text Styling */
+.text-dark {
+  color: #333; /* Warna teks utama */
+}
+
+.text-secondary {
+  color: #666; /* Warna teks deskripsi */
+}
+
+/* Header Styling */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .info-box-custom {
+    text-align: center;
+  }
+}
+
+.info-box-custom {
+  text-decoration: none; /* Hilangkan garis bawah pada link */
+  color: inherit; /* Warna teks mengikuti elemen */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.info-box-custom:hover {
+  transform: translateY(-3px); /* Efek naik saat hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan hitam lebih besar */
+  background-color: #d8c1ec; /* Sedikit lebih gelap dari warna dasar */
+}
+
+.info-box-custom:active {
+  transform: translateY(1px); /* Efek turun saat tombol ditekan */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Bayangan lebih kecil */
+  background-color: #c5a8e1; /* Lebih gelap untuk efek klik */
+}
