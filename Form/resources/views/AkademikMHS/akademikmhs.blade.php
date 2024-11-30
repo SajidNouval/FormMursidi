@@ -70,183 +70,150 @@
   
           <div class="tab-content">
 
-          <!-- Tab Buat IRS -->
-          <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
-              <!-- Container dengan latar belakang ungu -->
-              <div class="bg-purpleepanel p-4">
-                  <div class="container-fluid py-4">
-                      <div class="row">
-                          <!-- Bagian Kiri -->
-                          <div class="col-md-4">
-                              <!-- Tambahkan Mata Kuliah -->
-                              <div class="card mb-3">
-                                  <div class="card-header bg-primary text-white">
-                                      <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah Lain</h5>
-                                  </div>
-                                  <div class="card-body">
-                                      <div class="form-group">
-                                          <label for="select-matkul">Pilih Mata Kuliah</label>
-                                          <select id="select-matkul" class="form-control">
-                                              <option>Dasar Pemrograman</option>
-                                              <option>Matematika I</option>
-                                              <option>Struktur Data</option>
-                                              <option>Algoritma</option>
-                                          </select>
-                                      </div>
-                                      <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
-                                  </div>
-                              </div>
-                              <!-- Informasi Mahasiswa -->
-                              <div class="card">
-                                  <div class="card-header bg-info text-white">
-                                      <h5>Matakuliah Ditampilkan</h5>
-                                  </div>
-                                  <div class="card-body">
-                                      <p><strong>Nama:</strong> Elsa Nur Safila</p>
-                                      <p><strong>NIM:</strong> 24060119120038</p>
-                                      <p><strong>Th. Ajaran:</strong> 2019/2020</p>
-                                      <p><strong>Semester:</strong> Ganjil</p>
-                                      <div class="d-flex justify-content-between align-items-center mb-2">
-                                          <span>Dasar Pemrograman (3 SKS)</span>
-                                          <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                      <hr>
-                                      <div class="d-flex justify-content-between align-items-center">
-                                          <span>Matematika I (2 SKS)</span>
-                                          <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                  </div>
-                                  <div class="card-footer text-right">
-                                      <strong>Total SKS: 5</strong>
-                                  </div>
-                              </div>
-                          </div>
-                          <!-- Bagian Kanan -->
-                          <div class="col-md-8">
-                              <div class="card">
-                                  <div class="card-header bg-primary text-white">
-                                      <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
-                                  </div>
-                                  <div class="card-body p-0">
-                                      <div class="table-responsive">
-                                          <table class="table table-bordered text-center">
-                                              <thead class="bg-primary text-white">
-                                                  <tr>
-                                                      <th>Waktu</th>
-                                                      <th>Senin</th>
-                                                      <th>Selasa</th>
-                                                      <th>Rabu</th>
-                                                      <th>Kamis</th>
-                                                      <th>Jumat</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td>07:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>08:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>09:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>10:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>11:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>12:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>13:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>14:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>15:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>16:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>17:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>18:00</td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                      <td></td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+       <!-- Tab Buat IRS -->
+<div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
+    <!-- Container dengan latar belakang ungu -->
+    <div class="bg-purpleepanel p-4">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <!-- Bagian Kiri (Informasi Mahasiswa dan Tambah Mata Kuliah) -->
+                <div class="col-md-4">
+                    <!-- Tambahkan Mata Kuliah -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah Lain</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="select-matkul">Pilih Mata Kuliah</label>
+                                <select id="select-matkul" class="form-control">
+                                    @if ($jadwal_kuliah->isNotEmpty())
+                                        @foreach ($jadwal_kuliah as $item)
+                                            <option>{{ $item->nama_mk }}</option>
+                                        @endforeach
+                                    @else
+                                        <option>-</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
+                        </div>
+                    </div>
+
+                    <!-- Informasi Mahasiswa -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-info text-white">
+                            <h5>Informasi Mahasiswa</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
+                            <p class="mb-1">{{ $mahasiswa->nim }}</p>
+                            <p class="text-muted">{{ $mahasiswa->email }}</p>
+                            <p class="mb-1">{{ $mahasiswa->tahun_masuk }}</p>
+                            <p class="mb-1">{{ $mahasiswa->semester }}</p>
+
+                            <!-- Mata Kuliah yang Dipilih -->
+                            <div class="card mt-3">
+                                <div class="card-header bg-primary text-white">
+                                    <h5><i class="fas fa-user"></i> Mata Kuliah yang Dipilih</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
+                                    <hr>
+                                    @foreach ($irs as $item)
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span>{{ $item->nama_mk }} ({{ $item->sks }} SKS)</span>
+                                            <form action="{{ route('hapusMatakuliah', $item->id) }}" method="POST" class="d-inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <hr>
+                                    @endforeach
+                                    <div class="card-footer text-right">
+                                        <strong>Total SKS: {{ $totalSKS }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian Kanan (Jadwal Kuliah) -->
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead class="bg-primary text-white">
+                                        <tr>
+                                            <th>Jam</th>
+                                            <th>Senin</th>
+                                            <th>Selasa</th>
+                                            <th>Rabu</th>
+                                            <th>Kamis</th>
+                                            <th>Jumat</th>
+                                            <th>Sabtu</th>
+                                            <th>Minggu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                                            $jamMulai = [
+                                                '07:00', '08:00', '09:00', '10:00', '11:00',
+                                                '12:00', '13:00', '14:00', '15:00', '16:00',
+                                                '17:00', '18:00', '19:00', '20:00', '21:00'
+                                            ];
+                                        @endphp
+
+                                        @foreach ($jamMulai as $jam)
+                                            <tr>
+                                                <td>{{ $jam }}</td>
+                                                @foreach ($hari as $h)
+                                                    @php
+                                                        // Filter jadwal berdasarkan hari dan jam mulai
+                                                        $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($h, $jam) {
+                                                            return $item->hari === $h && $item->jam_mulai === $jam;
+                                                        });
+                                                    @endphp
+                                                    <td>
+                                                        @if ($jadwal_hari->isNotEmpty())
+                                                            @foreach ($jadwal_hari as $jadwal)
+                                                                <a href="#" class="card mb-2 p-2">
+                                                                    <strong>{{ $jadwal->mata_kuliah_kode_mk }} - {{ $jadwal->nama_mk }}</strong><br>
+                                                                    Ruang: {{ $jadwal->kode_ruang }}<br>
+                                                                    Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
+                                                                </a>
+                                                            @endforeach
+                                                        @else
+                                                            <span>-</span>
+                                                        @endif
+                                                    </td>
+                                                @endforeach
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+          <!-- TAB LIAT MATKUL DIAMBIL -->
+           
 
   
           <!-- Tab IRS -->
@@ -655,5 +622,53 @@
 
 <!-- REQUIRED SCRIPTS -->
 @include('AkademikMHS.scriptdb')
+
+
+<!-- JavaScript untuk menangani penghapusan dan penambahan mata kuliah -->
+<script>
+    let irs = @json($irs); // IRS yang berisi mata kuliah yang dipilih mahasiswa
+
+    function updateTotalSKS() {
+        const totalSKS = irs.reduce((total, course) => total + course.sks, 0);
+        document.getElementById('total-sks').textContent = totalSKS;
+    }
+
+    function removeCourse(courseId) {
+        // Hapus course berdasarkan ID
+        irs = irs.filter(course => course.id !== courseId);
+        // Update the selected courses list
+        renderSelectedCourses();
+        updateTotalSKS();
+    }
+
+    function addCourse(courseId, courseName, courseSKS) {
+        // Tambahkan course ke dalam daftar yang dipilih, jika belum ada
+        if (!irs.some(course => course.id === courseId)) {
+            irs.push({ id: courseId, name: courseName, sks: courseSKS });
+            // Update the selected courses list
+            renderSelectedCourses();
+            updateTotalSKS();
+        }
+    }
+
+    function renderSelectedCourses() {
+        const selectedCoursesContainer = document.getElementById('selected-courses');
+        selectedCoursesContainer.innerHTML = ''; // Clear current list
+        irs.forEach(course => {
+            const courseHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>${course.name} (${course.sks} SKS)</span>
+                    <button class="btn btn-danger btn-sm" onclick="removeCourse('${course.id}')"><i class="fas fa-trash"></i></button>
+                </div>
+                <hr>
+            `;
+            selectedCoursesContainer.innerHTML += courseHTML;
+        });
+    }
+
+    // Initial render
+    renderSelectedCourses();
+    updateTotalSKS();
+</script>
 </body>
 </html>

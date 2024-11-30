@@ -23,7 +23,7 @@ class dosenseeder extends Seeder
                 // $table->date('tanggal_lahir');
                 // $table->enum('role', ['kaprodi', 'pakademik', 'dekan'])->default('kaprodi'); // Role dosen
 
-                'user_id' => '1',
+                'user_id' => '2',
                 'nip' => '1234567890',
                 'nama' => 'Irfan Sibudi',
                 'alamat' => 'Jl.Kejambon',
@@ -32,7 +32,7 @@ class dosenseeder extends Seeder
                 'role' => 'kaprodi'
             ],
             [
-                'user_id' => '2',
+                'user_id' => '3',
                 'nip' => '2234567890',
                 'nama' => 'Sajid Ironi',
                 'alamat' => 'Jl.banjarsari',
@@ -41,7 +41,7 @@ class dosenseeder extends Seeder
                 'role' => 'pakademik'
             ],
             [
-                'user_id' => '3',
+                'user_id' => '4',
                 'nip' => '3234567890',
                 'nama' => 'Ayyub Perkedel',
                 'alamat' => 'Jl.Gondang Timur',
@@ -50,7 +50,7 @@ class dosenseeder extends Seeder
                 'role' => 'dekan'
             ],
             [
-                'user_id' => '4',
+                'user_id' => '5',
                 'nip' => '4234567890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl.Mulawarman',
@@ -59,7 +59,16 @@ class dosenseeder extends Seeder
                 'role' => 'dosen'
             ],
             [
-                'user_id' => '5',
+                'user_id' => '6',
+                'nip' => '5234561110',
+                'nama' => 'Budi Sibudi',
+                'alamat' => 'Jl. aja dulu kita',
+                'email' => 'dosenn2@unpas.ac.id',
+                'tanggal_lahir' => '1980-11-10',
+                'role' => 'dosen'
+            ],
+            [
+                'user_id' => '7',
                 'nip' => '5234567890',
                 'nama' => 'Alwi Hambali',
                 'alamat' => 'Jl. aja dulu',
