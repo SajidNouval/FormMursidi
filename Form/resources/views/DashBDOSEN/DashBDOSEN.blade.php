@@ -63,9 +63,9 @@
                 <div class="card-body text-center">
                     <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
                     <h4 class="font-weight-bold">Dosen</h4>
-                    <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
-                    <p class="mb-1">nip</p>
-                    <p class="text-muted">email</p>
+                    <p class="mb-1"><strong>{{ $dosen->nama }}</strong></p>
+                    <p class="mb-1">{{ $dosen->nip }}</p>
+                    <p class="text-muted">{{ $dosen->email }}</p>
                     <a href="#" class="text-info">Lihat Selengkapnya</a>
                 </div>
             </div>
@@ -77,7 +77,7 @@
             <div class="row">
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('akademikmhs') }}" class="info-box bg-secondary">
+                <a href="{{ route('akademikdsn') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Akademik</span>
@@ -86,9 +86,9 @@
                 </a>
               </div>
           
-              <!-- Her-Registrasi Box -->
+              <!-- Konsultasi -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('herregmhs') }}" class="info-box bg-secondary">
+                <a href="{{ route('konsultasidsn') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fa-regular fa-address-book"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Konsultasi</span>

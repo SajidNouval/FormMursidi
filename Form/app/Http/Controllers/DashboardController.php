@@ -41,7 +41,6 @@ class DashboardController extends Controller
             )
             ->get();
 
-        // Kirim data ke view
         return view('AkademikMHS.akademikmhs', [
             'mahasiswa' => $mahasiswa,
             'irs' => $irs,
@@ -57,11 +56,6 @@ class DashboardController extends Controller
         $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
 
         return view('HerRegMHS.herregmhs', ['mahasiswa' => $mahasiswa]); // Mengirim data mahasiswa ke view
-    }
-
-    public function kaprodidb()
-    {
-        return view('DashBKAPRODI.DashBKAPRODI');
     }
 
     public function profilmhs()

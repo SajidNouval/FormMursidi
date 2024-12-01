@@ -45,7 +45,7 @@ class userseeder extends Seeder
                 'password'=>bcrypt('12345')
             ],
             [
-                'name'=>'osen',
+                'name'=>'dosen',
                 'email'=>'dosenn2@unpas.ac.id',
                 'role'=>'dosen',
                 'password'=>bcrypt('12345')
@@ -53,6 +53,12 @@ class userseeder extends Seeder
             [
                 'name'=>'ddosen',
                 'email'=>'dosen5@unpas.ac.id',
+                'role'=>'dosen',
+                'password'=>bcrypt('12345')
+            ],
+            [
+                'name'=>'dosen',
+                'email'=>'irfanm@gmail.com',
                 'role'=>'dosen',
                 'password'=>bcrypt('12345')
             ],
