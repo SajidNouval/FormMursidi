@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('email')->unique();
             $table->date('tanggal_lahir');
-            $table->enum('role', ['dosen', 'pakademik', 'dekan', 'kaprodi'])->default('dosen'); // Role dosen
             $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->timestamps();
         });

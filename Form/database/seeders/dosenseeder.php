@@ -20,7 +20,6 @@ class dosenseeder extends Seeder
                 'alamat' => 'Jl. Kejambon',
                 'email' => 'dosen@gmail.com',
                 'tanggal_lahir' => '1990-01-01',
-                'role' => 'dosen',
                 'user_id' => '1',
             ],
         ];

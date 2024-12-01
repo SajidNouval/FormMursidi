@@ -23,7 +23,6 @@ class Dosen extends Model
         'alamat',
         'email',
         'tanggal_lahir',
-        'role',
         'user_id',
     ];
     

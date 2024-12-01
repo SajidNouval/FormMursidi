@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'mahasiswa', 'bakademik', 'kaprodi', 'dekan', 'pakademik','dosen'])->default('admin');
-            $table->enum('role', ['admin', 'mahasiswa', 'bakademik', 'kaprodi', 'dekan', 'pakademik', 'dosen'])->default('admin');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -41,10 +40,6 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('role', 255)->change();
         });
-
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->json('role')->nullable()->change(); // Ubah tipe kolom 'role' ke JSON
-        // });
         
         
     }
