@@ -32,7 +32,7 @@ class irsController extends Controller
         $mataKuliah = Mata_Kuliah::where('mata_kuliah_kode_mk', $courseData['mata_kuliah_kode_mk'])->first();
         if ($mataKuliah) {
             $irs = new Irs();
-            $irs->mahasiswa_id = $mahasiswa->id;
+            $irs->mahasiswa_nim = $mahasiswa->nim;
             $irs->mata_kuliah_kode_mk = $mataKuliah->mata_kuliah_kode_mk;
             $irs->semester = $courseData['semester'];
             $irs->tahun_akademik = $courseData['tahun_akademik'];
@@ -63,7 +63,7 @@ class irsController extends Controller
         }
     
         // Cari mata kuliah yang akan dihapus
-        $irs = Irs::where('mahasiswa_id', $mahasiswa->id)
+        $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)
                   ->where('mata_kuliah_kode_mk', $data['mata_kuliah_kode_mk'])
                   ->first();
     
