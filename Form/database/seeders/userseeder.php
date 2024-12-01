@@ -70,6 +70,12 @@ class userseeder extends Seeder
                 'role'=>'dosen',
                 'password'=>bcrypt('12345')
             ],
+            [
+                'name'=>'dosen',
+                'email'=>'irfanm@gmail.com',
+                'role'=>'dosen',
+                'password'=>bcrypt('12345')
+            ],
           
 
 

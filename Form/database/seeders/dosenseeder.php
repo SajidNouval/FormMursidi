@@ -15,19 +15,10 @@ class dosenseeder extends Seeder
     {
         $dosenData = [
             [
-                // $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
-                // $table->string('nip')->primary();
-                // $table->string('nama');
-                // $table->string('alamat');
-                // $table->string('email')->unique();
-                // $table->date('tanggal_lahir');
-                // $table->enum('role', ['kaprodi', 'pakademik', 'dekan'])->default('kaprodi'); // Role dosen
-
-
                 'nip' => '1234567890',
                 'nama' => 'Irfan Sibudi',
                 'alamat' => 'Jl. Kejambon',
-                'email' => 'kaprodi@gmail.com',
+                'email' => 'irfanm@gmail.com',
                 'tanggal_lahir' => '1990-01-01',
                 'role' => 'kaprodi',
                 'periode mulai'=> '2018',
@@ -35,7 +26,6 @@ class dosenseeder extends Seeder
                 'user_id' => 3, // Pastikan ID ini ada di tabel users
                 'program_studi_kode_prodi' => '01',
                 'fakultas_kode_fakultas' => '101',
-            ],
             [
                 'nip' => '2234567890',
                 'nama' => 'Sajid Ironi',
@@ -66,7 +56,7 @@ class dosenseeder extends Seeder
                 'nip' => '4234567890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl. Mulawarman',
-                'email' => 'dosen@gmail.com',
+                'email' => 'dosenn2@unpas.ac.id',
                 'tanggal_lahir' => '1994-09-10',
                 'role' => 'dosen',
                 'periode mulai'=> '2018',
@@ -74,6 +64,15 @@ class dosenseeder extends Seeder
                 'user_id' => 6,
                 'program_studi_kode_prodi' => '01',
                 'fakultas_kode_fakultas' => '101',
+                'user_id' => '6',
+            ],
+            [
+                'nip' => '5234567890',
+                'nama' => 'Alwi Hambali',
+                'alamat' => 'Jl. Aja Dulu',
+                'email' => 'dosen5@unpas.ac.id',
+                'tanggal_lahir' => '1980-11-11',
+                'user_id' => '5',
             ],
 
 

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('AkademikMHS.header')
+  @include('AkademikDOSEN.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -22,7 +22,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-@include('DashBMHS.navbar')
+@include('DashBDOSEN.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -102,8 +102,8 @@
                                       <h5>Matakuliah Ditampilkan</h5>
                                   </div>
                                   <div class="card-body">
-                                      <p class="mb-1"><strong>Nama: </strong>{{ $mahasiswa->nama }}</p>
-                                      <p class="mb-1"><strong>NIM: </strong>{{ $mahasiswa->nim }}</p>
+                                      <p class="mb-1"><strong>Nama: </strong>{{ $dosen->nama }}</p>
+                                      <p class="mb-1"><strong>NIM: </strong>{{ $dosen->nip }}</p>
                                       <p><strong>Th. Ajaran:</strong> 2019/2020</p>
                                       <p><strong>Semester:</strong> Ganjil</p>
                                       <div class="d-flex justify-content-between align-items-center mb-2">
