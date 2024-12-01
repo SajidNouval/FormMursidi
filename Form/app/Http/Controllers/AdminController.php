@@ -29,8 +29,17 @@ class AdminController extends Controller
         return view("DashBDEKAN.DashBDEKAN");
     }
 
-    public function dbkaprodi(){
-        return view('DashBKAPRODI.DashBKAPRODI');
+    public function dbkaprodi()
+    {
+        $user = Auth::user();
+        // Pastikan role 'kaprodi' di-filter jika ada kemungkinan user lain masuk
+        $kaprodi = Dosen::where('user_id', $user->id)
+            ->where('role', 'kaprodi')
+            ->first();
+    
+        return view('DashBKAPRODI.DashBKAPRODI', [
+            'kaprodi' => $kaprodi
+        ]);
     }
 
     public function dbpakm(){

@@ -63,9 +63,9 @@
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
                 <h4 class="font-weight-bold">Kaprodi</h4>
-                <p class="mb-1"><strong>MR.Mursid Ilham</strong></p>
-                <p class="mb-1">24060122150069</p>
-                <p class="text-muted">mursidilham@lecturers.undip.ac.id</p>
+                <p class="mb-1"><strong>{{ $kaprodi->nama }}</strong></p>
+                <p class="mb-1">{{ $kaprodi->nip }}</p>
+                <p class="text-muted">{{ $kaprodi->email }}</p>
                 <a href="#" class="text-info">Lihat Selengkapnya</a>
               </div>
             </div>
