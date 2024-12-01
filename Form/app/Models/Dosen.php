@@ -18,12 +18,17 @@ class Dosen extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nip',
-        'nama',
-        'alamat',
-        'email',
-        'tanggal_lahir',
-        'user_id',
+          'nip',
+          'nama',
+          'alamat',
+          'email',
+          'tanggal_lahir',
+          'role',
+          'periode mulai',
+          'periode selesai',
+          'user_id',
+          'program_studi_kode_prodi',
+          'fakultas_kode_fakultas'
     ];
     
 

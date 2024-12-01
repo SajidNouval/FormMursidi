@@ -19,24 +19,21 @@ class Ruang_Kuliah extends Model
      */
     protected $fillable = [
         'kode_ruang',
-        'kapasitas',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        // Add any attributes you want to hide for serialization
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected $casts = [
-        // Define any attributes that should be cast to a specific type
-    ];
+        'kapasitas', 
+        'fakultas_kode_fakultas',
+        'program_sudi_kode_prodi',
+        'status'
+     ];
+     
+ 
+     /**
+      * The attributes that should be hidden for serialization.
+      *
+      * @var array<int, string>
+    
+      * Get the attributes that should be cast.
+      *
+      * @return array<string, string>
+      */
+   
 }
