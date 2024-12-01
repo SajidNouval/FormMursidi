@@ -25,10 +25,6 @@ class mhsseeder extends Seeder
                 'user_id' => '1'
     
             ],
-                'tahunMasuk' => '2022',
-                'user_id' => '1'
-    
-            ],
             [
                 'nim' =>'24060122130034',
                 'nama' => 'Rusdi',
@@ -71,9 +67,6 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2011-05-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
-                'user_id' => '5'
-            ],
-                'tahunMasuk' => '2022',
                 'user_id' => '5'
             ],
 

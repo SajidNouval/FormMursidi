@@ -63,9 +63,9 @@
                 <div class="card-body text-center">
                     <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
                     <h4 class="font-weight-bold">Dosen</h4>
-                    <p class="mb-1"><strong>{{ $dosen->nama }}</strong></p>
-                    <p class="mb-1">{{ $dosen->nip }}</p>
-                    <p class="text-muted">{{ $dosen->email }}</p>
+                    <p class="mb-1"><strong>{{ $mahasiswa->nama }}</strong></p>
+                    <p class="mb-1">nip</p>
+                    <p class="text-muted">email</p>
                     <a href="#" class="text-info">Lihat Selengkapnya</a>
                 </div>
             </div>
