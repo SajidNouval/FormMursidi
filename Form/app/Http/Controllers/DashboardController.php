@@ -48,42 +48,4 @@ class DashboardController extends Controller
         'jadwal_kuliah' => $jadwal_kuliah,
     ]);
 }
-
-    
-use App\Models\Mahasiswa;
-
-class DashboardController extends Controller
-{
-    public function akademikmhs(){
-            $user = Auth::user();
-            $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-            return view('AkademikMHS.akademikmhs', ['mahasiswa' => $mahasiswa]);
-    }
-
-    public function herregmhs(){
-        return view('HerRegMHS.herregmhs');
-    }
-
-    public function kaprodidb(){
-        return view('DashBKAPRODI.DashBKAPRODI');
-    }
-
-    public function profilmhs(){
-        $user = Auth::user();
-        $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-        return view('DashBMHS.profil', ['mahasiswa' => $mahasiswa]);
-    }
-
 }
-
-
-
- // $user = Auth::user();
-        // $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-        
-        // // Mengambil jadwal kuliah yang terkait dengan mahasiswa
-        // $jadwal_kuliah = Jadwal_Kuliah::where('mahasiswa_id', $mahasiswa->id)->get();
-        // return view('AkademikMHS.akademikmhs',[
-        //     'mahasiswa' =>$mahasiswa,
-        //     'jadwal_kuliah'=>$jadwal_kuliah,
-        // ]);
