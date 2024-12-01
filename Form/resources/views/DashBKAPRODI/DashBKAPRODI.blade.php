@@ -27,7 +27,7 @@
   </div>
 
   <!-- Navbar -->
-@include('DashBKAPRODI.navbarkpr')
+@include('DashBKAPRODI.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -45,7 +45,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,10 +76,10 @@
             <div class="row">
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
+                <a href="{{ route('akademikkpr') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Buat Jadwal</span>
+                    <span class="info-box-text text-white">Akademik</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>
                   </div>
                 </a>

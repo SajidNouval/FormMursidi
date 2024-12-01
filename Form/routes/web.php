@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardDSNController;
+use App\Http\Controllers\DashboardKPRController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -20,7 +21,7 @@ Route::get('/home', function(){
 Route::middleware(['auth'])->group(function(){
     Route::get('/sakura', [AdminController::class, 'halamandashboardadmin'])->name('admindashboard');
     Route::get('/sakura/mhsdb', [AdminController::class, 'dbmhs'])->middleware('userAkses:mahasiswa')->name('mhsdb');
-    Route::get('/sakura/kaprodidb', [AdminController::class, 'dbkaprodi'])->middleware('userAkses:kaprodi');
+    Route::get('/sakura/kaprodidb', [AdminController::class, 'dbkaprodi'])->middleware('userAkses:kaprodi')->name('kaprodidb');
     Route::get('/sakura/dekandb', [AdminController::class, 'dbdekan'])->middleware('userAkses:dekan');
     Route::get('/sakura/bakmdb', [AdminController::class, 'dbbakm'])->middleware('userAkses:bakademik');
     Route::get('/sakura/pakmdb', [AdminController::class, 'dbpakm'])->middleware('userAkses:pakademik');
@@ -38,6 +39,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/dosendb/konsultasi', [DashboardDSNController::class, 'konsultasidsn'])->middleware('userAkses:dosen')->name('konsultasidsn');
     Route::get('/sakura/dosendb/compose', [DashboardDSNController::class, 'konsulcomposedsn'])->middleware('userAkses:dosen')->name('dsncompose');
     Route::get('/sakura/dosendb/read', [DashboardDSNController::class, 'konsulreaddsn'])->middleware('userAkses:dosen')->name('dsnread');
+
+    Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
+
 });
 
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');
@@ -46,6 +50,9 @@ Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('f
 
 // Menambah mata kuliah ke IRS
 Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
+Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
 
 // routes/web.php
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');
+
+Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);

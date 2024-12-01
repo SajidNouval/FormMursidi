@@ -46,13 +46,13 @@ class DashboardController extends Controller
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
             // Ambil data IRS terkait mahasiswa
-            $irs = Irs::where('mahasiswa_id', $mahasiswa->id)->get();
+            $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)->get();
             
             // Hitung total SKS
             $totalSKS = $irs->sum('sks');
 
-            // Ambil jadwal kuliah terkait mahasiswa (opsional)
-            $jadwal_kuliah = Jadwal_Kuliah::where('mahasiswa_id', $mahasiswa->id)->get();
+            // // Ambil jadwal kuliah terkait mahasiswa (opsional)
+            // $jadwal_kuliah = Jadwal_Kuliah::where('mahasiswa_nim', $mahasiswa->id)->get();
         } else {
             // Default jika mahasiswa tidak ditemukan
             $irs = collect(); // Koleksi kosong
