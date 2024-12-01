@@ -25,10 +25,6 @@ class mhsseeder extends Seeder
                 'user_id' => '1'
     
             ],
-                'tahunMasuk' => '2022',
-                'user_id' => '1'
-    
-            ],
             [
                 'nim' =>'24060122130034',
                 'nama' => 'Rusdi',
@@ -37,8 +33,6 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2000-10-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
-
-                'tahunMasuk' => '2022',
                 'user_id' => '2'
             ],
             [
@@ -49,7 +43,6 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2001-10-11',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
-                'tahunMasuk' => '2022',
                 'user_id' => '3'
             ],
             [
@@ -60,7 +53,6 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2004-09-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
-                'tahunMasuk' => '2022',
                 'user_id' => '4'
             ],
             [
@@ -73,9 +65,7 @@ class mhsseeder extends Seeder
                 'semester'=>'5',
                 'user_id' => '5'
             ],
-                'tahunMasuk' => '2022',
-                'user_id' => '5'
-            ],
+
 
         ];
         foreach($mhsData as $key => $val){

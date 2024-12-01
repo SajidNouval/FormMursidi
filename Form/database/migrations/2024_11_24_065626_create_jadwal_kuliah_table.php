@@ -17,14 +17,6 @@ return new class extends Migration
             $table->string('mata_kuliah_kode_mk');
             $table->string('hari');
             $table->string('kelas');
-            // $table->time('jam_mulai');
-            // $table->time('jam_selesai');
-            $table->enum('jam_mulai', ['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','kosong'])->default('kosong'); 
-            $table->enum('jam_selesai', ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','kosong'])->default('kosong');
-            
-            $table->timestamps();
-            // $table->primary(['ruang_kuliah_kode_ruang', 'mata_kuliah_kode_mk']);
-
             $table->enum('jam_mulai', ['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','kosong'])->default('kosong'); 
             $table->enum('jam_selesai', ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','kosong'])->default('kosong');
             $table->timestamps();
