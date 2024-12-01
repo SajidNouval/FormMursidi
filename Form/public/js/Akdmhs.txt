@@ -1,0 +1,64 @@
+// Pastikan irs adalah data yang valid
+let irs = @json($irs); // IRS yang berisi mata kuliah yang dipilih mahasiswa
+
+// Update total SKS
+function updateTotalSKS() {
+    const totalSKS = irs.reduce((total, course) => total + course.sks, 0);
+    document.getElementById('total-sks').textContent = totalSKS;
+}
+
+// Hapus course berdasarkan ID
+function removeCourse(courseId) {
+    irs = irs.filter(course => course.id !== courseId);
+    renderSelectedCourses();  // Perbarui daftar mata kuliah
+    updateTotalSKS();         // Perbarui total SKS
+}
+
+// Tambahkan course jika belum ada
+function addCourse(courseId, courseName, courseSKS) {
+    if (!irs.some(course => course.id === courseId)) {
+        irs.push({ id: courseId, name: courseName, sks: courseSKS });
+        renderSelectedCourses();  // Perbarui daftar mata kuliah
+        updateTotalSKS();         // Perbarui total SKS
+    }
+}
+
+// Render daftar mata kuliah yang dipilih
+function renderSelectedCourses() {
+    const selectedCoursesContainer = document.getElementById('selected-courses');
+    selectedCoursesContainer.innerHTML = '';  // Kosongkan daftar lama
+
+    // Gunakan fragment untuk meningkatkan kinerja rendering
+    const fragment = document.createDocumentFragment();
+
+    irs.forEach(course => {
+        const courseDiv = document.createElement('div');
+        courseDiv.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-2');
+
+        // Nama dan SKS mata kuliah
+        const courseName = document.createElement('span');
+        courseName.textContent = `${course.name} (${course.sks} SKS)`;
+
+        // Tombol hapus
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+        removeButton.innerHTML = '<i class="fas fa-trash"></i>';
+        removeButton.onclick = function() { removeCourse(course.id); };
+
+        // Gabungkan elemen-elemen di atas
+        courseDiv.appendChild(courseName);
+        courseDiv.appendChild(removeButton);
+        fragment.appendChild(courseDiv);
+
+        // Tambahkan pembatas (garis horizontal)
+        const hr = document.createElement('hr');
+        fragment.appendChild(hr);
+    });
+
+    // Tambahkan fragment ke dalam container
+    selectedCoursesContainer.appendChild(fragment);
+}
+
+// Initial render
+renderSelectedCourses();
+updateTotalSKS();

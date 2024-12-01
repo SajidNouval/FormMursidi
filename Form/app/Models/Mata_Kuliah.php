@@ -17,6 +17,7 @@ class Mata_Kuliah extends Model
         'nama_mk' ,
         'sks' ,
         'semenster' ,
+        'jenis' ,
         'prodi_id' ,
         'dosen_id' 
     ];

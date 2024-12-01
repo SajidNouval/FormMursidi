@@ -24,11 +24,10 @@ return new class extends Migration
             
             $table->timestamps();
 
-<<<<<<< HEAD
-=======
+
             // $table->primary(['ruang_kuliah_kode_ruang', 'mata_kuliah_kode_mk']);
 
->>>>>>> f61c53b (P BERUBAHHH)
+
             $table->foreign('ruang_kuliah_kode_ruang')->references('kode_ruang')->on('ruang_kuliah')->onDelete('cascade');
             $table->foreign('mata_kuliah_kode_mk')->references('kode_mk')->on('mata_kuliah')->onDelete('cascade');
 

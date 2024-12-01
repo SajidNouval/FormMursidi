@@ -31,8 +31,7 @@ class dosenseeder extends Seeder
                 'tanggal_lahir' => '1990-01-01',
                 'role' => 'kaprodi'
             ],
-<<<<<<< HEAD
-=======
+
             [
                 'user_id' => '3',
                 'nip' => '2234567890',
@@ -53,7 +52,7 @@ class dosenseeder extends Seeder
             ],
             [
                 'user_id' => '5',
-                'nip' => '4234567890',
+                'nip' => '42345632890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl.Mulawarman',
                 'email' => 'dosen4@unpas.ac.id',
@@ -71,14 +70,14 @@ class dosenseeder extends Seeder
             ],
             [
                 'user_id' => '7',
-                'nip' => '5234567890',
+                'nip' => '52342567890',
                 'nama' => 'Alwi Hambali',
                 'alamat' => 'Jl. aja dulu',
                 'email' => 'dosen5@unpas.ac.id',
                 'tanggal_lahir' => '1980-11-11',
                 'role' => 'dosen'
             ],
->>>>>>> f61c53b (P BERUBAHHH)
+
         ];
         foreach($dosenData as $key => $val){
             Dosen::create($val);

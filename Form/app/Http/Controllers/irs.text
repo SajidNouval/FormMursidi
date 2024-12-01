@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Irs; // Pastikan model IRS sudah benar
+use App\Models\Mata_Kuliah; // Model MataKuliah
+use Illuminate\Support\Facades\DB;
+
+class irsController extends Controller
+{
+    // Menambah IRS untuk daftar mata kuliah
+    public function tambahIRS(Request $request)
+    {
+        // Validasi data input
+        $validated = $request->validate([
+            'mahasiswa_nim' => 'required|exists:mahasiswa,nim',
+            'selected_courses' => 'required|array', // Pastikan selected_courses adalah array
+            'selected_courses.*.mata_kuliah_kode_mk' => 'required|exists:mata_kuliah,kode_mk',
+            'selected_courses.*.semester' => 'required|integer|min:1',
+            'selected_courses.*.tahun_akademik' => 'required|string|regex:/^[0-9]{4}\/[0-9]{4}$/', // Format tahun akademik, contoh: 2024/2025
+        ], [
+            'mahasiswa_nim.required' => 'NIM mahasiswa wajib diisi.',
+            'selected_courses.required' => 'Pilih mata kuliah terlebih dahulu.',
+            'selected_courses.*.mata_kuliah_kode_mk.exists' => 'Mata kuliah tidak ditemukan.',
+            'selected_courses.*.tahun_akademik.regex' => 'Format tahun akademik tidak valid.',
+        ]);
+
+        // Ambil total SKS yang sudah diambil
+        $totalSKS = Irs::where('mahasiswa_nim', $validated['mahasiswa_nim'])->sum('total_sks');
+        $batasSKS = config('irs.batas_sks', 24); // Ambil dari konfigurasi atau default 24
+
+        $addedCourses = []; // Menyimpan mata kuliah yang berhasil ditambahkan
+        $failedCourses = []; // Menyimpan mata kuliah yang gagal ditambahkan
+
+        foreach ($validated['selected_courses'] as $courseData) {
+            // Periksa apakah mata kuliah sudah diambil
+            $sudahDiambil = Irs::where('mahasiswa_nim', $validated['mahasiswa_nim'])
+                ->where('mata_kuliah_kode_mk', $courseData['mata_kuliah_kode_mk'])
+                ->exists();
+
+            if ($sudahDiambil) {
+                $failedCourses[] = $courseData['mata_kuliah_kode_mk'];
+                continue;
+            }
+
+            // Ambil SKS dari tabel mata kuliah
+            $sksMataKuliah = Mata_Kuliah::where('kode_mk', $courseData['mata_kuliah_kode_mk'])->value('sks');
+
+            if (!$sksMataKuliah) {
+                $failedCourses[] = $courseData['mata_kuliah_kode_mk'];
+                continue;
+            }
+
+            // Validasi batas SKS
+            if ($totalSKS + $sksMataKuliah > $batasSKS) {
+                $failedCourses[] = $courseData['mata_kuliah_kode_mk'];
+                continue;
+            }
+
+            // Simpan data ke tabel IRS
+            $irs = Irs::create([
+                'mahasiswa_nim' => $validated['mahasiswa_nim'],
+                'mata_kuliah_kode_mk' => $courseData['mata_kuliah_kode_mk'],
+                'semester' => $courseData['semester'],
+                'tahun_akademik' => $courseData['tahun_akademik'],
+                'total_sks' => $sksMataKuliah,
+            ]);
+
+            $totalSKS += $sksMataKuliah; // Update total SKS
+            $addedCourses[] = $courseData['mata_kuliah_kode_mk']; // Simpan mata kuliah yang berhasil ditambahkan
+        }
+
+        // Kembalikan hasil
+        return response()->json([
+            'message' => 'Mata kuliah berhasil ditambahkan ke IRS.',
+            'added_courses' => $addedCourses,
+            'failed_courses' => $failedCourses,
+        ], 200);
+    }
+
+    // Menghapus IRS
+    public function hapusIRS($id)
+    {
+        $irs = Irs::findOrFail($id);
+        $irs->delete();
+
+        return response()->json([
+            'message' => 'Mata kuliah berhasil dihapus dari IRS.'
+        ], 200);
+    }
+}

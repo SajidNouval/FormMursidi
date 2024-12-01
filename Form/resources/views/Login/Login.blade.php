@@ -14,7 +14,12 @@
   <link rel="stylesheet" href={{ asset("AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}>
   <!-- Theme style -->
   <link rel="stylesheet" href={{ asset("AdminLTE/dist/css/adminlte.min.css") }}>
+  <link rel="stylesheet" href="{{ asset('cssP/login.css') }}">
+  
+
+
 </head>
+<div class="background"></div>
 <body class="hold-transition login-page">
 <div class="login-box">
   @if($errors->any())
@@ -26,13 +31,20 @@
       </ul>
     </div>
   @endif
-  <div class="login-logo">
-    <a><b>SAKURA</b> IRS</a>
+  <div class="log nih">
+  <img 
+    src="{{ asset('imgP/logo.png') }}" 
+    alt="Logo SAKURA" 
+    style="display: block; margin: 0 auto; max-width: 145px; margin-bottom: 1px;"
+  >
   </div>
+  <!-- <div class="login-logo">
+    <a><b><strong>SAKURA IRS</strong></b></a>
+  </div> -->
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Silahkan Login</p>
+      <p class="login-box-msg"><strong>Silahkan Login</strong></p>
 
       <form action="{{ route('postlogin') }}" method="post">
         {{ csrf_field() }}
@@ -75,9 +87,9 @@
       <p class="mb-1">
         <a href="{{ route('forgotpw') }}">I forgot my password</a>
       </p>
-      <p class="mb-0">
+      <!-- <p class="mb-0">
         <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>

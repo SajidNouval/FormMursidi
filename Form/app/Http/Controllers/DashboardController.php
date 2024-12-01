@@ -36,7 +36,9 @@ class DashboardController extends Controller
             'jadwal_kuliah.jam_selesai',
             'jadwal_kuliah.mata_kuliah_kode_mk',
             'mata_kuliah.nama_mk',
-            'ruang_kuliah.kode_ruang'
+            'ruang_kuliah.kode_ruang',
+            'mata_kuliah.sks',
+            'mata_kuliah.semester',
         )
         ->get();
 

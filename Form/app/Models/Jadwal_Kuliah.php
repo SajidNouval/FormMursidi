@@ -11,6 +11,7 @@ class Jadwal_Kuliah extends Model
      use HasFactory, Notifiable;
 
      protected $table = 'jadwal_kuliah'; // Tentukan nama tabel yang benar
+     protected $primaryKey = 'id'; 
      /**
       * The attributes that are mass assignable.
       *

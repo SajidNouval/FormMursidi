@@ -1,0 +1,108 @@
+// Ambil data IRS dari HTML
+let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs'));
+
+// Fungsi untuk memperbarui total SKS
+function updateTotalSKS() {
+    const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
+    document.getElementById('total-sks').textContent = totalSKS;
+}
+
+// Fungsi untuk menghapus mata kuliah dari IRS
+function removeCourse(courseKodeMK) {
+    irs = irs.filter(course => course.mata_kuliah_kode_mk !== courseKodeMK);
+    renderSelectedCourses(); // Render ulang daftar mata kuliah
+    updateTotalSKS();        // Update total SKS
+}
+
+// Fungsi untuk menambahkan mata kuliah ke IRS
+function addCourse(courseKodeMK, courseName, courseSKS) {
+    if (!irs.some(course => course.mata_kuliah_kode_mk === courseKodeMK)) {
+        irs.push({ mata_kuliah_kode_mk: courseKodeMK, name: courseName, total_sks: courseSKS });
+        renderSelectedCourses(); // Render ulang daftar mata kuliah
+        updateTotalSKS();        // Update total SKS
+    } else {
+        alert('Mata kuliah ini sudah ditambahkan.');
+    }
+}
+
+// Render daftar mata kuliah yang dipilih
+function renderSelectedCourses() {
+    const selectedCoursesContainer = document.getElementById('selected-courses');
+    selectedCoursesContainer.innerHTML = ''; // Kosongkan daftar lama
+
+    const fragment = document.createDocumentFragment();
+
+    irs.forEach(course => {
+        const courseDiv = document.createElement('div');
+        courseDiv.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-2');
+        courseDiv.setAttribute('data-id', course.mata_kuliah_kode_mk); // Tambahkan data-id ke elemen
+
+        const courseName = document.createElement('span');
+        courseName.textContent = `${course.name} (${course.total_sks} SKS)`;
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+        removeButton.innerHTML = '<i class="fas fa-trash"></i>';
+        removeButton.onclick = function() { removeCourse(course.mata_kuliah_kode_mk); };
+
+        courseDiv.appendChild(courseName);
+        courseDiv.appendChild(removeButton);
+        fragment.appendChild(courseDiv);
+
+        const hr = document.createElement('hr');
+        fragment.appendChild(hr);
+    });
+
+    selectedCoursesContainer.appendChild(fragment);
+}
+
+// Tambahkan event listener pada dropdown Pilih Mata Kuliah
+document.querySelector('.btn-primary.btn-block').addEventListener('click', function () {
+    const select = document.getElementById('select-matkul');
+    const selectedOption = select.options[select.selectedIndex];
+    const courseName = selectedOption.textContent;
+    const courseKodeMK = selectedOption.value;
+    const courseSKS = parseInt(selectedOption.getAttribute('data-sks'));
+
+    addCourse(courseKodeMK, courseName, courseSKS);
+});
+
+// Tambahkan event listener pada elemen jadwal kuliah
+document.querySelectorAll('.card.mb-2.p-2').forEach(function(card) {
+    card.addEventListener('click', function() {
+        const courseKodeMK = card.getAttribute('data-id');
+        const courseName = card.getAttribute('data-name');
+        const courseSKS = parseInt(card.getAttribute('data-sks'));
+
+        addCourse(courseKodeMK, courseName, courseSKS);
+    });
+});
+
+// Event listener untuk tombol simpan jadwal
+document.getElementById('save-irs-btn').addEventListener('click', function () {
+    const selectedCourses = irs.map(course => course.mata_kuliah_kode_mk);
+
+    // Kirim data ke server untuk disimpan di IRS
+    fetch('/path/to/your/save/irs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ selected_courses: selectedCourses })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Tangani respons sukses
+        alert('Jadwal kuliah berhasil disimpan!');
+    })
+    .catch(error => {
+        // Tangani kesalahan
+        console.error('Terjadi kesalahan:', error);
+        alert('Gagal menyimpan jadwal.');
+    });
+});
+
+// Initial render
+renderSelectedCourses();
+updateTotalSKS();
