@@ -19,8 +19,8 @@ class Mata_Kuliah extends Model
         'semenster' ,
         'jenis' ,
         'prodi_id' ,
-        'dosen_id' 
-        'program_studi_kode_prodi' ,
+        'dosen_id' ,
+        'program_studi_kode_prodi',
         'fakultas_kode_fakultas'
     ];
     public function irs()
