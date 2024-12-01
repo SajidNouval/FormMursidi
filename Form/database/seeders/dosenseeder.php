@@ -16,9 +16,9 @@ class DosenSeeder extends Seeder
                 'nip' => '1234567890',
                 'nama' => 'Irfan Sibudi',
                 'alamat' => 'Jl. Kejambon',
-                'email' => 'dosen1@unpas.ac.id',
+                'email' => 'dosen@gmail.com',
                 'tanggal_lahir' => '1990-01-01',
-                'role' => 'kaprodi',
+                'role' => 'dosen',
                 'user_id' => 1, // Pastikan ID ini ada di tabel users
             ],
             [
@@ -27,7 +27,7 @@ class DosenSeeder extends Seeder
                 'alamat' => 'Jl. Banjarsari',
                 'email' => 'dosen2@unpas.ac.id',
                 'tanggal_lahir' => '1991-02-12',
-                'role' => 'pakademik',
+                'role' => 'dosen',
                 'user_id' => 2,
             ],
             [
@@ -36,14 +36,14 @@ class DosenSeeder extends Seeder
                 'alamat' => 'Jl. Gondang Timur',
                 'email' => 'dosen3@unpas.ac.id',
                 'tanggal_lahir' => '1998-10-12',
-                'role' => 'dekan',
+                'role' => 'dosen',
                 'user_id' => 3,
             ],
             [
                 'nip' => '4234567890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl. Mulawarman',
-                'email' => 'dosen@gmail.com',
+                'email' => 'dosen4@gmail.com',
                 'tanggal_lahir' => '1994-09-10',
                 'role' => 'dosen',
                 'user_id' => 4,

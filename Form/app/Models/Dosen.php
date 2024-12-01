@@ -29,10 +29,10 @@ class Dosen extends Model
      * Definisi relasi ke tabel `users`.
      * Setiap dosen memiliki satu user.
      */
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
+
     public function dosen()
 {
     return $this->hasOne(Dosen::class);

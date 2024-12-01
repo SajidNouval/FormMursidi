@@ -60,16 +60,17 @@
           <!-- Profile Box -->
           <div class="col-12 col-md-4 d-flex align-items-stretch flex-column">
             <div class="card bg-secondary text-white d-flex align-items-center p-2">
-              <div class="card-body text-center">
-                <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
-                <h4 class="font-weight-bold">Dosen</h4>
-                <p class="mb-1"><strong>nama</strong></p>
-                <p class="mb-1">nip</p>
-                <p class="text-muted">email</p>
-                <a href="#" class="text-info">Lihat Selengkapnya</a>
-              </div>
+                <div class="card-body text-center">
+                    <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
+                    <h4 class="font-weight-bold">Dosen</h4>
+                    <p class="mb-1"><strong>{{ $dosen->nama }}</strong></p>
+                    <p class="mb-1">{{ $dosen->nip }}</p>
+                    <p class="text-muted">{{ $dosen->email }}</p>
+                    <a href="#" class="text-info">Lihat Selengkapnya</a>
+                </div>
             </div>
-          </div>
+        </div>
+        
     
           <!-- Main Info Boxes -->
           <div class="col-12 col-md-8 tombol-besar"> <!-- Tambahkan kelas "tombol-besar" di sini -->

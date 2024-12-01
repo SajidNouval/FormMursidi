@@ -36,6 +36,8 @@ class AdminController extends Controller
     }
 
     public function dbdosen(){
-        return view('DashBDOSEN.DashBDOSEN');
+        $user = Auth::user();
+        $dosen = Dosen::where('user_id', $user->id); 
+        return view('DashBDOSEN.DashBDOSEN', ['dosen' => $dosen]); // Kirim data dosen ke view
     }
 }
