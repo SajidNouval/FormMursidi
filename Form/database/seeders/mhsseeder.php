@@ -66,7 +66,6 @@ class mhsseeder extends Seeder
                 'user_id' => '5'
             ],
 
-
         ];
         foreach($mhsData as $key => $val){
             Mahasiswa::create($val);

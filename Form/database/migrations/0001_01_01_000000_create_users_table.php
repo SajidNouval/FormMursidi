@@ -40,10 +40,6 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('role', 255)->change();
         });
-
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->json('role')->nullable()->change(); // Ubah tipe kolom 'role' ke JSON
-        // });
         
         
     }
