@@ -36,3 +36,6 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');
 Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name('simpanregister');
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
+
+// routes/web.php
+Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');

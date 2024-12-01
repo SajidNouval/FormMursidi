@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Ruang_Kuliah extends Model
 {
-     /** @use HasFactory<\Database\Factories\UserFactory> */
-     use HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
-     protected $table = 'ruang_kuliah'; // Tentukan nama tabel yang benar
-     /**
-      * The attributes that are mass assignable.
-      *
-      * @var array<int, string>
-      */
-     protected $fillable = [
+    protected $table = 'ruang_kuliah'; // Tentukan nama tabel yang benar
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
         'kode_ruang',
         'kapasitas', 
         'fakultas_kode_fakultas',

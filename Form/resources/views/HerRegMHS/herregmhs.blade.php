@@ -35,7 +35,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Her-Rgistrasi</h1>
+            <h1 class="m-0">Her-Registrasi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,35 +60,44 @@
         <div class="row justify-content-center">
           <!-- Aktif -->
           <div class="col-12 col-md-6 col-lg-3 mb-3">
-            <a href="#" class="info-box-custom bg-light-purple p-4 text-center h-100 d-block">
-              <h4 class="text-dark font-weight-bold">Aktif</h4>
-              <p class="text-secondary">
-                Anda akan mengikuti kegiatan perkuliahan pada semester ini serta mengisi Isian Rencana Studi (IRS).
-              </p>
-            </a>
+            <form action="{{ route('update.status') }}" method="POST" onsubmit="return confirm('Anda yakin memilih aktif?');">
+                @csrf
+                <input type="hidden" name="status" value="aktif">
+                <button type="submit" class="info-box-custom bg-light-purple p-4 text-center h-100 d-block" 
+                    @if($mahasiswa->role == 'aktif' || $mahasiswa->role == 'cuti') disabled @endif>
+                    <h4 class="text-dark font-weight-bold">Aktif</h4>
+                    <p class="text-secondary">
+                        Anda akan mengikuti kegiatan perkuliahan pada semester ini serta mengisi Isian Rencana Studi (IRS).
+                    </p>
+                </button>
+            </form>
           </div>
-    
+
           <!-- Cuti -->
           <div class="col-12 col-md-6 col-lg-3 mb-3">
-            <a href="#" class="info-box-custom bg-light-purple p-4 text-center h-100 d-block">
-              <h4 class="text-dark font-weight-bold">Cuti</h4>
-              <p class="text-secondary">
-                Menghentikan kuliah sementara untuk semester ini tanpa kehilangan status sebagai mahasiswa.
-              </p>
-            </a>
+            <form action="{{ route('update.status') }}" method="POST" onsubmit="return confirm('Anda yakin memilih cuti?');">
+                @csrf
+                <input type="hidden" name="status" value="cuti">
+                <button type="submit" class="info-box-custom bg-light-purple p-4 text-center h-100 d-block" 
+                    @if($mahasiswa->role == 'aktif' || $mahasiswa->role == 'cuti') disabled @endif>
+                    <h4 class="text-dark font-weight-bold">Cuti</h4>
+                    <p class="text-secondary">
+                        Menghentikan kuliah sementara untuk semester ini tanpa kehilangan status sebagai mahasiswa.
+                    </p>
+                </button>
+            </form>
           </div>
-        </div>
         <div class="row justify-content-center">
           <!-- Her-Registrasi -->
-          <div class="col-12 col-md-6 col-lg-6 mb-3">
-            <a href="#" class="info-box-custom bg-light-purple p-4 text-left h-100 d-block">
+        <div class="col-12 col-md-6 col-lg-6 mb-3">
+          <a href="#" class="info-box-custom bg-light-purple p-4 text-left h-100 d-block">
               <h4 class="text-dark font-weight-bold">Her-Registrasi</h4>
               <p class="text-secondary">
-                Informasi lebih lanjut mengenai Her-Registrasi, atau mekanisme serta pengajuan penangguhan pembayaran dapat ditanyakan melalui Biro Administrasi Akademik (BAA) atau program studi masing-masing.
+                  Informasi lebih lanjut mengenai Her-Registrasi, atau mekanisme serta pengajuan penangguhan pembayaran dapat ditanyakan melalui Biro Administrasi Akademik (BAA) atau program studi masing-masing.
               </p>
-              <p class="text-dark font-weight-bold">Status Akademik Anda: #######</p>
-            </a>
-          </div>
+              <p class="text-dark font-weight-bold">Status Akademik Anda: {{ $mahasiswa->role }}</p>
+          </a>
+        </div>
     
           <!-- Konsultasi -->
           <div class="col-12 col-md-6 col-lg-3 mb-3">
@@ -127,5 +136,16 @@
 
 <!-- REQUIRED SCRIPTS -->
 @include('HerRegMHS.scriptdb')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 </body>
 </html>
