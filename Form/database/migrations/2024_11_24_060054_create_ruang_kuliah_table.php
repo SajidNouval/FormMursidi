@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('ruang_kuliah', function (Blueprint $table) {
             $table->string('kode_ruang')->primary(); // Kode unik untuk ruang kuliah
             $table->integer('kapasitas'); // Kapasitas ruang
+            $table->string('program_studi_kode_prodi');
+            $table->string('fakultas_kode_fakultas');
+            $table->string('status'); 
             $table->timestamps(); // Timestamps untuk created_at dan updated_at
 
-            
+            $table->foreign('program_studi_kode_prodi')->references('kode_prodi')->on('program_studi')->onDelete('cascade');
+            $table->foreign('fakultas_kode_fakultas')->references('kode_fakultas')->on('fakultas')->onDelete('cascade');
+
         });
     }
 

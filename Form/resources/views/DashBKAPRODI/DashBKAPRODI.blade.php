@@ -63,9 +63,9 @@
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
                 <h4 class="font-weight-bold">Kaprodi</h4>
-                <p class="mb-1"><strong>MR.Mursid Ilham</strong></p>
-                <p class="mb-1">24060122150069</p>
-                <p class="text-muted">mursidilham@lecturers.undip.ac.id</p>
+                <p class="mb-1"><strong>{{ $kaprodi->nama }}</strong></p>
+                <p class="mb-1">{{ $kaprodi->nip }}</p>
+                <p class="text-muted">{{ $kaprodi->email }}</p>
                 <a href="#" class="text-info">Lihat Selengkapnya</a>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 <a href="/akademik" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Akademik</span>
+                    <span class="info-box-text text-white">Buat Jadwal</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>
                   </div>
                 </a>

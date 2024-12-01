@@ -21,6 +21,7 @@ class matakuliahseeder extends Seeder
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
                 'dosen_nip' => '1234567890', // Sesuaikan dengan kolom yang ada
             ],
             [
@@ -30,6 +31,7 @@ class matakuliahseeder extends Seeder
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
                 'dosen_nip' => '2234567890', // Sesuaikan dengan kolom yang ada
             ],
             [
@@ -40,6 +42,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' =>  '3234567890', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'kode_mk' => 'Paik104',
@@ -49,6 +52,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' => '42345632890', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'kode_mk' => 'Paik105',
@@ -58,6 +62,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' => '5234561110', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'kode_mk' => 'Paik106',
@@ -68,7 +73,8 @@ class matakuliahseeder extends Seeder
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' => '52342567890', // Sesuaikan dengan kolom yang ada
             ],
-
+                'fakultas_kode_fakultas' => '101',
+            ]
         ];
 
         foreach ($mtklData as $key=>$val) {

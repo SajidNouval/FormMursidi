@@ -48,6 +48,8 @@ class LoginController extends Controller
             return redirect('sakura/bakmdb');
         } elseif ($role === 'pakademik') {
             return redirect('sakura/pakmdb');
+        } elseif ($role === 'dosen'){
+            return redirect('sakura/dosendb');
         }
     }
 

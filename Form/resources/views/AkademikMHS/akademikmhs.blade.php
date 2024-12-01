@@ -69,7 +69,6 @@
           </div>
   
           <div class="tab-content">
-
        <!-- Tab Buat IRS -->
         <!-- Menyertakan file JavaScript -->
         
@@ -441,7 +440,183 @@ updateTotalSKS();
 
 
           <!-- TAB LIAT MATKUL DIAMBIL -->
-           
+          <!-- Tab Buat IRS -->
+          <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
+              <!-- Container dengan latar belakang ungu -->
+              <div class="bg-purpleepanel p-4">
+                  <div class="container-fluid py-4">
+                      <div class="row">
+                          <!-- Bagian Kiri -->
+                          <div class="col-md-4">
+                              <!-- Tambahkan Mata Kuliah -->
+                              <div class="card mb-3">
+                                  <div class="card-header bg-primary text-white">
+                                      <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah Lain</h5>
+                                  </div>
+                                  <div class="card-body">
+                                      <div class="form-group">
+                                          <label for="select-matkul">Pilih Mata Kuliah</label>
+                                          <select id="select-matkul" class="form-control">
+                                              <option>Dasar Pemrograman</option>
+                                              <option>Matematika I</option>
+                                              <option>Struktur Data</option>
+                                              <option>Algoritma</option>
+                                          </select>
+                                      </div>
+                                      <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
+                                  </div>
+                              </div>
+                              <!-- Informasi Mahasiswa -->
+                              <div class="card">
+                                  <div class="card-header bg-info text-white">
+                                      <h5>Matakuliah Ditampilkan</h5>
+                                  </div>
+                                  <div class="card-body">
+                                      <p class="mb-1"><strong>Nama: </strong>{{ $mahasiswa->nama }}</p>
+                                      <p class="mb-1"><strong>NIM: </strong>{{ $mahasiswa->nim }}</p>
+                                      <p><strong>Th. Ajaran:</strong> 2019/2020</p>
+                                      <p><strong>Semester:</strong> Ganjil</p>
+                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                          <span>Dasar Pemrograman (3 SKS)</span>
+                                          <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                      </div>
+                                      <hr>
+                                      <div class="d-flex justify-content-between align-items-center">
+                                          <span>Matematika I (2 SKS)</span>
+                                          <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                      </div>
+                                  </div>
+                                  <div class="card-footer text-right">
+                                      <strong>Total SKS: 5</strong>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Bagian Kanan -->
+                          <div class="col-md-8">
+                              <div class="card">
+                                  <div class="card-header bg-primary text-white">
+                                      <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
+                                  </div>
+                                  <div class="card-body p-0">
+                                      <div class="table-responsive">
+                                          <table class="table table-bordered text-center">
+                                              <thead class="bg-primary text-white">
+                                                  <tr>
+                                                      <th>Waktu</th>
+                                                      <th>Senin</th>
+                                                      <th>Selasa</th>
+                                                      <th>Rabu</th>
+                                                      <th>Kamis</th>
+                                                      <th>Jumat</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr>
+                                                      <td>07:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>08:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>09:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>10:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>11:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>12:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>13:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>14:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>15:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>16:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>17:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td>18:00</td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                      <td></td>
+                                                  </tr>
+                                              </tbody>
+                                          </table>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
   
           <!-- Tab IRS -->
@@ -734,26 +909,96 @@ updateTotalSKS();
             </div>
   
             <!-- Tab Transkrip -->
-            <div class="tab-pane fade" id="transkrip" role="tabpanel">
-              <div class="panel">
-                <h4>Transkrip Akademik (Terbaik)</h4>
-                <p>Nama: Tito Dean</p>
-                <p>Program Studi: Informatika</p>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Kode</th>
-                      <th>Mata Kuliah</th>
-                      <th>SKS</th>
-                      <th>Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Isi data transkrip akademik sesuai kebutuhan -->
-                  </tbody>
-                </table>
-                <button class="button-print">PRINT</button>
+          <div class="tab-pane fade" id="transkrip" role="tabpanel">
+            <div class="panel">
+              <!-- Tombol untuk memilih konten -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-default" id="btnLengkap">Lengkap</button>
+                <button type="button" class="btn btn-default" id="btnTerbaik">Terbaik</button>
+                <button type="button" class="btn btn-default" id="btnInggris">Inggris</button>
               </div>
+
+              <!-- Konten Tab Transkrip -->
+              <div id="transkripContent" class="tab-content mt-3">
+                <!-- Konten Lengkap -->
+                <div id="contentLengkap" class="tab-pane fade show active">
+                  <h5>Data Lengkap Transkrip</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>183</td>
+                        <td>John Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-success">Approved</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Konten Terbaik -->
+                <div id="contentTerbaik" class="tab-pane fade">
+                  <h5>Data Terbaik Transkrip</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>657</td>
+                        <td>Bob Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-primary">Approved</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Konten Inggris -->
+                <div id="contentInggris" class="tab-pane fade">
+                  <h5>Data dalam Bahasa Inggris</h5>
+                  <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>175</td>
+                        <td>Mike Doe</td>
+                        <td>11-7-2014</td>
+                        <td><span class="tag tag-danger">Denied</span></td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                      </tr>
+                      <!-- Data lainnya di sini -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
