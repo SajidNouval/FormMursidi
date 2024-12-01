@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('email')->unique();
             $table->date('tanggal_lahir');
+            $table->string('program_studi_kode_prodi');
+            $table->string('fakultas_kode_fakultas');
+            $table->string('periode mulai');
+            $table->string('periode selesai');
             $table->enum('role', ['kaprodi', 'pakademik', 'dekan','dosen'])->default('kaprodi'); // Role dosen
             $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->timestamps();

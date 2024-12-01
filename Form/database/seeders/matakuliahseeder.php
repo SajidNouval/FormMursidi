@@ -55,16 +55,6 @@ class matakuliahseeder extends Seeder
                 'fakultas_kode_fakultas' => '101',
             ],
             [
-                'kode_mk' => 'Paik105',
-                'nama_mk' => 'SI',
-                'sks' => 3,
-                'semester' => 5,
-                'jenis'=>'Wajib',
-                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
-                'dosen_nip' => '5234561110', // Sesuaikan dengan kolom yang ada
-                'fakultas_kode_fakultas' => '101',
-            ],
-            [
                 'kode_mk' => 'Paik106',
                 'nama_mk' => 'Basis Data',
                 'sks' => 4,
@@ -72,9 +62,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'dosen_nip' => '52342567890', // Sesuaikan dengan kolom yang ada
-            ],
                 'fakultas_kode_fakultas' => '101',
-            ]
+            ],
         ];
 
         foreach ($mtklData as $key=>$val) {
