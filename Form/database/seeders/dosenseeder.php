@@ -1,10 +1,12 @@
 <?php
+
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Dosen;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class DosenSeeder extends Seeder
+class dosenseeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -76,7 +78,6 @@ class DosenSeeder extends Seeder
 
 
         ];
-
         foreach($dosenData as $key => $val){
             Dosen::create($val);
         }
