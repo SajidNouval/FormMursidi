@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('email')->unique();
             $table->date('tanggal_lahir');
+            $table->string('tahun_masuk');
+            $table->string('semester');
+            $table->enum('role', ['aktif', 'cuti', 'kosong' ])->default('kosong');
             $table->string('tahunMasuk');
             $table->enum('role', ['aktif', 'cuti', 'kosong', ])->default('kosong');
             $table->timestamps();

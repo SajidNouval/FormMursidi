@@ -12,17 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosen', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
-            $table->string('nip')->primary();
+            $table->string('nip')->primary(); // NIP sebagai primary key
             $table->string('nama');
             $table->string('alamat');
             $table->string('email')->unique();
             $table->date('tanggal_lahir');
-            $table->enum('role', ['kaprodi', 'pakademik', 'dekan','dosen'])->default('kaprodi'); // Role dosen
+            $table->enum('role', ['dosen', 'pakademik', 'dekan', 'kaprodi'])->default('dosen'); // Role dosen
+            $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
             $table->timestamps();
         });
-            
-        
     }
 
     /**

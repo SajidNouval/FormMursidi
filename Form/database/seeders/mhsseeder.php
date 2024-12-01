@@ -20,7 +20,8 @@ class mhsseeder extends Seeder
                 'alamat' => 'Jl. Mawah Sejati',
                 'email' => 'mhs@gmail.com',
                 'tanggal_lahir'=> '1969-10-15',
-                'tahunMasuk' => '2022',
+                'tahun_masuk'=>'2022',
+                'semester'=>'5',
                 'user_id' => '1'
     
             ],
@@ -30,6 +31,9 @@ class mhsseeder extends Seeder
                 'alamat' => 'Jl. Iwenisari',
                 'email' => 'mhs2@gmail.com',
                 'tanggal_lahir'=> '2000-10-15',
+                'tahun_masuk'=>'2022',
+                'semester'=>'5',
+
                 'tahunMasuk' => '2022',
                 'user_id' => '2'
             ],
@@ -39,6 +43,8 @@ class mhsseeder extends Seeder
                 'alamat' => 'Jl. Banjarsari',
                 'email' => 'mhs3@gmail.com',
                 'tanggal_lahir'=> '2001-10-11',
+                'tahun_masuk'=>'2022',
+                'semester'=>'5',
                 'tahunMasuk' => '2022',
                 'user_id' => '3'
             ],
@@ -48,6 +54,8 @@ class mhsseeder extends Seeder
                 'alamat' => 'Jl. Melati',
                 'email' => 'mhs4@gmail.com',
                 'tanggal_lahir'=> '2004-09-15',
+                'tahun_masuk'=>'2022',
+                'semester'=>'5',
                 'tahunMasuk' => '2022',
                 'user_id' => '4'
             ],
@@ -57,7 +65,8 @@ class mhsseeder extends Seeder
                 'alamat' => 'Jl. Mawar',
                 'email' => 'mhs5@gmail.com',
                 'tanggal_lahir'=> '2011-05-15',
-                'tahunMasuk' => '2022',
+                'tahun_masuk'=>'2022',
+                'semester'=>'5',
                 'user_id' => '5'
             ],
 
