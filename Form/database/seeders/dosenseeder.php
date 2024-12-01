@@ -20,6 +20,8 @@ class dosenseeder extends Seeder
                 'alamat' => 'Jl. Kejambon',
                 'email' => 'irfanm@gmail.com',
                 'tanggal_lahir' => '1990-01-01',
+                'role' => 'kaprodi'
+            ],
                 'role' => 'kaprodi',
                 'periode mulai'=> '2018',
                 'periode selesai'=> '2026',
@@ -53,7 +55,7 @@ class dosenseeder extends Seeder
                 'fakultas_kode_fakultas' => '101',
             ],
             [
-                'nip' => '4234567890',
+                'nip' => '42345632890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl. Mulawarman',
                 'email' => 'dosenn2@unpas.ac.id',
@@ -64,18 +66,15 @@ class dosenseeder extends Seeder
                 'user_id' => 6,
                 'program_studi_kode_prodi' => '01',
                 'fakultas_kode_fakultas' => '101',
-                'user_id' => '6',
             ],
             [
-                'nip' => '5234567890',
+                'user_id' => '7',
+                'nip' => '52342567890',
                 'nama' => 'Alwi Hambali',
                 'alamat' => 'Jl. Aja Dulu',
                 'email' => 'dosen5@unpas.ac.id',
                 'tanggal_lahir' => '1980-11-11',
-                'user_id' => '5',
             ],
-
-
         ];
         foreach($dosenData as $key => $val){
             Dosen::create($val);

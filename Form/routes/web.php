@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPWController;
+use App\Http\Controllers\IrsController;
 use App\Http\Controllers\HerRegController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -42,6 +43,9 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');
 Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name('simpanregister');
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
+
+// Menambah mata kuliah ke IRS
+Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
 
 // routes/web.php
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');

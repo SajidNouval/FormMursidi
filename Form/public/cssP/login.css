@@ -1,0 +1,18 @@
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../imgP/photo2.png') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(2px);
+    z-index: -1;
+  }
+  
