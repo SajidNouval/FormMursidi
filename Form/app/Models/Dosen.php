@@ -22,7 +22,11 @@ class Dosen extends Model
           'email',
           'tanggal_lahir',
           'role',
+          'periode mulai',
+          'periode selesai',
           'user_id',
+          'program_studi_kode_prodi',
+          'fakultas_kode_fakultas'
     ];
 
     /**

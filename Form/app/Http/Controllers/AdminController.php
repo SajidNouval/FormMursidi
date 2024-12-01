@@ -40,7 +40,7 @@ class AdminController extends Controller
         $user = Auth::user();
         // Pastikan role 'kaprodi' di-filter jika ada kemungkinan user lain masuk
         $kaprodi = Dosen::where('user_id', $user->id)
-            ->where('role', 'kaprodi')
+            ->where('user_id', 3)
             ->first();
     
         return view('DashBKAPRODI.DashBKAPRODI', [
@@ -50,6 +50,15 @@ class AdminController extends Controller
 
     public function dbpakm(){
         return view('DashBPAKA.DashBPAKA');
+        $user = Auth::user();
+        // Pastikan role 'kaprodi' di-filter jika ada kemungkinan user lain masuk
+        $kaprodi = Dosen::where('user_id', $user->id)
+            ->where('user_id', 2)
+            ->first();
+    
+        return view('DashBPAKA.DashBPAKA', [
+            'kaprodi' => $kaprodi
+        ]);
     }
 
     public function dbdosen(){

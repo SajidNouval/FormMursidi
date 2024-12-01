@@ -26,26 +26,6 @@ class DashboardController extends Controller
     // Hitung total SKS yang diambil
     $totalSKS = $irs->sum('sks');
     
-    // Ambil jadwal kuliah dengan DB::table()
-    $jadwal_kuliah = DB::table('jadwal_kuliah')
-        ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
-        ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
-        ->select(
-            'jadwal_kuliah.hari',
-            'jadwal_kuliah.jam_mulai',
-            'jadwal_kuliah.jam_selesai',
-            'jadwal_kuliah.mata_kuliah_kode_mk',
-            'mata_kuliah.nama_mk',
-            'ruang_kuliah.kode_ruang'
-        )
-        ->get();
 
-    // Kirim data ke view
-    return view('AkademikMHS.akademikmhs', [
-        'mahasiswa' => $mahasiswa,
-        'irs' => $irs,
-        'totalSKS' => $totalSKS,
-        'jadwal_kuliah' => $jadwal_kuliah,
-    ]);
 }
 }

@@ -19,6 +19,9 @@ class Ruang_Kuliah extends Model
      protected $fillable = [
         'kode_ruang',
         'kapasitas', 
+        'fakultas_kode_fakultas',
+        'program_sudi_kode_prodi',
+        'status'
      ];
      
  

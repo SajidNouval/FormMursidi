@@ -21,14 +21,18 @@ class DosenSeeder extends Seeder
                 // $table->date('tanggal_lahir');
                 // $table->enum('role', ['kaprodi', 'pakademik', 'dekan'])->default('kaprodi'); // Role dosen
 
-                'user_id' => '2',
+
                 'nip' => '1234567890',
                 'nama' => 'Irfan Sibudi',
                 'alamat' => 'Jl. Kejambon',
                 'email' => 'kaprodi@gmail.com',
                 'tanggal_lahir' => '1990-01-01',
                 'role' => 'kaprodi',
-                'user_id' => 1, // Pastikan ID ini ada di tabel users
+                'periode mulai'=> '2018',
+                'periode selesai'=> '2026',
+                'user_id' => 3, // Pastikan ID ini ada di tabel users
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'nip' => '2234567890',
@@ -37,7 +41,11 @@ class DosenSeeder extends Seeder
                 'email' => 'pamk@gmail.com',
                 'tanggal_lahir' => '1991-02-12',
                 'role' => 'pakademik',
+                'periode mulai'=> '2018',
+                'periode selesai'=> '2026',
                 'user_id' => 2,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'nip' => '3234567890',
@@ -46,7 +54,11 @@ class DosenSeeder extends Seeder
                 'email' => 'dekan@gmail.com',
                 'tanggal_lahir' => '1998-10-12',
                 'role' => 'dekan',
-                'user_id' => 3,
+                'periode mulai'=> '2018',
+                'periode selesai'=> '2026',
+                'user_id' => 4,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
             ],
             [
                 'nip' => '4234567890',
@@ -55,17 +67,13 @@ class DosenSeeder extends Seeder
                 'email' => 'dosen@gmail.com',
                 'tanggal_lahir' => '1994-09-10',
                 'role' => 'dosen',
-                'user_id' => 4,
+                'periode mulai'=> '2018',
+                'periode selesai'=> '2026',
+                'user_id' => 6,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
             ],
-            [
-                'nip' => '5234567890',
-                'nama' => 'Alwi Hambali',
-                'alamat' => 'Jl. Aja Dulu',
-                'email' => 'dosen5@unpas.ac.id',
-                'tanggal_lahir' => '1980-11-11',
-                'role' => 'dosen',
-                'user_id' => 5,
-            ],
+
 
         ];
 
