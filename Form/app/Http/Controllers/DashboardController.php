@@ -14,8 +14,13 @@ class DashboardController extends Controller
             return view('AkademikMHS.akademikmhs', ['mahasiswa' => $mahasiswa]);
     }
 
-    public function herregmhs(){
-        return view('HerRegMHS.herregmhs');
+    public function herregmhs()
+    {
+        $user = Auth::user();
+        // Mengambil data mahasiswa yang sedang login
+        $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
+
+        return view('HerRegMHS.herregmhs',  ['mahasiswa' => $mahasiswa]); // Mengirim data mahasiswa ke view
     }
 
     public function kaprodidb(){
