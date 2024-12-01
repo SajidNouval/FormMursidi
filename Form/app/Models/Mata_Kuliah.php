@@ -20,6 +20,10 @@ class Mata_Kuliah extends Model
         'prodi_id' ,
         'dosen_id' 
     ];
+    public function irs()
+    {
+        return $this->hasMany(IRS::class, 'mata_kuliah_kode_mk', 'kode_mk');
+    }
 
      /**
      * The attributes that should be hidden for serialization.

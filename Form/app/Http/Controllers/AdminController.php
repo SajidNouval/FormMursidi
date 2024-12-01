@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Jadwal_Kuliah;
+
 use App\Models\Dosen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\Dosen;
 
 class AdminController extends Controller
 {
@@ -15,8 +19,13 @@ class AdminController extends Controller
 
     public function dbmhs(){
         $user = Auth::user();
-        $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-        return view('DashBMHS.DashBMHS', ['mahasiswa' => $mahasiswa]);
+        $mahasiswa = Mahasiswa::where('user_id',$user->id)->first();
+
+
+        return view('DashBMHS.DashBMHS', [
+            'mahasiswa' => $mahasiswa,
+
+        ]);
     }
 
     public function dbbakm(){
@@ -40,4 +49,6 @@ class AdminController extends Controller
         $dosen = Dosen::where('user_id', $user->id); 
         return view('DashBDOSEN.DashBDOSEN', ['dosen' => $dosen]); // Kirim data dosen ke view
     }
+
+
 }
