@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 
+
 class AdminController extends Controller
 {
     public function halamandashboardadmin(){
@@ -43,7 +44,7 @@ class AdminController extends Controller
     }
 
     public function dbpakm(){
-        return view('DashBPAKA.DashBPAKA');
+    
         $user = Auth::user();
         // Pastikan role 'kaprodi' di-filter jika ada kemungkinan user lain masuk
         $kaprodi = Dosen::where('user_id', $user->id)

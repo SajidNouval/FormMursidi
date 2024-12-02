@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Irs; // Pastikan model IRS sudah benar
+use App\Models\irs; // Pastikan model IRS sudah benar
 use App\Models\Mata_Kuliah; // Model MataKuliah
 use Illuminate\Support\Facades\DB;
 use App\Models\Mahasiswa;
@@ -12,71 +12,98 @@ class irsController extends Controller
 {
     // Menambah IRS untuk daftar mata kuliah
     public function tambah(Request $request)
-{
-    $data = $request->validate([
-        'mahasiswa_nim' => 'required|string',
-        'selected_courses' => 'required|array',
-        'selected_courses.*.mata_kuliah_kode_mk' => 'required|string',
-        'selected_courses.*.semester' => 'required|integer',
-        'selected_courses.*.tahun_akademik' => 'required|string',
-    ]);
+    {
+        \Log::info($request->all());
+        // Validasi input
+        $validated = $request->validate([
+            'selected_courses' => 'required|array',
+            'selected_courses.*.mata_kuliah_kode_mk' => 'required|string',
+            'selected_courses.*.semester' => 'required|integer',
+            // 'selected_courses.*.tahun_akademik' => 'required|string',
+        ]);
+    
+        // Simpan setiap mata kuliah yang dipilih
+        foreach ($validated['selected_courses'] as $course) {
+            $mata_kuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
 
-    // Cek apakah mahasiswa ada di database
-    $mahasiswa = Mahasiswa::where('nim', $data['mahasiswa_nim'])->first();
-    if (!$mahasiswa) {
-        return response()->json(['message' => 'Mahasiswa tidak ditemukan'], 404);
+    if (!$mata_kuliah) {
+        return response()->json(['error' => 'Mata kuliah dengan kode ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
     }
 
-    $addedCourses = [];
-    foreach ($data['selected_courses'] as $courseData) {
-        $mataKuliah = Mata_Kuliah::where('mata_kuliah_kode_mk', $courseData['mata_kuliah_kode_mk'])->first();
-        if ($mataKuliah) {
-            $irs = new Irs();
-            $irs->mahasiswa_nim = $mahasiswa->nim;
-            $irs->mata_kuliah_kode_mk = $mataKuliah->mata_kuliah_kode_mk;
-            $irs->semester = $courseData['semester'];
-            $irs->tahun_akademik = $courseData['tahun_akademik'];
-            $irs->save();
-
-            $addedCourses[] = $mataKuliah;
-        }
-    }
-
-    return response()->json([
-        'message' => 'Mata kuliah berhasil ditambahkan',
-        'added_courses' => $addedCourses,
-    ]);
+    // Simpan atau perbarui data IRS
+    irs::updateOrCreate(
+        [
+            'mahasiswa_nim' => auth()->user()->nim,
+            'mata_kuliah_kode_mk' => $course['mata_kuliah_kode_mk'],
+        ],
+        [
+            'semester' => $course['semester'],
+            'tahun_akademik' => $course['tahun_akademik']
+        ]
+    );
 }
+
+        // Return success message
+        return response()->json(['message' => 'Mata kuliah berhasil ditambahkan ke IRS.']);
+    }
+    
 
     // Menghapus IRS
     public function hapus(Request $request)
     {
-        $data = $request->validate([
-            'mahasiswa_nim' => 'required|string',
+        // Validasi input
+        $validated = $request->validate([
             'mata_kuliah_kode_mk' => 'required|string',
         ]);
     
-        // Cek apakah mahasiswa ada di database
-        $mahasiswa = Mahasiswa::where('nim', $data['mahasiswa_nim'])->first();
-        if (!$mahasiswa) {
-            return response()->json(['message' => 'Mahasiswa tidak ditemukan'], 404);
-        }
-    
-        // Cari mata kuliah yang akan dihapus
-        $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)
-                  ->where('mata_kuliah_kode_mk', $data['mata_kuliah_kode_mk'])
-                  ->first();
-    
-        if (!$irs) {
-            return response()->json(['message' => 'Mata kuliah tidak ditemukan di IRS'], 404);
-        }
-    
         // Hapus mata kuliah dari IRS
-        $irs->delete();
+        irs::where([
+            'mahasiswa_nim' => auth()->user()->nim,
+            'mata_kuliah_kode_mk' => $validated['mata_kuliah_kode_mk'],
+        ])->delete();
     
-        return response()->json([
-            'message' => 'Mata kuliah berhasil dihapus',
+        return response()->json(['message' => 'Mata kuliah berhasil dihapus dari IRS.']);
+    }
+
+    public function simpanirs(Request $request)
+    {
+        // Log input yang diterima
+        \Log::info($request->all());
+
+        // Validasi input
+        $validated = $request->validate([
+            'irs' => 'required|array',
+            'irs.*.mata_kuliah_kode_mk' => 'required|string',
+            'irs.*.semester' => 'required|integer',
+            'irs.*.tahun_akademik' => 'required|string',
         ]);
+
+        // Ambil data mahasiswa yang sedang login
+        $mahasiswaNim = auth()->user()->nim;
+
+        // Menyimpan atau mengupdate setiap mata kuliah yang dipilih
+        foreach ($validated['irs'] as $course) {
+            $mataKuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
+
+            if (!$mataKuliah) {
+                return response()->json(['error' => 'Mata kuliah dengan kode ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
+            }
+
+            // Simpan atau update IRS untuk mahasiswa yang bersangkutan
+            Irs::updateOrCreate(
+                [
+                    'mahasiswa_nim' => $mahasiswaNim,
+                    'mata_kuliah_kode_mk' => $course['mata_kuliah_kode_mk'],
+                ],
+                [
+                    'semester' => $course['semester'],
+                    'tahun_akademik' => $course['tahun_akademik']
+                ]
+            );
+        }
+
+        // Mengembalikan respons sukses setelah IRS disimpan
+        return response()->json(['message' => 'IRS berhasil disimpan.'], 200);
     }
     
 }

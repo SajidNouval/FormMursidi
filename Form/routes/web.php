@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPWController;
-use App\Http\Controllers\IrsController;
+use App\Http\Controllers\irsController;
 use App\Http\Controllers\HerRegController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -42,6 +42,13 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
 
+        // Tambah IRS (POST)
+    Route::post('/irs/tambah', [irsController::class, 'tambah'])->middleware('auth')->name('irs.tambah');
+
+    // Hapus IRS (DELETE)
+    Route::delete('/irs/hapus', [irsController::class, 'hapus'])->middleware('auth')->name('irs.hapus');
+
+    Route::post('/simpanirs', [irsController::class, 'simpanirs'])->middleware('auth')->name('simpanirs');
 });
 
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');
@@ -49,8 +56,9 @@ Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
 
 // Menambah mata kuliah ke IRS
-Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
-Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
+
+// Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
+// Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
 
 // routes/web.php
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');

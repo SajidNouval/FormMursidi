@@ -211,7 +211,7 @@
 
 <script>
 // Ambil data IRS dari HTML
-let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs') || '[]');
+let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs'));
 
 // Fungsi untuk memperbarui total SKS
 function updateTotalSKS() {
@@ -271,33 +271,36 @@ function renderSelectedCourses() {
 }
 
 // Menangani klik tombol "Simpan"
-document.getElementById('save-btn')?.addEventListener('click', () => {
+document.getElementById('save-btn').addEventListener('click', () => {
     const formData = {
         irs: irs
     };
 
     // Simpan IRS ke server
-    fetch('/simpanirs', {
-        method: 'POST', // Pastikan metode yang digunakan adalah POST
+    fetch('/simpan-irs', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
-        body: JSON.stringify(formData) // Mengirim data dalam format JSON
+        body: JSON.stringify(formData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Gagal menyimpan IRS, status: ' + response.status);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         console.log('Simpan IRS berhasil:', data);
-        document.getElementById('edit-btn').style.display = 'inline-block'; // Menampilkan tombol Edit
-        document.getElementById('save-btn').style.display = 'none'; // Menyembunyikan tombol Simpan
+        document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
+        document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
     })
     .catch(error => {
         console.error('Error:', error);
     });
+});
+
+// Menangani klik tombol "Edit"
+document.getElementById('edit-btn').addEventListener('click', () => {
+    // Tampilkan tombol Simpan dan sembunyikan tombol Edit
+    document.getElementById('save-btn').style.display = 'inline-block';
+    document.getElementById('edit-btn').style.display = 'none';
 });
 
 // Menangani klik pada jadwal kuliah untuk menambahkannya
@@ -309,9 +312,7 @@ document.querySelectorAll('.add-course').forEach(button => {
         addCourse(courseKodeMK, courseName, courseSKS);
     });
 });
-
 </script>
-
 
 
 

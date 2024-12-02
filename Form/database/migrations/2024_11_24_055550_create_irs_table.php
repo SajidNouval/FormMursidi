@@ -14,8 +14,8 @@ return new class extends Migration
             $table->id();
             $table->string('mahasiswa_nim'); // Menambahkan kolom mahasiswa_nim
             $table->integer('semester');
-            $table->string('tahun_akademik');
-            $table->integer('total_sks')->default(0);
+            // $table->string('tahun_akademik');
+            // $table->integer('total_sks')->default(0);
             $table->string('mata_kuliah_kode_mk'); // Menambahkan kolom mata_kuliah_kode_mk
             $table->timestamps();
 
