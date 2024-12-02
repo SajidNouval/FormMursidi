@@ -20,7 +20,7 @@ class bakaseeder extends Seeder
                 'alamat' => 'Jl. Mawar',
                 'notelp' => '081927243825',
                 'user_id'=> 9,
-                'fakultas_kode_fakultas' => '01'  
+                'fakultas_kode_fakultas' => '101'  
             ],
         ];
         foreach($bakaData as $key => $val){
