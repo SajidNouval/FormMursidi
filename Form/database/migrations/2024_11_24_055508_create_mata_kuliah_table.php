@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('program_studi_kode_prodi'); // Tambahkan kolom program_studi_kode_prodi
             $table->string('fakultas_kode_fakultas');
-            $table->string('dosen_nip')->nullable();    // Tambahkan kolom dosen_nip
             $table->timestamps();
 
             // Menambahkan foreign key ke tabel program_studi
@@ -26,14 +25,9 @@ return new class extends Migration
                   ->references('kode_prodi')
                   ->on('program_studi')
                   ->onDelete('cascade');
-                  
+
                   $table->foreign('fakultas_kode_fakultas')->references('kode_fakultas')->on('fakultas')->onDelete('cascade');
 
-            // Menambahkan foreign key ke tabel dosen
-            $table->foreign('dosen_nip')
-                  ->references('nip')
-                  ->on('dosen')
-                  ->onDelete('cascade');
         });
     }
 

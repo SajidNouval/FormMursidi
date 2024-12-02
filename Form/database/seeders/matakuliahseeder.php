@@ -22,7 +22,6 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
-                'dosen_nip' => '1234567890', // Sesuaikan dengan kolom yang ada
             ],
             [
                 'kode_mk' => 'Paik102',
@@ -32,7 +31,6 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
-                'dosen_nip' => '2234567890', // Sesuaikan dengan kolom yang ada
             ],
             [
                 'kode_mk' => 'Paik103',
@@ -41,7 +39,6 @@ class matakuliahseeder extends Seeder
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
-                'dosen_nip' =>  '3234567890', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
             ],
             [
@@ -51,7 +48,6 @@ class matakuliahseeder extends Seeder
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
-                'dosen_nip' => '42345632890', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
             ],
             [
@@ -61,7 +57,6 @@ class matakuliahseeder extends Seeder
                 'semester' => 3,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
-                'dosen_nip' => '52342567890', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
             ],
         ];
