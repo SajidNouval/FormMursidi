@@ -17,12 +17,15 @@ return new class extends Migration
             $table->string('tahun_akademik');
             $table->integer('total_sks')->default(0);
             $table->string('mata_kuliah_kode_mk'); // Menambahkan kolom mata_kuliah_kode_mk
+            $table->string('ruang_kuliah_kode_ruang');
             $table->timestamps();
 
             // Menambahkan foreign key ke tabel mahasiswa pada kolom nim
             $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
             // Menambahkan foreign key ke tabel mata_kuliah pada kolom kode_mk
             $table->foreign('mata_kuliah_kode_mk')->references('kode_mk')->on('mata_kuliah')->onDelete('cascade');
+            $table->foreign('ruang_kuliah_kode_ruang')->references('kode_ruang')->on('ruang_kuliah')->onDelete('cascade');
+
         });
     }
 

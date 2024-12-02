@@ -13,7 +13,9 @@ class irs extends Model
         'mahasiswa_nim', 
         'mata_kuliah_kode_mk', 
         'semester', 
-        'tahun_akademik'
+        'total_sks',
+        'tahun_akademik',
+        'ruang_kuliah_kode_ruang'
     ];
 
     // Jika tabel tidak menggunakan timestamps

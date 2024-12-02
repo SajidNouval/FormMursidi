@@ -71,9 +71,10 @@ class userseeder extends Seeder
                 'password'=>bcrypt('12345')
             ],
             [
-                'name'=>'dosen',
-                'email'=>'irfanm@gmail.com',
-                'role'=>'dosen',
+                'id' => 9,
+                'name'=>'baka',
+                'email'=>'baka@gmail.com',
+                'role'=>'bakademik',
                 'password'=>bcrypt('12345')
             ],
           
