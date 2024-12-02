@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('DashBMHS.header')
+  @include('DashBDEKAN.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Navbar -->
-@include('DashBMHS.navbar')
+@include('DashBDEKAN.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -76,7 +76,7 @@
             <div class="row">
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('akademikmhs') }}" class="info-box bg-secondary">
+                <a href="{{ route('akademikdekan') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Akademik</span>
@@ -127,7 +127,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  @include('DashBMHS.controllersidebar')
+  @include('DashBDEKAN.controllersidebar')
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -142,6 +142,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@include('DashBMHS.scriptdb')
+@include('DashBDEKAN.scriptdb')
 </body>
 </html>

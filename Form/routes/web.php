@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardBAKAController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardDEKANController;
 use App\Http\Controllers\DashboardDSNController;
 use App\Http\Controllers\DashboardKPRController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +24,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura', [AdminController::class, 'halamandashboardadmin'])->name('admindashboard');
     Route::get('/sakura/mhsdb', [AdminController::class, 'dbmhs'])->middleware('userAkses:mahasiswa')->name('mhsdb');
     Route::get('/sakura/kaprodidb', [AdminController::class, 'dbkaprodi'])->middleware('userAkses:kaprodi')->name('kaprodidb');
-    Route::get('/sakura/dekandb', [AdminController::class, 'dbdekan'])->middleware('userAkses:dekan');
-    Route::get('/sakura/bakmdb', [AdminController::class, 'dbbakm'])->middleware('userAkses:bakademik');
+    Route::get('/sakura/dekandb', [AdminController::class, 'dbdekan'])->middleware('userAkses:dekan')->name('dekandb');
+    Route::get('/sakura/bakmdb', [AdminController::class, 'dbbakm'])->middleware('userAkses:bakademik')->name('bakadb');
     Route::get('/sakura/pakmdb', [AdminController::class, 'dbpakm'])->middleware('userAkses:pakademik');
     Route::get('/sakura/dosendb', [AdminController::class, 'dbdosen'])->middleware('userAkses:dosen')->name('dosendb');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -42,6 +44,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
 
+    Route::get('/sakura/bakmdb/bakaakm', [DashboardBAKAController::class, 'akademikbaka'])->middleware('userAkses:bakademik')->name(('akademikbaka'));
+
+    Route::get('/sakura/dekandb/dekanakm', [DashboardDEKANController::class, 'akademikdekan'])->middleware('userAkses:dekan')->name('akademikdekan');
 });
 
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');

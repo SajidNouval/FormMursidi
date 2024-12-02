@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('AkademikKAPRODI.header')
+  @include('AkademikDekan.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -22,7 +22,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-@include('DashBKAPRODI.navbar')
+@include('DashBDEKAN.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -50,7 +50,7 @@
 
     <!-- Main content -->
     <div class="container mt-5">
-      <h2>Manajemen Mata Kuliah</h2>
+      <h2>Manajemen Ruangan</h2>
 
       <!-- Tambah Mata Kuliah -->
       <h4 class="mt-4">Tambah Mata Kuliah</h4>
@@ -111,7 +111,7 @@
               </tr>
           </thead>
           <tbody>
-              @forelse ($mataKuliah as $mk)
+              {{-- @forelse ($mataKuliah as $mk)
                   <tr>
                       <td>{{ $mk->kode_mk }}</td>
                       <td>{{ $mk->nama_mk }}</td>
@@ -121,30 +121,28 @@
                       <td>{{ $mk->program_studi_kode_prodi }}</td>
                       <td>{{ $mk->fakultas_kode_fakultas }}</td>
                       <td>{{ $mk->dosen_nip }}</td>
-                      <td>
+                      <td> --}}
                         
-                          <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
+                          {{-- <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                          </form>
-                      </td>
+                          </form> --}}
+                      {{-- </td>
                   </tr>
                   @empty
                   <tr>
                       <td colspan="8" class="text-center">Tidak ada data mata kuliah.</td>
                   </tr>
-              @endforelse
+              @endforelse --}}
           </tbody>
       </table>
   </div>
-    
-    <!-- /.content -->
-  </div>
+  
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  @include('AkademikKAPRODI.controllersidebar')
+  @include('AkademikDekan.controllersidebar')
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -159,6 +157,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@include('AkademikKAPRODI.scriptdb')
+@include('AkademikDekan.scriptdb')
 </body>
 </html>
