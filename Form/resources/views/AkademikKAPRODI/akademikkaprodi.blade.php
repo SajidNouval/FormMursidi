@@ -87,10 +87,6 @@
               <label for="fakultas_kode_fakultas" class="form-label">Kode Fakultas</label>
               <input type="text" class="form-control" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
           </div>
-          <div class="mb-3">
-              <label for="dosen_nip" class="form-label">NIP Dosen</label>
-              <input type="text" class="form-control" id="dosen_nip" name="dosen_nip">
-          </div>
           <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
       </form>
 
@@ -106,7 +102,6 @@
                   <th>Jenis</th>
                   <th>Kode Prodi</th>
                   <th>Kode Fakultas</th>
-                  <th>NIP Dosen</th>
                   <th>Aksi</th>
               </tr>
           </thead>
@@ -120,7 +115,6 @@
                       <td>{{ $mk->jenis }}</td>
                       <td>{{ $mk->program_studi_kode_prodi }}</td>
                       <td>{{ $mk->fakultas_kode_fakultas }}</td>
-                      <td>{{ $mk->dosen_nip }}</td>
                       <td>
                         
                           <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">

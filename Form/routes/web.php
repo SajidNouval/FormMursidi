@@ -12,6 +12,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ForgotPWController;
 use App\Http\Controllers\IrsController;
 use App\Http\Controllers\HerRegController;
+use App\Http\Controllers\MataKuliahController;
+
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
@@ -61,3 +63,6 @@ Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');
 
 Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
+
+Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
+Route::resource('mata_kuliah', MataKuliahController::class);
