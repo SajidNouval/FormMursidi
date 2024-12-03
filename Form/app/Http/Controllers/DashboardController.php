@@ -20,29 +20,36 @@ class DashboardController extends Controller
     
     // Ambil IRS mahasiswa berdasarkan NIM
     $irs = DB::table('irs')
-        ->join('mata_kuliah', 'irs.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
-        ->select('irs.*', 'mata_kuliah.nama_mk', 'mata_kuliah.sks')
-        ->where('irs.mahasiswa_nim', $mahasiswa->nim)
-        ->get();
+    ->join('kelas', 'irs.kelas_id', '=', 'kelas.id') // Menggunakan 'id' sebagai primary key di tabel kelas
+    ->join('mata_kuliah', 'kelas.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk') // Menghubungkan kelas dengan mata_kuliah
+    ->select('irs.*', 'mata_kuliah.nama_mk', 'mata_kuliah.sks')
+    ->where('irs.mahasiswa_nim', $mahasiswa->nim)
+    ->get();
+
 
     // Hitung total SKS yang diambil
     $totalSKS = $irs->sum('sks');
     
     // Ambil jadwal kuliah dengan DB::table()
     $jadwal_kuliah = DB::table('jadwal_kuliah')
-        ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
-        ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
-        ->select(
-            'jadwal_kuliah.hari',
-            'jadwal_kuliah.jam_mulai',
-            'jadwal_kuliah.jam_selesai',
-            'jadwal_kuliah.mata_kuliah_kode_mk',
-            'mata_kuliah.nama_mk',
-            'ruang_kuliah.kode_ruang',
-            'mata_kuliah.sks',
-            'mata_kuliah.semester',
-        )
-        ->get();
+    ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
+    ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
+    ->join('kelas', 'mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk') // Menghubungkan mata_kuliah ke kelas
+    ->select(
+        'jadwal_kuliah.hari',
+        'jadwal_kuliah.jam_mulai',
+        'jadwal_kuliah.jam_selesai',
+        'jadwal_kuliah.mata_kuliah_kode_mk',
+        'mata_kuliah.nama_mk',
+        'ruang_kuliah.kode_ruang',
+        'mata_kuliah.sks',
+        'mata_kuliah.semester',
+        'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
+        'kelas.id as kelas_id',
+    )
+    ->get();
+
+
 
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
@@ -60,7 +67,9 @@ class DashboardController extends Controller
             $totalSKS = 0;
             $jadwal_kuliah = collect(); // Koleksi kosong
         }
-
+        if ($irs->isEmpty()) {
+            $irs = null; // Atur nilai default jika data kosong
+        }
         return view('AkademikMHS.akademikmhs', [
             'mahasiswa' => $mahasiswa,
             'irs' => $irs,
