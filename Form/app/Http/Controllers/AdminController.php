@@ -8,6 +8,8 @@ use App\Models\Jadwal_Kuliah;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\Baka;
+
 
 
 class AdminController extends Controller
@@ -23,7 +25,9 @@ class AdminController extends Controller
     }
 
     public function dbbakm(){
-        return view("DashBBAKA.DashBBAKA");
+        $user = Auth::user();
+        $baka = Baka::where('user_id',$user->id)->first();
+        return view("DashBBAKA.DashBBAKA",['baka' => $baka]);
     }
 
     public function dbdekan(){

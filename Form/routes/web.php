@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function(){
    
 
     Route::get('/sakura/bakmdb/bakaakm', [DashboardBAKAController::class, 'akademikbaka'])->middleware('userAkses:bakademik')->name(('akademikbaka'));
+    Route::post('/sakura/bakmdb/store', [DashboardBAKAController::class, 'store'])->name('ruangan.store');
+    Route::delete('/sakura/bakmdb/{kode_ruang}/destroy', [DashboardBAKAController::class, 'destroy'])->name('ruangan.destroy');
+
+
 
     Route::get('/sakura/dekandb/dekanakm', [DashboardDEKANController::class, 'akademikdekan'])->middleware('userAkses:dekan')->name('akademikdekan');
 

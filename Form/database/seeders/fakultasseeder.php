@@ -15,16 +15,19 @@ class fakultasseeder extends Seeder
     {
         $fakultasData =[
             [
-                // $table->string('kode_fakultas')->primary();
-                // $table->string('nama_fakultas');
-                // $table->string('alamat');
-                // $table->string('email')->nullable();
-                // $table->timestamps();
 
                 'kode_fakultas' => '101',
                 'nama_fakultas' => 'Fakultas Sastra Mesin',
                 'alamat' => 'Jl. Raya Bandung',
                 'email' => 'fsm@unpas.ac.id',
+                
+            ],
+            [
+
+                'kode_fakultas' => '102',
+                'nama_fakultas' => 'Fakultas Teknik',
+                'alamat' => 'Jl. Raya Firdaus',
+                'email' => 'ft@unpas.ac.id',
                 
             ],
         ];
