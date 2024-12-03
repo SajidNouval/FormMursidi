@@ -53,88 +53,73 @@
       <h2>Manajemen Ruangan</h2>
 
       <!-- Tambah Mata Kuliah -->
-      <h4 class="mt-4">Tambah Mata Kuliah</h4>
-      <form method="POST" action="{{ route('mata_kuliah.store') }}">
+      <h4 class="mt-4">Tambah Ruangan</h4>
+      <form method="POST" action="{{ route('ruangan.store') }}">
           @csrf
+
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+      
           <div class="mb-3">
-              <label for="kode_mk" class="form-label">Kode Mata Kuliah</label>
-              <input type="text" class="form-control" id="kode_mk" name="kode_mk" required>
+              <label for="kode_ruang" class="form-label">Kode Ruang</label>
+              <input type="text" class="form-control" id="kode_ruang" name="kode_ruang" required>
           </div>
           <div class="mb-3">
-              <label for="nama_mk" class="form-label">Nama Mata Kuliah</label>
-              <input type="text" class="form-control" id="nama_mk" name="nama_mk" required>
+              <label for="kapasitas" class="form-label">Kapasitas</label>
+              <input type="text" class="form-control" id="kapasitas" name="kapasitas" required>
           </div>
           <div class="mb-3">
-              <label for="sks" class="form-label">SKS</label>
-              <input type="number" class="form-control" id="sks" name="sks" required>
-          </div>
-          <div class="mb-3">
-              <label for="semester" class="form-label">Semester</label>
-              <input type="number" class="form-control" id="semester" name="semester" required>
-          </div>
-          <div class="mb-3">
-              <label for="jenis" class="form-label">Jenis</label>
-              <select class="form-select" id="jenis" name="jenis" required>
-                  <option value="wajib">Wajib</option>
-                  <option value="pilihan">Pilihan</option>
-              </select>
-          </div>
-          <div class="mb-3">
-              <label for="program_studi_kode_prodi" class="form-label">Kode Program Studi</label>
-              <input type="text" class="form-control" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
-          </div>
+            <label for="program_studi_kode_prodi" class="form-label">Kode Program Studi</label>
+            <input type="text" class="form-control" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+        </div>        
           <div class="mb-3">
               <label for="fakultas_kode_fakultas" class="form-label">Kode Fakultas</label>
               <input type="text" class="form-control" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
           </div>
-          <div class="mb-3">
-              <label for="dosen_nip" class="form-label">NIP Dosen</label>
-              <input type="text" class="form-control" id="dosen_nip" name="dosen_nip">
-          </div>
-          <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
+          <button type="submit" class="btn btn-primary">Tambah Ruang</button>
       </form>
 
       <!-- Daftar Mata Kuliah -->
-      <h4 class="mt-5">Daftar Mata Kuliah</h4>
+      <h4 class="mt-5">Daftar Ruang</h4>
       <table class="table table-bordered">
           <thead>
               <tr>
-                  <th>Kode MK</th>
-                  <th>Nama MK</th>
-                  <th>SKS</th>
-                  <th>Semester</th>
-                  <th>Jenis</th>
+                  <th>Kode Ruang</th>
+                  <th>Kapasitas</th>
                   <th>Kode Prodi</th>
                   <th>Kode Fakultas</th>
-                  <th>NIP Dosen</th>
+                  <th>Status</th>
                   <th>Aksi</th>
               </tr>
           </thead>
           <tbody>
-              {{-- @forelse ($mataKuliah as $mk)
-                  <tr>
-                      <td>{{ $mk->kode_mk }}</td>
-                      <td>{{ $mk->nama_mk }}</td>
-                      <td>{{ $mk->sks }}</td>
-                      <td>{{ $mk->semester }}</td>
-                      <td>{{ $mk->jenis }}</td>
-                      <td>{{ $mk->program_studi_kode_prodi }}</td>
-                      <td>{{ $mk->fakultas_kode_fakultas }}</td>
-                      <td>{{ $mk->dosen_nip }}</td>
-                      <td> --}}
-                        
-                          {{-- <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                          </form> --}}
-                      {{-- </td>
-                  </tr>
-                  @empty
-                  <tr>
-                      <td colspan="8" class="text-center">Tidak ada data mata kuliah.</td>
-                  </tr>
-              @endforelse --}}
+              @forelse ($ruangan as $r)
+            <tr>
+                <td>{{ $r->kode_ruang }}</td>
+                <td>{{ $r->kapasitas }}</td>
+                <td>{{ $r->program_studi_kode_prodi }}</td>
+                <td>{{ $r->fakultas_kode_fakultas }}</td>
+                <td>{{ $r->status }}</td>
+                <td>
+                    <form action="{{ route('ruangan.destroy', $r->kode_ruang) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6" class="text-center">Tidak ada data ruangan.</td>
+            </tr>
+        @endforelse
           </tbody>
       </table>
   </div>
