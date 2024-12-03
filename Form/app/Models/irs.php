@@ -11,9 +11,12 @@ class irs extends Model
     // Tentukan kolom-kolom yang dapat diisi (fillable)
     protected $fillable = [
         'mahasiswa_nim', 
+        // 'semester', 
         'mata_kuliah_kode_mk', 
-        'semester', 
-        // 'tahun_akademik'
+        // 'total_sks',
+        // 'tahun_akademik',
+        // 'ruang_kuliah_kode_ruang'
+
     ];
 
 }

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
   @include('AkademikMHS.header')
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -68,12 +70,11 @@
             </ul>
           </div>
   
-          <div class="tab-content">
-
-       <!-- Tab Buat IRS -->
-        <!-- Menyertakan file JavaScript -->
         
-
+          <!-- Tab Buat IRS -->
+           <!-- Menyertakan file JavaScript -->
+           
+          <div class="tab-content">
         <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
     <div id="data-container" data-irs="{{ json_encode($irs) }}"></div>
     <div class="bg-purpleepanel p-4">
@@ -213,6 +214,9 @@
 // Ambil data IRS dari HTML
 let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs') || '[]');
 
+// Ambil CSRF token dari meta tag
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
 // Fungsi untuk memperbarui total SKS
 function updateTotalSKS() {
     const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
@@ -277,27 +281,36 @@ document.getElementById('save-btn')?.addEventListener('click', () => {
     };
 
     // Simpan IRS ke server
+    console.log(formData);
     fetch('/simpanirs', {
         method: 'POST', // Pastikan metode yang digunakan adalah POST
         headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken // Tambahkan CSRF token ke header
         },
         body: JSON.stringify(formData) // Mengirim data dalam format JSON
     })
+    // .then(response => {
+    // if (!response.ok) {
+    //     throw new Error('HTTP error ' + response.status);
+    // }
+    // return response.json();
+    // })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Gagal menyimpan IRS, status: ' + response.status);
-        }
-        return response.json();
+    console.log('Response status:', response.status);
+    return response.json();
     })
+
     .then(data => {
         console.log('Simpan IRS berhasil:', data);
         document.getElementById('edit-btn').style.display = 'inline-block'; // Menampilkan tombol Edit
         document.getElementById('save-btn').style.display = 'none'; // Menyembunyikan tombol Simpan
     })
     .catch(error => {
-        console.error('Error:', error);
+    console.error('Error:', error);
+    alert('Gagal menyimpan IRS. Periksa kembali data atau coba lagi.');
     });
+
 });
 
 // Menangani klik pada jadwal kuliah untuk menambahkannya
@@ -310,7 +323,11 @@ document.querySelectorAll('.add-course').forEach(button => {
     });
 });
 
+
+
 </script>
+
+
 
 
 
@@ -635,6 +652,7 @@ document.querySelectorAll('.add-course').forEach(button => {
             </div>
           </div>
         </div>
+        
       </section>
     
     <!-- /.content -->

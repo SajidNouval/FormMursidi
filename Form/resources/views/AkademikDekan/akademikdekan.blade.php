@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('AkademikKAPRODI.header')
+  @include('AkademikDekan.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -22,7 +22,7 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-@include('DashBKAPRODI.navbar')
+@include('DashBDEKAN.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -50,7 +50,7 @@
 
     <!-- Main content -->
     <div class="container mt-5">
-      <h2>Manajemen Mata Kuliah</h2>
+      <h2>Manajemen Ruangan</h2>
 
       <!-- Tambah Mata Kuliah -->
       <h4 class="mt-4">Tambah Mata Kuliah</h4>
@@ -87,6 +87,10 @@
               <label for="fakultas_kode_fakultas" class="form-label">Kode Fakultas</label>
               <input type="text" class="form-control" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
           </div>
+          <div class="mb-3">
+              <label for="dosen_nip" class="form-label">NIP Dosen</label>
+              <input type="text" class="form-control" id="dosen_nip" name="dosen_nip">
+          </div>
           <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
       </form>
 
@@ -102,11 +106,12 @@
                   <th>Jenis</th>
                   <th>Kode Prodi</th>
                   <th>Kode Fakultas</th>
+                  <th>NIP Dosen</th>
                   <th>Aksi</th>
               </tr>
           </thead>
           <tbody>
-              @forelse ($mataKuliah as $mk)
+              {{-- @forelse ($mataKuliah as $mk)
                   <tr>
                       <td>{{ $mk->kode_mk }}</td>
                       <td>{{ $mk->nama_mk }}</td>
@@ -115,30 +120,29 @@
                       <td>{{ $mk->jenis }}</td>
                       <td>{{ $mk->program_studi_kode_prodi }}</td>
                       <td>{{ $mk->fakultas_kode_fakultas }}</td>
-                      <td>
+                      <td>{{ $mk->dosen_nip }}</td>
+                      <td> --}}
                         
-                          <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
+                          {{-- <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                          </form>
-                      </td>
+                          </form> --}}
+                      {{-- </td>
                   </tr>
                   @empty
                   <tr>
                       <td colspan="8" class="text-center">Tidak ada data mata kuliah.</td>
                   </tr>
-              @endforelse
+              @endforelse --}}
           </tbody>
       </table>
   </div>
-    
-    <!-- /.content -->
-  </div>
+  
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  @include('AkademikKAPRODI.controllersidebar')
+  @include('AkademikDekan.controllersidebar')
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -153,6 +157,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@include('AkademikKAPRODI.scriptdb')
+@include('AkademikDekan.scriptdb')
 </body>
 </html>
