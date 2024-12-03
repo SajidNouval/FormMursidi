@@ -65,6 +65,9 @@ Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('f
 
 // Menambah mata kuliah ke IRS
 Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
+Route::delete('/irs/{kode_mk}', [irsController::class, 'destroy'])->name('irs.destroy');
+
+
 
 // Route::any('/simpanirs', function () {
 //     return response()->json(['method' => request()->method()], 200);

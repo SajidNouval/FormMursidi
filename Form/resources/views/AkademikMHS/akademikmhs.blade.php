@@ -7,6 +7,7 @@
   <title>SAKURA | Dashboard</title>
   @include('AkademikMHS.header')
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  
 
   <style>
     /* Mengubah background seluruh halaman */
@@ -128,12 +129,24 @@
                                     <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
                                     <hr>
                                     <div id="selected-courses">
-                                        @foreach ($irs as $course)
-                                            <div class="course-item" data-sks="{{ $course->mataKuliah->sks }}">
-                                                {{ $course->mataKuliah->nama_mk }} ({{ $course->mataKuliah->sks }} SKS) {{ $course->mataKuliah->kode_ruang }}
-                                                <button class="btn btn-danger btn-sm remove-course" data-kode="{{ $course->mataKuliah->mata_kuliah_kode_mk }}">Hapus</button>
-                                            </div>
-                                        @endforeach
+                                      @foreach ($irs as $course)
+                                      @if ($course->kelas && $course->kelas->mataKuliah)
+                                          <div class="course-item d-flex justify-content-between align-items-center" data-sks="{{ $course->kelas->mataKuliah->sks }}" data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">
+                                              <div>
+                                                  {{ $course->kelas->mataKuliah->nama_mk }} ({{ $course->kelas->mataKuliah->sks }} SKS)
+                                                  {{ $course->kelas->mataKuliah->kode_ruang }}
+                                              </div>
+                                              <button class="btn btn-danger btn-sm remove-course" data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">Hapus</button>
+                                          </div>
+                                      @else
+                                          <div class="course-item">
+                                              <p>Data mata kuliah tidak ditemukan untuk kelas ini.</p>
+                                          </div>
+                                      @endif
+                                  @endforeach
+                                  
+                                  
+                                  
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                         <button class="btn btn-success btn-sm" id="save-btn">Simpan</button>
@@ -356,6 +369,137 @@ function handleFetchError(response) {
     }
     return response.json();
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const selectedCoursesContainer = document.getElementById('selected-courses');
+    const totalSKSElement = document.getElementById('total-sks');
+
+    // Fungsi untuk memperbarui total SKS
+    const updateTotalSKS = () => {
+        let totalSKS = 0;
+        document.querySelectorAll('#selected-courses .course-item').forEach(item => {
+            totalSKS += parseInt(item.getAttribute('data-sks'), 10);
+        });
+        totalSKSElement.textContent = totalSKS;
+    };
+
+    // Event listener untuk tombol hapus
+    selectedCoursesContainer.addEventListener('click', function (event) {
+        if (event.target.classList.contains('remove-course')) {
+            const button = event.target;
+            const courseCode = button.getAttribute('data-kode');
+
+            if (confirm(`Apakah Anda yakin ingin menghapus mata kuliah dengan kode ${courseCode}?`)) {
+                // Kirimkan request AJAX untuk menghapus mata kuliah
+                fetch(`/irs/${courseCode}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Hapus elemen course dari DOM
+                        const courseItem = button.closest('.course-item');
+                        courseItem.remove();
+                        updateTotalSKS();
+                        alert('Mata kuliah berhasil dihapus.');
+                    } else {
+                        response.json().then(data => alert(data.message));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat menghapus mata kuliah.');
+                });
+            }
+        }
+    });
+});
+
+// Fungsi untuk merender ulang mata kuliah yang sudah dipilih
+function renderSelectedCourses() {
+    const selectedCoursesContainer = document.getElementById('selected-courses');
+    selectedCoursesContainer.innerHTML = ''; // Kosongkan daftar lama
+
+    const fragment = document.createDocumentFragment();
+
+    // Render ulang semua mata kuliah yang ada di dalam array 'irs'
+    irs.forEach(course => {
+        const courseDiv = document.createElement('div');
+        courseDiv.classList.add('course-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        courseDiv.setAttribute('data-sks', course.total_sks);
+        courseDiv.setAttribute('data-kode', course.mata_kuliah_kode_mk);
+
+        const courseName = document.createElement('div');
+        courseName.innerHTML = `${course.name} (${course.total_sks} SKS) ${course.ruang_kuliah_kode_ruang}`;
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'remove-course');
+        removeButton.textContent = 'Hapus';
+        removeButton.setAttribute('data-kode', course.mata_kuliah_kode_mk);
+
+        // Menambahkan tombol hapus dengan event listener
+        removeButton.addEventListener('click', () => removeCourse(course.mata_kuliah_kode_mk));
+
+        courseDiv.appendChild(courseName);
+        courseDiv.appendChild(removeButton);
+
+        fragment.appendChild(courseDiv);
+    });
+
+    selectedCoursesContainer.appendChild(fragment);
+}
+
+// Fungsi untuk menghapus mata kuliah
+function removeCourse(courseKodeMK) {
+    // Hapus dari array irs
+    irs = irs.filter(course => course.mata_kuliah_kode_mk !== courseKodeMK);
+    renderSelectedCourses(); // Render ulang daftar mata kuliah
+    updateTotalSKS(); // Perbarui total SKS
+
+    // Kirimkan request AJAX untuk menghapus mata kuliah dari server
+    fetch(`/irs/${courseKodeMK}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken, // Sertakan token CSRF
+            'Content-Type': 'application/json', // Tipe konten JSON
+        },
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Mata kuliah berhasil dihapus.');
+            } else {
+                response.json().then(data => alert(data.message));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat menghapus mata kuliah.');
+        });
+}
+
+// Fungsi untuk memperbarui total SKS
+function updateTotalSKS() {
+    const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
+    document.getElementById('total-sks').textContent = totalSKS;
+}
+
+// Menangani klik pada jadwal kuliah untuk menambahkannya
+document.querySelectorAll('.add-course').forEach(button => {
+    button.addEventListener('click', () => {
+        const courseKodeMK = button.getAttribute('data-id');
+        const semester = button.getAttribute('data-semester');
+        const tahunAkademik = button.getAttribute('data-tahun-akademik');
+        const courseName = button.getAttribute('data-name');
+        const courseSKS = button.getAttribute('data-sks');
+        const ruang = button.getAttribute('data-ruang');
+        const kelasId = button.getAttribute('data-kelas-id');
+
+        addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId);
+    });
+});
+
+
 
 // // Memastikan data IRS tetap sinkron dengan server
 // function syncIrsData() {

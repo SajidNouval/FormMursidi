@@ -26,9 +26,20 @@ class DashboardController extends Controller
     ->where('irs.mahasiswa_nim', $mahasiswa->nim)
     ->get();
 
+    $irs = session('irs_data', function () use ($mahasiswa) {
+        // Ambil data IRS dengan relasi lengkap
+        return Irs::with('kelas.mataKuliah') // Eager loading relasi kelas dan mata kuliah
+            ->where('mahasiswa_nim', $mahasiswa->nim)
+            ->get();
+    });
+
+    // Simpan data IRS di session
+    session(['irs_data' => $irs]);
 
     // Hitung total SKS yang diambil
-    $totalSKS = $irs->sum('sks');
+        $totalSKS = $irs->sum(function ($course) {
+            return $course->kelas && $course->kelas->mataKuliah ? $course->kelas->mataKuliah->sks : 0;
+        });
     
     // Ambil jadwal kuliah dengan DB::table()
     $jadwal_kuliah = DB::table('jadwal_kuliah')
@@ -67,9 +78,7 @@ class DashboardController extends Controller
             $totalSKS = 0;
             $jadwal_kuliah = collect(); // Koleksi kosong
         }
-        if ($irs->isEmpty()) {
-            $irs = null; // Atur nilai default jika data kosong
-        }
+        
         return view('AkademikMHS.akademikmhs', [
             'mahasiswa' => $mahasiswa,
             'irs' => $irs,

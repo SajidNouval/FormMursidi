@@ -55,3 +55,19 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   </script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Seleksi semua tombol dengan class "remove-course"
+    const removeButtons = document.querySelectorAll('.remove-course');
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const courseCode = this.getAttribute('data-kode');
+            if (confirm(`Apakah Anda yakin ingin menghapus mata kuliah dengan kode ${courseCode}?`)) {
+                // Kirimkan request AJAX untuk menghapus course
+                console.log(`Hapus mata kuliah dengan kode: ${courseCode}`);
+                // Tambahkan logika penghapusan sesuai kebutuhan
+            }
+        });
+    });
+});
