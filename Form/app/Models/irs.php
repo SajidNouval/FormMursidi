@@ -16,6 +16,7 @@ class irs extends Model
     // Tentukan kolom-kolom yang dapat diisi (fillable)
     protected $fillable = [
         'mahasiswa_nim', 
+
         'id_kelas', 
         'semester', 
         'total_sks',
@@ -23,20 +24,7 @@ class irs extends Model
         'ruang_kuliah_kode_ruang',
         'is_verified',
         'diajukan'
+
     ];
 
-    // Jika tabel tidak menggunakan timestamps
-    // public $timestamps = false;
-
-    // Relasi ke Mahasiswa
-    public function mahasiswa()
-    {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
-    }
-
-    // Relasi ke Mata Kuliah
-    public function mataKuliah()
-    {
-        return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
-    }
 }

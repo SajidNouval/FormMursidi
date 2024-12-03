@@ -47,7 +47,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
 
 
-   
+        // Tambah IRS (POST)
+    Route::post('/irs/tambah', [irsController::class, 'tambah'])->middleware('auth')->name('irs.tambah');
+
+    // Hapus IRS (DELETE)
+    Route::delete('/irs/hapus', [irsController::class, 'hapus'])->middleware('auth')->name('irs.hapus');
+
+    // Route::post('/simpanirs', [irsController::class, 'simpanirs'])->middleware('auth')->name('simpanirs');
 
     Route::get('/sakura/bakmdb/bakaakm', [DashboardBAKAController::class, 'akademikbaka'])->middleware('userAkses:bakademik')->name(('akademikbaka'));
 
@@ -60,18 +66,10 @@ Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
 
 // Menambah mata kuliah ke IRS
-Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
+Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpan.irs');
 
-// Route::any('/simpanirs', function () {
-//     return response()->json(['method' => request()->method()], 200);
-// });
-
-// Route::get('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
-// Route::any('/simpanirs', function () {
-//     \Log::info('Method: ' . request()->method());
-//     return response('Method not allowed', 405);
-// });
-
+// Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
+// Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
 
 // routes/web.php
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');
