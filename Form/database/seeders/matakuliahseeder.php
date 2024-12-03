@@ -59,6 +59,15 @@ class matakuliahseeder extends Seeder
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
             ],
+            [
+                'kode_mk' => 'Paik105',
+                'nama_mk' => 'Basis Data',
+                'sks' => 4,
+                'semester' => 3,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
         ];
 
         foreach ($mtklData as $key=>$val) {

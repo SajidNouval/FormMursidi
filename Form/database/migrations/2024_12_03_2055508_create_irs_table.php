@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
             // $table->foreign('ruang_kuliah_kode_ruang')->references('kode_ruang')->on('ruang_kuliah')->onDelete('cascade');
             $table->foreign('ruang_kuliah_kode_ruang')->references('kode_ruang')->on('ruang_kuliah')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade'); // Relasi ke tabel users
+            $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade'); // Relasi ke tabel kelas
 
         });
     }

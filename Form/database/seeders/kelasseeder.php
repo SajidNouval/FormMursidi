@@ -23,7 +23,48 @@ class kelasseeder extends Seeder
                 'kuota' => 30
                 
             ],
+            [
+                'id' => 2,
+                'kode_kelas' => 'A' ,
+                'mata_kuliah_kode_mk'=> 'Paik102',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 30
+                
+            ],
+            [
+                'id' => 3,
+                'kode_kelas' => 'B' ,
+                'mata_kuliah_kode_mk'=> 'Paik103',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 30
+                
+            ],
+            [
+                'id' => 4,
+                'kode_kelas' => 'C' ,
+                'mata_kuliah_kode_mk'=> 'Paik104',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 30
+                
+            ],
+            [
+                'id' => 5,
+                'kode_kelas' => 'C' ,
+                'mata_kuliah_kode_mk'=> 'Paik105',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 30
+                
+            ],
+            [
+                'id' => 6,
+                'kode_kelas' => 'B' ,
+                'mata_kuliah_kode_mk'=> 'Paik106',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 30
+                
+            ],
         ];
+        
         foreach($kelasData as $key => $val){
             Kelas::create($val);
         }
