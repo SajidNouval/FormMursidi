@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function(){
 
 
     Route::get('/sakura/dekandb/dekanakm', [DashboardDEKANController::class, 'akademikdekan'])->middleware('userAkses:dekan')->name('akademikdekan');
-    Route::get('/sakura/mhsdb/mhsherreg', [DashboardDEKANController::class, 'jadwaldekan'])->middleware('userAkses:dekan')->name('jadwaldekan');
+    Route::get('/sakura/dekandb/jadwaldekan', [DashboardDEKANController::class, 'jadwaldekan'])->middleware('userAkses:dekan')->name('jadwaldekan');
     Route::get('/sakura/dekandb/ruang', [DashboardDEKANController::class, 'akademikdekan'])->name('dekan.ruang.index');
     Route::post('/sakura/dekandb/{kode_ruang}/setujui', [DashboardDEKANController::class, 'setujui'])->name('dekan.ruang.setujui');
     Route::post('/sakura/dekandb/{kode_ruang}/tolak', [DashboardDEKANController::class, 'tolak'])->name('dekan.ruang.tolak');
@@ -70,6 +70,14 @@ Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('f
 // Menambah mata kuliah ke IRS
 Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
 Route::delete('/irs/{kode_mk}', [irsController::class, 'destroy'])->name('irs.destroy');
+Route::get('/irs/{nim}', [irsController::class, 'getIrsData']);
+
+
+Route::prefix('dekan')->group(function () {
+    Route::get('/sakura/dekandb/jadwal', [DashboardDEKANController::class, 'jadwaldekan'])->name('dekan.jadwal.index');
+    Route::post('/sakura/dekandb/jadwal/setujui/{id}', [DashboardDEKANController::class, 'setujuiJadwal'])->name('dekan.jadwal.setujui');
+    Route::post('/sakura/dekandb/jadwal/tolak/{id}', [DashboardDEKANController::class, 'tolakJadwal'])->name('dekan.jadwal.tolak');
+});
 
 
 
