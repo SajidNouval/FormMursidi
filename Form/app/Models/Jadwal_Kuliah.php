@@ -25,7 +25,8 @@ class Jadwal_Kuliah extends Model
         'hari' ,
         'kelas',
         'jam_mulai' ,
-        'jam_selesai'
+        'jam_selesai',
+        'status'
      ];
      
  

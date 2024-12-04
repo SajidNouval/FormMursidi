@@ -56,6 +56,10 @@ Route::middleware(['auth'])->group(function(){
 
 
     Route::get('/sakura/dekandb/dekanakm', [DashboardDEKANController::class, 'akademikdekan'])->middleware('userAkses:dekan')->name('akademikdekan');
+    Route::get('/sakura/mhsdb/mhsherreg', [DashboardDEKANController::class, 'jadwaldekan'])->middleware('userAkses:dekan')->name('jadwaldekan');
+    Route::get('/sakura/dekandb/ruang', [DashboardDEKANController::class, 'akademikdekan'])->name('dekan.ruang.index');
+    Route::post('/sakura/dekandb/{kode_ruang}/setujui', [DashboardDEKANController::class, 'setujui'])->name('dekan.ruang.setujui');
+    Route::post('/sakura/dekandb/{kode_ruang}/tolak', [DashboardDEKANController::class, 'tolak'])->name('dekan.ruang.tolak');
 
 });
 
