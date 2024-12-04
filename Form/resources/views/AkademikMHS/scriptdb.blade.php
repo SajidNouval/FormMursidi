@@ -56,6 +56,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
   </script>
 
+  {{-- <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Seleksi semua tombol dengan class "remove-course"
     const removeButtons = document.querySelectorAll('.remove-course');
@@ -71,3 +72,4 @@
         });
     });
 });
+  </script> --}}

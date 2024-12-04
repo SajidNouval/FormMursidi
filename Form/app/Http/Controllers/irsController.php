@@ -95,5 +95,9 @@ class irsController extends Controller
     return response()->json(['message' => 'Mata kuliah tidak ditemukan.'], 404);
 }
 
-
+    public function getIrsData($nim)
+    {
+        $irsData = irs::where('mahasiswa_nim', $nim)->get();
+        return response()->json($irsData);
+    }
 }
