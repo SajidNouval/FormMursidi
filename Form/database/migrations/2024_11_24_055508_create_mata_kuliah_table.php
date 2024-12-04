@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('jenis');
             $table->string('program_studi_kode_prodi'); // Tambahkan kolom program_studi_kode_prodi
             $table->string('fakultas_kode_fakultas');
+            $table->enum('status',['diajukan', 'disetujui','ditolak'])->default('diajukan');
+
             $table->timestamps();
 
             // Menambahkan foreign key ke tabel program_studi
