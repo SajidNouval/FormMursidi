@@ -16,6 +16,7 @@ class irsController extends Controller
     public function simpanirs(Request $request)
     {
 
+
         $request->validate([
             'irs' => 'required|array',
             'irs.*.mata_kuliah_kode_mk' => 'required|string|exists:mata_kuliah,kode_mk',
@@ -25,6 +26,7 @@ class irsController extends Controller
             'irs.*.ruang_kuliah_kode_ruang' => 'nullable|string',
         ]);
         
+
         // Log data request untuk debugging
         Log::info('Data Request:', $request->all());
 
@@ -109,7 +111,9 @@ class irsController extends Controller
     {
         $irsData = irs::where('mahasiswa_nim', $nim)->get();
         return response()->json($irsData);
+
     }
+
 
 
     public function showIRS()
@@ -137,5 +141,6 @@ class irsController extends Controller
         ]);
     }
     
+
 
 }

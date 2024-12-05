@@ -74,7 +74,6 @@
         
           <!-- Tab Buat IRS -->
            <!-- Menyertakan file JavaScript -->
-           
            <div class="tab-content">
             <!-- Tab Buat IRS -->
             <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
@@ -233,6 +232,75 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead class="bg-primary text-white">
+                                        <tr>
+                                            <th>Jam</th>
+                                            <th>Senin</th>
+                                            <th>Selasa</th>
+                                            <th>Rabu</th>
+                                            <th>Kamis</th>
+                                            <th>Jumat</th>
+                                            <th>Sabtu</th>
+                                            <th>Minggu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                                            $jamMulai = [
+                                                '07:00', '08:00', '09:00', '10:00', '11:00',
+                                                '12:00', '13:00', '14:00', '15:00', '16:00',
+                                                '17:00', '18:00', '19:00', '20:00', '21:00'
+                                            ];
+                                        @endphp
+
+                                        @foreach ($jamMulai as $jam)
+                                            <tr>
+                                                <td>{{ $jam }}</td>
+                                                @foreach ($hari as $h)
+                                                    @php
+                                                        $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($h, $jam) {
+                                                            return $item->hari === $h && $item->jam_mulai === $jam;
+                                                        });
+                                                    @endphp
+                                                    <td>
+                                                    @if ($jadwal_hari->isNotEmpty())
+                                                                @foreach ($jadwal_hari as $jadwal)
+                                                                    <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
+                                                                       data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
+                                                                       data-name="{{ $jadwal->nama_mk }}"
+                                                                       data-sks="{{ $jadwal->sks }}"
+                                                                       data-semester="{{ $jadwal->semester }}"
+                                                                       data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
+                                                                       data-ruang="{{ $jadwal->kode_ruang }}"
+                                                                       data-kelas-id="{{ $jadwal->kelas_id }}">
+                                                                        <strong>{{ $jadwal->nama_mk }}</strong><br>
+                                                                        Ruang: {{ $jadwal->kode_ruang }}<br>
+                                                                        Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
+                                                                    </a>
+                                                                @endforeach
+                                                        @else
+                                                            <span>-</span>
+                                                        @endif
+                                                    </td>
+                                                @endforeach
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @elseif ($mahasiswa->role === 'cuti')
                     <!-- Jika mahasiswa cuti -->
                     <div class="alert alert-warning text-center">
@@ -282,6 +350,7 @@ function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik,
             ruang_kuliah_kode_ruang: ruang,
             kelas_id: kelasId
         });
+
         renderSelectedCourses();
         updateTotalSKS();
     } else {
@@ -365,10 +434,14 @@ document.querySelectorAll('.add-course').forEach(button => {
         const ruang = button.getAttribute('data-ruang');
         const kelasId = button.getAttribute('data-kelas-id');
 
+
         // Tambahkan mata kuliah dengan data yang sudah diambil dari atribut
         addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId);
     });
 });
+
+
+
 
 
 // Fungsi untuk memperbarui tampilan tombol Simpan/Edit
@@ -499,7 +572,57 @@ function removeCourse(courseKodeMK) {
         });
 }
 
+// Fungsi untuk memperbarui total SKS
+function updateTotalSKS() {
+    const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
+    document.getElementById('total-sks').textContent = totalSKS;
+}
 
+// Menangani klik pada jadwal kuliah untuk menambahkannya
+document.querySelectorAll('.add-course').forEach(button => {
+    button.addEventListener('click', () => {
+        const courseKodeMK = button.getAttribute('data-id');
+        const semester = button.getAttribute('data-semester');
+        const tahunAkademik = button.getAttribute('data-tahun-akademik');
+        const courseName = button.getAttribute('data-name');
+        const courseSKS = button.getAttribute('data-sks');
+        const ruang = button.getAttribute('data-ruang');
+        const kelasId = button.getAttribute('data-kelas-id');
+
+        addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId);
+    });
+});
+
+
+
+// // Memastikan data IRS tetap sinkron dengan server
+// function syncIrsData() {
+//     fetch('/getirs', { method: 'GET' })
+//         .then(response => handleFetchError(response))
+//         .then(data => {
+//             console.log('Data IRS dari server:', data);
+//             irs = data; // Sinkronkan data IRS dari server
+//             renderSelectedCourses(); // Render ulang daftar mata kuliah
+//             updateTotalSKS(); // Perbarui total SKS
+//         })
+//         .catch(error => {
+//             console.error('Error saat sinkronisasi IRS:', error);
+//         });
+// }
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
 
 // Update elemen Total SKS
 function updateTotalSKS() {
