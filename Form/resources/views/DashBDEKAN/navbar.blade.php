@@ -2,7 +2,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('mhsdb') }}" class="nav-link">
+        <a href="{{ route('dekandb') }}" class="nav-link">
           <img src="{{ asset('AdminLTE/dist/img/LOGO_COBA.png') }}" alt="Home" style="height: 30px; width: auto;">
         </a>
       </li>

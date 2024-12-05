@@ -47,19 +47,17 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
 
 
-   
+        // Tambah IRS (POST)
+    Route::post('/irs/tambah', [irsController::class, 'tambah'])->middleware('auth')->name('irs.tambah');
+
+    // Hapus IRS (DELETE)
+    Route::delete('/irs/hapus', [irsController::class, 'hapus'])->middleware('auth')->name('irs.hapus');
+
+    // Route::post('/simpanirs', [irsController::class, 'simpanirs'])->middleware('auth')->name('simpanirs');
 
     Route::get('/sakura/bakmdb/bakaakm', [DashboardBAKAController::class, 'akademikbaka'])->middleware('userAkses:bakademik')->name(('akademikbaka'));
-    Route::post('/sakura/bakmdb/store', [DashboardBAKAController::class, 'store'])->name('ruangan.store');
-    Route::delete('/sakura/bakmdb/{kode_ruang}/destroy', [DashboardBAKAController::class, 'destroy'])->name('ruangan.destroy');
-
-
 
     Route::get('/sakura/dekandb/dekanakm', [DashboardDEKANController::class, 'akademikdekan'])->middleware('userAkses:dekan')->name('akademikdekan');
-    Route::get('/sakura/dekandb/jadwaldekan', [DashboardDEKANController::class, 'jadwaldekan'])->middleware('userAkses:dekan')->name('jadwaldekan');
-    Route::get('/sakura/dekandb/ruang', [DashboardDEKANController::class, 'akademikdekan'])->name('dekan.ruang.index');
-    Route::post('/sakura/dekandb/{kode_ruang}/setujui', [DashboardDEKANController::class, 'setujui'])->name('dekan.ruang.setujui');
-    Route::post('/sakura/dekandb/{kode_ruang}/tolak', [DashboardDEKANController::class, 'tolak'])->name('dekan.ruang.tolak');
 
 });
 
@@ -68,29 +66,10 @@ Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
 
 // Menambah mata kuliah ke IRS
-Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
-Route::delete('/irs/{kode_mk}', [irsController::class, 'destroy'])->name('irs.destroy');
-Route::get('/irs/{nim}', [irsController::class, 'getIrsData']);
+Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpan.irs');
 
-
-Route::prefix('dekan')->group(function () {
-    Route::get('/sakura/dekandb/jadwal', [DashboardDEKANController::class, 'jadwaldekan'])->name('dekan.jadwal.index');
-    Route::post('/sakura/dekandb/jadwal/setujui/{id}', [DashboardDEKANController::class, 'setujuiJadwal'])->name('dekan.jadwal.setujui');
-    Route::post('/sakura/dekandb/jadwal/tolak/{id}', [DashboardDEKANController::class, 'tolakJadwal'])->name('dekan.jadwal.tolak');
-});
-
-
-
-// Route::any('/simpanirs', function () {
-//     return response()->json(['method' => request()->method()], 200);
-// });
-
-// Route::get('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
-// Route::any('/simpanirs', function () {
-//     \Log::info('Method: ' . request()->method());
-//     return response('Method not allowed', 405);
-// });
-
+// Route::post('/irs/tambah', [irsController::class, 'tambah'])->name('irs.tambah');
+// Route::post('/irs/hapus', [irsController::class, 'hapus'])->name('irs.hapus');
 
 // routes/web.php
 Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');

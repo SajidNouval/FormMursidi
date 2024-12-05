@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Irs; // Model IRS
+use App\Models\Mata_Kuliah; // Model Mata Kuliah
+use Illuminate\Support\Facades\Auth;
+use App\Models\Mahasiswa;
+
+class irsController extends Controller
+{
+    public function simpanirs(Request $request)
+    {
+        // Log data request untuk debugging
+        \Log::info('Data Request:', $request->all());
+    
+        // Ambil NIM mahasiswa berdasarkan user yang sedang login
+        $userId = Auth::user()->id;
+        $mahasiswa = Mahasiswa::where('user_id', $userId)->first();
+    
+        if (!$mahasiswa) {
+            return response()->json(['error' => 'Mahasiswa tidak ditemukan'], 404);
+        }
+    
+        $mahasiswaNim = $mahasiswa->nim;
+        \Log::info('Mahasiswa NIM:', ['nim' => $mahasiswaNim]);
+    
+        // Iterasi setiap data IRS yang dikirimkan
+        foreach ($request->input('irs') as $course) {
+            \Log::info('Processing course:', $course);
+    
+            // // Pastikan semester ada
+            // if (!isset($course['semester'])) {
+            //     return response()->json(['error' => 'Semester is required for each course'], 400);
+            // }
+    
+            // Cari mata kuliah berdasarkan kode MK
+            $mataKuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
+    
+            if (!$mataKuliah) {
+                \Log::warning('Mata kuliah tidak ditemukan:', ['kode_mk' => $course['mata_kuliah_kode_mk']]);
+                return response()->json(['error' => 'Mata kuliah dengan kode ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
+            }
+    
+            // Simpan atau update IRS
+            Irs::updateOrCreate(
+                [
+                    'mahasiswa_nim' => $mahasiswaNim,
+                    'mata_kuliah_kode_mk' => $course['mata_kuliah_kode_mk'],
+                    // 'total_sks' => $course['total_sks'],
+                    // 'semester' => $course['semester'],
+                ]
+            );
+    
+            \Log::info('IRS berhasil disimpan atau diperbarui:', $course);
+        }
+    
+        return response()->json(['message' => 'Simpan IRS berhasil', 'data' => $request->input('irs')], 200);
+    }
+    
+}

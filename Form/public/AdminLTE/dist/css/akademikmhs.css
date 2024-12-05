@@ -236,3 +236,16 @@ a:hover {
   color: inherit; /* Menggunakan warna teks default saat hover */
   text-decoration: none; /* Menghapus garis bawah saat hover */
 }
+
+.course-item {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9; /* Warna latar opsional */
+}
+
+.course-item .btn {
+  flex-shrink: 0; /* Pastikan tombol tidak mengecil */
+}
+

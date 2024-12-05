@@ -53,6 +53,46 @@ class ruangkuliahseeder extends Seeder
                 'status' => 'diajukan'
 
             ],
+            [
+                'kode_ruang' => 'E201',
+                'kapasitas' => 55,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
+                'status' => 'diajukan'
+
+            ],
+            [
+                'kode_ruang' => 'E202',
+                'kapasitas' => 55,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
+                'status' => 'diajukan'
+
+            ],
+            [
+                'kode_ruang' => 'E203',
+                'kapasitas' => 55,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
+                'status' => 'diajukan'
+
+            ],
+            [
+                'kode_ruang' => 'E204',
+                'kapasitas' => 55,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
+                'status' => 'diajukan'
+
+            ],
+            [
+                'kode_ruang' => 'E205',
+                'kapasitas' => 55,
+                'program_studi_kode_prodi' => '01',
+                'fakultas_kode_fakultas' => '101',
+                'status' => 'diajukan'
+
+            ],
         ];
         foreach($rk as $key => $val){
             Ruang_Kuliah::create($val);

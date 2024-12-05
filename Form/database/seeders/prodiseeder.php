@@ -15,13 +15,24 @@ class prodiseeder extends Seeder
     {
         $prodiData = [
             [
-                // $table->string('kode_prodi')->primary();
-                // $table->string('nama_prodi');
-                // $table->foreignId('fakultas_id')->constrained('fakultas')->onDelete('cascade');
 
                 'kode_prodi' => '01',
                 'nama_prodi' => 'Teknik Informatika',
                 'fakultas_kode_fakultas' => '101'
+    
+            ],
+            [
+
+                'kode_prodi' => '02',
+                'nama_prodi' => 'Biologi',
+                'fakultas_kode_fakultas' => '101'
+    
+            ],
+            [
+
+                'kode_prodi' => '03',
+                'nama_prodi' => 'Teknik Mesin',
+                'fakultas_kode_fakultas' => '102'
     
             ],
 

@@ -22,6 +22,16 @@ class Mata_Kuliah extends Model
         'program_studi_kode_prodi',
         'fakultas_kode_fakultas'
     ];
+
+    // Tentukan kolom primary key yang digunakan
+    protected $primaryKey = 'kode_mk';
+
+    // Jika primary key tidak auto-increment
+    public $incrementing = false;
+  
+    // Jika primary key adalah string
+    protected $keyType = 'string';
+
     public function irs()
     {
         return $this->hasMany(IRS::class, 'mata_kuliah_kode_mk', 'kode_mk');

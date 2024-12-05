@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\irs; // Pastikan model IRS sudah benar
+use App\Models\Mata_Kuliah; // Model MataKuliah
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Mahasiswa;
+
+class irsController extends Controller
+{
+    // Menambah IRS untuk daftar mata kuliah
+    public function simpanirs(Request $request)
+    {
+        // error_log($request['irs']);
+        // Log input yang diterima
+        \Log::info($request->all());
+    
+        // Validasi input
+        // $request->validate([
+        //     'irs' => 'required|array',
+        //     'irs.*.mata_kuliah_kode_mk' => 'required|string',
+        //     'irs.*.semester' => 'required|integer',
+        //     'irs.*.tahun_akademik' => 'required|string',
+        // ]);
+    
+        $userId = Auth::user()->id;
+        $mahasiswaNim = Mahasiswa::where('user_id', $userId)->get()->first()->nim;
+
+        error_log("ok");
+        error_log($mahasiswaNim);
+        error_log($request->collect('irs'));
+        foreach ($request->collect('irs') as $course) {
+            // error_log($course->toJson());
+            // error_log($course['name']);
+            $mataKuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
+    
+            if (!$mataKuliah) {
+                return response()->json(['error' => 'Mata kuliah dengan kode ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
+            }
+    
+            Irs::updateOrCreate(
+                [
+                    'mahasiswa_nim' => $mahasiswaNim,
+                    'semester' => $course['semester'],
+                    'mata_kuliah_kode_mk' => $course['mata_kuliah_kode_mk'],
+                
+                    // 'tahun_akademik' => $course['tahun_akademik']
+                ]
+            );
+        }
+    
+        return response()->json(['message' => 'Simpan IRS berhasil'], 200);
+    }
+    
+    
+}

@@ -11,7 +11,9 @@ class Ruang_Kuliah extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'ruang_kuliah'; // Tentukan nama tabel yang benar
-
+    protected $primaryKey = 'kode_ruang'; // Menentukan primary key
+    public $incrementing = false; // Jika primary key bukan auto-increment
+    protected $keyType = 'string'; // Menyesuaikan tipe data (string)
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +23,7 @@ class Ruang_Kuliah extends Model
         'kode_ruang',
         'kapasitas', 
         'fakultas_kode_fakultas',
-        'program_sudi_kode_prodi',
+        'program_studi_kode_prodi',
         'status'
      ];
      

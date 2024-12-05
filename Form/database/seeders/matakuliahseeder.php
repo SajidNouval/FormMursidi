@@ -25,8 +25,8 @@ class matakuliahseeder extends Seeder
             ],
             [
                 'kode_mk' => 'Paik102',
-                'nama_mk' => 'ML',
-                'sks' => 3,
+                'nama_mk' => 'PBP',
+                'sks' => 4,
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
@@ -34,8 +34,8 @@ class matakuliahseeder extends Seeder
             ],
             [
                 'kode_mk' => 'Paik103',
-                'nama_mk' => 'KTP',
-                'sks' => 3,
+                'nama_mk' => 'PBP',
+                'sks' => 4,
                 'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
@@ -43,9 +43,18 @@ class matakuliahseeder extends Seeder
             ],
             [
                 'kode_mk' => 'Paik104',
-                'nama_mk' => 'PPL',
-                'sks' => 3,
+                'nama_mk' => 'PBP',
+                'sks' => 4,
                 'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik105',
+                'nama_mk' => 'Basis Data',
+                'sks' => 4,
+                'semester' => 3,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
@@ -55,6 +64,96 @@ class matakuliahseeder extends Seeder
                 'nama_mk' => 'Basis Data',
                 'sks' => 4,
                 'semester' => 3,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik107',
+                'nama_mk' => 'Basis Data',
+                'sks' => 4,
+                'semester' => 3,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik108',
+                'nama_mk' => 'Basis Data',
+                'sks' => 4,
+                'semester' => 3,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik109',
+                'nama_mk' => 'PPL',
+                'sks' => 4,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik110',
+                'nama_mk' => 'PPL',
+                'sks' => 4,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik111',
+                'nama_mk' => 'PPL',
+                'sks' => 4,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik112',
+                'nama_mk' => 'PPL',
+                'sks' => 4,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik113',
+                'nama_mk' => 'KWU',
+                'sks' => 2,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik114',
+                'nama_mk' => 'KWU',
+                'sks' => 2,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik115',
+                'nama_mk' => 'KWU',
+                'sks' => 2,
+                'semester' => 5,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik116',
+                'nama_mk' => 'KWU',
+                'sks' => 2,
+                'semester' => 5,
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',

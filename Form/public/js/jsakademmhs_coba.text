@@ -1,0 +1,106 @@
+<!-- Script JavaScript -->
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const addButton = document.querySelector(".btn-primary"); // Tombol "Tambahkan"
+        const selectMatkul = document.getElementById("select-matkul"); // Dropdown mata kuliah
+        const totalSksElem = document.getElementById("total-sks"); // Total SKS
+        const selectedCoursesElem = document.getElementById("selected-courses"); // Daftar mata kuliah yang dipilih
+        const dataContainer = document.getElementById("data-container");
+        const irsData = JSON.parse(dataContainer.getAttribute("data-irs")); // Data IRS yang ada
+
+        // Ambil NIM mahasiswa dari data yang ada
+        const mahasiswaNim = "{{ $mahasiswa->nim }}";
+
+        // Menambah mata kuliah ke IRS
+        addButton.addEventListener("click", function() {
+            const selectedOption = selectMatkul.options[selectMatkul.selectedIndex];
+            const mataKuliahKodeMk = selectedOption.value;
+            const mataKuliahNama = selectedOption.text;
+            const mataKuliahSks = selectedOption.getAttribute("data-sks");
+
+            // Kirim data ke server untuk menambah mata kuliah ke IRS
+            fetch("{{ route('irs.tambah') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                },
+                body: JSON.stringify({
+                    mahasiswa_nim: mahasiswaNim,
+                    selected_courses: [{
+                        mata_kuliah_kode_mk: mataKuliahKodeMk,
+                        semester: {{ $mahasiswa->semester }},
+                        tahun_akademik: "{{ $mahasiswa->tahun_akademik }}"
+                    }]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Menampilkan pesan
+                    if (data.added_courses.length > 0) {
+                        // Update list mata kuliah yang dipilih
+                        data.added_courses.forEach(course => {
+                            const newCourse = document.createElement("div");
+                            newCourse.classList.add("course-item");
+                            newCourse.setAttribute("data-sks", course.sks);
+                            newCourse.innerHTML = `
+                                ${course.nama_mk} (${course.sks} SKS)
+                                <button class="btn btn-danger btn-sm remove-course" data-kode="${course.mata_kuliah_kode_mk}">Hapus</button>
+                            `;
+                            selectedCoursesElem.appendChild(newCourse);
+                        });
+                        
+                        // Update total SKS
+                        const newTotalSks = parseInt(totalSksElem.textContent) + parseInt(mataKuliahSks);
+                        totalSksElem.textContent = newTotalSks;
+                    }
+                } else {
+                    alert("Terjadi kesalahan dalam menambah mata kuliah.");
+                }
+            })
+            .catch(error => {
+                console.error("Error adding course:", error);
+                alert("Terjadi kesalahan pada server.");
+            });
+        });
+
+        // Menghapus mata kuliah dari IRS
+        selectedCoursesElem.addEventListener("click", function(event) {
+            if (event.target.classList.contains("remove-course")) {
+                const mataKuliahKodeMk = event.target.getAttribute("data-kode");
+                const courseItem = event.target.closest(".course-item");
+                const mataKuliahSks = courseItem.getAttribute("data-sks");
+
+                // Kirim data ke server untuk menghapus mata kuliah dari IRS
+                fetch("{{ route('irs.hapus') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                    },
+                    body: JSON.stringify({
+                        mahasiswa_nim: mahasiswaNim,
+                        mata_kuliah_kode_mk: mataKuliahKodeMk
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert(data.message); // Menampilkan pesan
+                        // Menghapus mata kuliah dari tampilan
+                        selectedCoursesElem.removeChild(courseItem);
+                        
+                        // Update total SKS
+                        const newTotalSks = parseInt(totalSksElem.textContent) - parseInt(mataKuliahSks);
+                        totalSksElem.textContent = newTotalSks;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error removing course:", error);
+                    alert("Terjadi kesalahan pada server.");
+                });
+            }
+        });
+    });
+</script> -->

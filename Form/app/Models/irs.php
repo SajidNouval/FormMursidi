@@ -2,34 +2,31 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class irs extends Model
 {
-    protected $table = 'irs';
 
-    // Tentukan kolom-kolom yang dapat diisi (fillable)
+    use HasFactory;
+
+    protected $table = 'irs'; // Nama tabel di database
+
     protected $fillable = [
-        'mahasiswa_nim', 
-        'mata_kuliah_kode_mk', 
-        'semester', 
-        'total_sks',
+        'mahasiswa_nim',
+        'kelas_id',
+        'semester',
         'tahun_akademik',
-        'ruang_kuliah_kode_ruang'
+        'total_sks',
+        'ruang_kuliah_kode_ruang',
+        'is_verified',
+        'diajukan',
     ];
 
-    // Jika tabel tidak menggunakan timestamps
-    // public $timestamps = false;
-
-    // Relasi ke Mahasiswa
-    public function mahasiswa()
+    // Relasi ke tabel kelas
+    public function kelas()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
-    }
-
-    // Relasi ke Mata Kuliah
-    public function mataKuliah()
-    {
-        return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 }

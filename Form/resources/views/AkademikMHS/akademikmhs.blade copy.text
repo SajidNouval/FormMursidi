@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
   @include('AkademikMHS.header')
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  
-
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -71,11 +68,12 @@
             </ul>
           </div>
   
-        
-          <!-- Tab Buat IRS -->
-           <!-- Menyertakan file JavaScript -->
-           
           <div class="tab-content">
+
+       <!-- Tab Buat IRS -->
+        <!-- Menyertakan file JavaScript -->
+        
+
         <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
     <div id="data-container" data-irs="{{ json_encode($irs) }}"></div>
     <div class="bg-purpleepanel p-4">
@@ -90,17 +88,12 @@
                             <div class="form-group">
                                 <label for="select-matkul">Pilih Mata Kuliah</label>
                                 <select id="select-matkul" class="form-control">
-                                        @if ($jadwal_kuliah->isNotEmpty())
-                                            @foreach ($jadwal_kuliah as $item)
-                                                <option value="{{ $item->mata_kuliah_kode_mk }}" 
-                                                        data-sks="{{ $item->sks }}"
-                                                        data-semester="{{ $item->semester }}"
-                                                        data-tahun-akademik="{{ $item->tahun_akademik }}"
-                                                        data-ruang="{{ $item->kode_ruang }}"
-                                                        data-kelas-id="{{ $item->kelas_id }}">
-                                                    {{ $item->nama_mk }}
-                                                </option>
-                                            @endforeach
+                                    @if ($jadwal_kuliah->isNotEmpty())
+                                        @foreach ($jadwal_kuliah as $item)
+                                            <option value="{{ $item->mata_kuliah_kode_mk }}" data-sks="{{ $item->sks }}">
+                                                {{ $item->nama_mk }}
+                                            </option>
+                                        @endforeach
                                     @else
                                         <option>-</option>
                                     @endif
@@ -129,24 +122,12 @@
                                     <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
                                     <hr>
                                     <div id="selected-courses">
-                                      @foreach ($irs as $course)
-                                      @if ($course->kelas && $course->kelas->mataKuliah)
-                                          <div class="course-item d-flex justify-content-between align-items-center" data-sks="{{ $course->kelas->mataKuliah->sks }}" data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">
-                                              <div>
-                                                  {{ $course->kelas->mataKuliah->nama_mk }} ({{ $course->kelas->mataKuliah->sks }} SKS)
-                                                  {{ $course->kelas->mataKuliah->kode_ruang }}
-                                              </div>
-                                              <button class="btn btn-danger btn-sm remove-course" data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">Hapus</button>
-                                          </div>
-                                      @else
-                                          <div class="course-item">
-                                              <p>Data mata kuliah tidak ditemukan untuk kelas ini.</p>
-                                          </div>
-                                      @endif
-                                  @endforeach
-                                  
-                                  
-                                  
+                                        @foreach ($irs as $course)
+                                            <div class="course-item" data-sks="{{ $course->mataKuliah->sks }}">
+                                                {{ $course->mataKuliah->nama_mk }} ({{ $course->mataKuliah->sks }} SKS) {{ $course->mataKuliah->kode_ruang }}
+                                                <button class="btn btn-danger btn-sm remove-course" data-kode="{{ $course->mataKuliah->mata_kuliah_kode_mk }}">Hapus</button>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                         <button class="btn btn-success btn-sm" id="save-btn">Simpan</button>
@@ -199,21 +180,17 @@
                                                         });
                                                     @endphp
                                                     <td>
-                                                    @if ($jadwal_hari->isNotEmpty())
-                                                                @foreach ($jadwal_hari as $jadwal)
-                                                                    <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
-                                                                       data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
-                                                                       data-name="{{ $jadwal->nama_mk }}"
-                                                                       data-sks="{{ $jadwal->sks }}"
-                                                                       data-semester="{{ $jadwal->semester }}"
-                                                                       data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
-                                                                       data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                       data-kelas-id="{{ $jadwal->kelas_id }}">
-                                                                        <strong>{{ $jadwal->nama_mk }}</strong><br>
-                                                                        Ruang: {{ $jadwal->kode_ruang }}<br>
-                                                                        Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
-                                                                    </a>
-                                                                @endforeach
+                                                        @if ($jadwal_hari->isNotEmpty())
+                                                            @foreach ($jadwal_hari as $jadwal)
+                                                                <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
+                                                                   data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
+                                                                   data-name="{{ $jadwal->nama_mk }}"
+                                                                   data-sks="{{ $jadwal->sks }}">
+                                                                    <strong>{{ $jadwal->nama_mk }}</strong><br>
+                                                                    Ruang: {{ $jadwal->kode_ruang }}<br>
+                                                                    Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
+                                                                </a>
+                                                            @endforeach
                                                         @else
                                                             <span>-</span>
                                                         @endif
@@ -234,10 +211,7 @@
 
 <script>
 // Ambil data IRS dari HTML
-let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs') || '[]');
-
-// Ambil CSRF token dari meta tag
-const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+let irs = JSON.parse(document.getElementById('data-container').getAttribute('data-irs'));
 
 // Fungsi untuk memperbarui total SKS
 function updateTotalSKS() {
@@ -253,16 +227,12 @@ function removeCourse(courseKodeMK) {
 }
 
 // Fungsi untuk menambahkan mata kuliah ke IRS
-function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId) {
+function addCourse(courseKodeMK, courseName, courseSKS) {
     if (!irs.some(course => course.mata_kuliah_kode_mk === courseKodeMK)) {
         irs.push({
             mata_kuliah_kode_mk: courseKodeMK,
             name: courseName,
-            total_sks: parseInt(courseSKS),
-            semester: semester,
-            tahun_akademik: tahunAkademik,
-            ruang_kuliah_kode_ruang: ruang,
-            kelas_id: kelasId
+            total_sks: parseInt(courseSKS)
         });
         renderSelectedCourses(); // Render ulang daftar mata kuliah
         updateTotalSKS();        // Update total SKS
@@ -301,227 +271,48 @@ function renderSelectedCourses() {
 }
 
 // Menangani klik tombol "Simpan"
-document.getElementById('save-btn')?.addEventListener('click', () => {
+document.getElementById('save-btn').addEventListener('click', () => {
     const formData = {
-        irs: irs // Data IRS yang telah disiapkan
+        irs: irs
     };
 
-    // Kirim data IRS ke server
-    console.log('Mengirim data:', formData);
-    fetch('/simpanirs', {
-        method: 'POST', // Metode POST untuk menyimpan data
+    // Simpan IRS ke server
+    fetch('/simpan-irs', {
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json', // Tipe konten JSON
-            'X-CSRF-TOKEN': csrfToken // Sertakan CSRF token untuk keamanan
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
-        body: JSON.stringify(formData) // Kirim data dalam format JSON
+        body: JSON.stringify(formData)
     })
-        .then(response => {
-            console.log('Response status:', response.status);
-            if (!response.ok) {
-                throw new Error(`HTTP error ${response.status}`);
-            }
-            return response.json(); // Parse response JSON jika berhasil
-        })
-        .then(data => {
-            console.log('Simpan IRS berhasil:', data);
-            document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
-            document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
-            alert('Data IRS berhasil disimpan.');
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Gagal menyimpan IRS. Periksa kembali data atau coba lagi.');
-        });
+    .then(response => response.json())
+    .then(data => {
+        console.log('Simpan IRS berhasil:', data);
+        document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
+        document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+// Menangani klik tombol "Edit"
+document.getElementById('edit-btn').addEventListener('click', () => {
+    // Tampilkan tombol Simpan dan sembunyikan tombol Edit
+    document.getElementById('save-btn').style.display = 'inline-block';
+    document.getElementById('edit-btn').style.display = 'none';
 });
 
 // Menangani klik pada jadwal kuliah untuk menambahkannya
 document.querySelectorAll('.add-course').forEach(button => {
     button.addEventListener('click', () => {
         const courseKodeMK = button.getAttribute('data-id');
-        const semester = button.getAttribute('data-semester');
-        const tahunAkademik = button.getAttribute('data-tahun-akademik');
         const courseName = button.getAttribute('data-name');
         const courseSKS = button.getAttribute('data-sks');
-        const ruang = button.getAttribute('data-ruang');
-        const kelasId = button.getAttribute('data-kelas-id');
-
-        addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId);
+        addCourse(courseKodeMK, courseName, courseSKS);
     });
 });
-
-// Fungsi untuk memperbarui tampilan tombol Simpan/Edit
-function toggleSaveEditButtons(isEditing) {
-    document.getElementById('save-btn').style.display = isEditing ? 'none' : 'inline-block';
-    document.getElementById('edit-btn').style.display = isEditing ? 'inline-block' : 'none';
-}
-
-// Event listener untuk tombol Edit
-document.getElementById('edit-btn')?.addEventListener('click', () => {
-    toggleSaveEditButtons(false); // Beralih ke mode Simpan
-});
-
-// Menangani error fetch
-function handleFetchError(response) {
-    if (!response.ok) {
-        console.error('Fetch error:', response.status, response.statusText);
-        alert('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
-    }
-    return response.json();
-}
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedCoursesContainer = document.getElementById('selected-courses');
-    const totalSKSElement = document.getElementById('total-sks');
-
-    // Fungsi untuk memperbarui total SKS
-    const updateTotalSKS = () => {
-        let totalSKS = 0;
-        document.querySelectorAll('#selected-courses .course-item').forEach(item => {
-            totalSKS += parseInt(item.getAttribute('data-sks'), 10);
-        });
-        totalSKSElement.textContent = totalSKS;
-    };
-
-    // Event listener untuk tombol hapus
-    selectedCoursesContainer.addEventListener('click', function (event) {
-        if (event.target.classList.contains('remove-course')) {
-            const button = event.target;
-            const courseCode = button.getAttribute('data-kode');
-
-            if (confirm(`Apakah Anda yakin ingin menghapus mata kuliah dengan kode ${courseCode}?`)) {
-                // Kirimkan request AJAX untuk menghapus mata kuliah
-                fetch(`/irs/${courseCode}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Hapus elemen course dari DOM
-                        const courseItem = button.closest('.course-item');
-                        courseItem.remove();
-                        updateTotalSKS();
-                        alert('Mata kuliah berhasil dihapus.');
-                    } else {
-                        response.json().then(data => alert(data.message));
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat menghapus mata kuliah.');
-                });
-            }
-        }
-    });
-});
-
-// Fungsi untuk merender ulang mata kuliah yang sudah dipilih
-function renderSelectedCourses() {
-    const selectedCoursesContainer = document.getElementById('selected-courses');
-    selectedCoursesContainer.innerHTML = ''; // Kosongkan daftar lama
-
-    const fragment = document.createDocumentFragment();
-
-    // Render ulang semua mata kuliah yang ada di dalam array 'irs'
-    irs.forEach(course => {
-        const courseDiv = document.createElement('div');
-        courseDiv.classList.add('course-item', 'd-flex', 'justify-content-between', 'align-items-center');
-        courseDiv.setAttribute('data-sks', course.total_sks);
-        courseDiv.setAttribute('data-kode', course.mata_kuliah_kode_mk);
-
-        const courseName = document.createElement('div');
-        courseName.innerHTML = `${course.name} (${course.total_sks} SKS) ${course.ruang_kuliah_kode_ruang}`;
-
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'remove-course');
-        removeButton.textContent = 'Hapus';
-        removeButton.setAttribute('data-kode', course.mata_kuliah_kode_mk);
-
-        // Menambahkan tombol hapus dengan event listener
-        removeButton.addEventListener('click', () => removeCourse(course.mata_kuliah_kode_mk));
-
-        courseDiv.appendChild(courseName);
-        courseDiv.appendChild(removeButton);
-
-        fragment.appendChild(courseDiv);
-    });
-
-    selectedCoursesContainer.appendChild(fragment);
-}
-
-// Fungsi untuk menghapus mata kuliah
-function removeCourse(courseKodeMK) {
-    // Hapus dari array irs
-    irs = irs.filter(course => course.mata_kuliah_kode_mk !== courseKodeMK);
-    renderSelectedCourses(); // Render ulang daftar mata kuliah
-    updateTotalSKS(); // Perbarui total SKS
-
-    // Kirimkan request AJAX untuk menghapus mata kuliah dari server
-    fetch(`/irs/${courseKodeMK}`, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': csrfToken, // Sertakan token CSRF
-            'Content-Type': 'application/json', // Tipe konten JSON
-        },
-    })
-        .then(response => {
-            if (response.ok) {
-                alert('Mata kuliah berhasil dihapus.');
-            } else {
-                response.json().then(data => alert(data.message));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat menghapus mata kuliah.');
-        });
-}
-
-// Fungsi untuk memperbarui total SKS
-function updateTotalSKS() {
-    const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
-    document.getElementById('total-sks').textContent = totalSKS;
-}
-
-// Menangani klik pada jadwal kuliah untuk menambahkannya
-document.querySelectorAll('.add-course').forEach(button => {
-    button.addEventListener('click', () => {
-        const courseKodeMK = button.getAttribute('data-id');
-        const semester = button.getAttribute('data-semester');
-        const tahunAkademik = button.getAttribute('data-tahun-akademik');
-        const courseName = button.getAttribute('data-name');
-        const courseSKS = button.getAttribute('data-sks');
-        const ruang = button.getAttribute('data-ruang');
-        const kelasId = button.getAttribute('data-kelas-id');
-
-        addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId);
-    });
-});
-
-
-
-// // Memastikan data IRS tetap sinkron dengan server
-// function syncIrsData() {
-//     fetch('/getirs', { method: 'GET' })
-//         .then(response => handleFetchError(response))
-//         .then(data => {
-//             console.log('Data IRS dari server:', data);
-//             irs = data; // Sinkronkan data IRS dari server
-//             renderSelectedCourses(); // Render ulang daftar mata kuliah
-//             updateTotalSKS(); // Perbarui total SKS
-//         })
-//         .catch(error => {
-//             console.error('Error saat sinkronisasi IRS:', error);
-//         });
-// }
-
-
-
 </script>
-
-
-
 
 
 
@@ -845,7 +636,6 @@ document.querySelectorAll('.add-course').forEach(button => {
             </div>
           </div>
         </div>
-        
       </section>
     
     <!-- /.content -->
