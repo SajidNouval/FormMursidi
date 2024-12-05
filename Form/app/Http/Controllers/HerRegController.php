@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\Auth;
 
 class HerRegController extends Controller
 {
@@ -26,8 +27,10 @@ class HerRegController extends Controller
             'status' => 'required|in:aktif,cuti',
         ]);
 
+
+
         // Retrieve the mahasiswa record that matches the logged-in user's ID
-        $mahasiswa = Mahasiswa::where('user_id', auth()->id)->first();
+        $mahasiswa = Mahasiswa::where('user_id', Auth::id())->first();
 
         if ($mahasiswa) {
             // Update the role of the mahasiswa

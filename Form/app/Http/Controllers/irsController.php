@@ -15,6 +15,16 @@ class irsController extends Controller
 {
     public function simpanirs(Request $request)
     {
+
+        $request->validate([
+            'irs' => 'required|array',
+            'irs.*.mata_kuliah_kode_mk' => 'required|string|exists:mata_kuliah,kode_mk',
+            'irs.*.semester' => 'required|integer',
+            'irs.*.tahun_akademik' => 'required|string',
+            'irs.*.total_sks' => 'required|integer|min:1',
+            'irs.*.ruang_kuliah_kode_ruang' => 'nullable|string',
+        ]);
+        
         // Log data request untuk debugging
         Log::info('Data Request:', $request->all());
 
@@ -100,4 +110,32 @@ class irsController extends Controller
         $irsData = irs::where('mahasiswa_nim', $nim)->get();
         return response()->json($irsData);
     }
+
+
+    public function showIRS()
+    {
+        // Ambil mahasiswa yang sedang login
+        $userId = Auth::user()->id;
+        $mahasiswa = Mahasiswa::where('user_id', $userId)->first();
+    
+        if (!$mahasiswa) {
+            return redirect()->back()->with('error', 'Mahasiswa tidak ditemukan.');
+        }
+    
+        // Ambil semua IRS yang terkait mahasiswa tersebut
+        $irs = irs::with('kelas.mataKuliah')
+            ->where('mahasiswa_nim', $mahasiswa->nim)
+            ->get();
+    
+        // Hitung total SKS dari IRS
+        $totalSKS = $irs->sum(fn($course) => $course->kelas->mataKuliah->sks ?? 0);
+    
+        // Kirim data ke view
+        return view('irs.index', [
+            'irs' => $irs,
+            'totalSKS' => $totalSKS,
+        ]);
+    }
+    
+
 }

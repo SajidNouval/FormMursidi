@@ -25,7 +25,6 @@
 @include('DashBMHS.navbar')
   <!-- /.navbar -->
   
-  <!-- Main Sidebar Container -->
   
 
   <!-- Content Wrapper. Contains page content -->

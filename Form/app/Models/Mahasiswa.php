@@ -61,4 +61,5 @@ class Mahasiswa extends Model
     protected $casts = [
         // Define any attributes that should be cast to a specific type
     ];
+    
 }
