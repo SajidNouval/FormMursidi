@@ -75,245 +75,165 @@
           <!-- Tab Buat IRS -->
            <!-- Menyertakan file JavaScript -->
            <div class="tab-content">
-            <!-- Tab Buat IRS -->
-            <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
-                @if ($mahasiswa->role === 'aktif')
-                    <!-- Jika mahasiswa aktif -->
-                    <div id="data-container" data-irs="{{ json_encode($irs) }}"></div>
-                    <div class="bg-purpleepanel p-4">
-                        <div class="container-fluid py-4">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-primary text-white">
-                                            <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="select-matkul">Pilih Mata Kuliah</label>
-                                                <select id="select-matkul" class="form-control">
-                                                    @if ($jadwal_kuliah->isNotEmpty())
-                                                        @foreach ($jadwal_kuliah as $item)
-                                                            <option value="{{ $item->mata_kuliah_kode_mk }}" 
-                                                                    data-sks="{{ $item->sks }}"
-                                                                    data-semester="{{ $item->semester }}"
-                                                                    data-tahun-akademik="{{ $item->tahun_akademik }}"
-                                                                    data-ruang="{{ $item->kode_ruang }}"
-                                                                    data-kelas-id="{{ $item->kelas_id }}">
-                                                                {{ $item->nama_mk }}
-                                                            </option>
-                                                        @endforeach
-                                                    @else
-                                                        <option>-</option>
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
-                                        </div>
-                                    </div>
-        
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-info text-white">
-                                            <h5>Informasi Mahasiswa</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="mb-1"><strong>Nama : {{ $mahasiswa->nama }}</strong></p>
-                                            <p class="mb-1">NIM : {{ $mahasiswa->nim }}</p>
-                                            <p class="text-muted">Email : {{ $mahasiswa->email }}</p>
-                                            <p class="mb-1">Tahun Masuk : {{ $mahasiswa->tahun_masuk }}</p>
-                                            <p class="mb-1">Semester : {{ $mahasiswa->semester }}</p>
-                                            <div class="card mt-3">
-                                                <div class="card-header bg-primary text-white">
-                                                    <h5><i class="fas fa-user"></i> Mata Kuliah yang Dipilih</h5>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
-                                                    <hr>
-                                                    <div id="selected-courses">
-                                                        @foreach ($irs as $course)
-                                                            @if ($course->kelas && $course->kelas->mataKuliah)
-                                                                <div class="course-item d-flex justify-content-between align-items-center" 
-                                                                    data-sks="{{ $course->kelas->mataKuliah->sks }}" 
-                                                                    data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">
-                                                                    <div>
-                                                                        {{ $course->kelas->mataKuliah->nama_mk }} 
-                                                                        ({{ $course->kelas->mataKuliah->sks }} SKS) 
-                                                                        {{ $course->kelas->mataKuliah->kode_ruang }}
-                                                                    </div>
-                                                                    <button class="btn btn-danger btn-sm remove-course" 
-                                                                        data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">Hapus</button>
-                                                                </div>
-                                                            @else
-                                                                <div class="course-item">
-                                                                    <p>Data mata kuliah tidak ditemukan untuk kelas ini.</p>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
-                                                    </div>
-                                                    <div class="card-footer d-flex justify-content-between">
-                                                        <button class="btn btn-success btn-sm" id="save-btn">Simpan</button>
-                                                        <button class="btn btn-warning btn-sm" id="edit-btn" style="display:none;">Edit</button>
-                                                        <strong>Total SKS: <span id="total-sks">{{ $totalSKS }}</span></strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+    <!-- Tab Buat IRS -->
+    <div class="tab-pane fade show active" id="buat-irs" role="tabpanel">
+        @if ($mahasiswa->role === 'aktif')
+            <!-- Jika mahasiswa aktif -->
+            <div id="data-container" data-irs="{{ json_encode($irs) }}"></div>
+            <div class="bg-purpleepanel p-4">
+                <div class="container-fluid py-4">
+                    <div class="row">
+                        <!-- Kolom Tambah Mata Kuliah -->
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary text-white">
+                                    <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah</h5>
                                 </div>
-        
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-header bg-primary text-white">
-                                            <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
-                                        </div>
-                                        <div class="card-body p-0">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered text-center">
-                                                    <thead class="bg-primary text-white">
-                                                        <tr>
-                                                            <th>Jam</th>
-                                                            <th>Senin</th>
-                                                            <th>Selasa</th>
-                                                            <th>Rabu</th>
-                                                            <th>Kamis</th>
-                                                            <th>Jumat</th>
-                                                            <th>Sabtu</th>
-                                                            <th>Minggu</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @php
-                                                            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
-                                                            $jamMulai = [
-                                                                '07:00', '08:00', '09:00', '10:00', '11:00',
-                                                                '12:00', '13:00', '14:00', '15:00', '16:00',
-                                                                '17:00', '18:00', '19:00', '20:00', '21:00'
-                                                            ];
-                                                        @endphp
-        
-                                                        @foreach ($jamMulai as $jam)
-                                                            <tr>
-                                                                <td>{{ $jam }}</td>
-                                                                @foreach ($hari as $h)
-                                                                    @php
-                                                                        $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($h, $jam) {
-                                                                            return $item->hari === $h && $item->jam_mulai === $jam;
-                                                                        });
-                                                                    @endphp
-                                                                    <td>
-                                                                        @if ($jadwal_hari->isNotEmpty())
-                                                                            @foreach ($jadwal_hari as $jadwal)
-                                                                                <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
-                                                                                    data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
-                                                                                    data-name="{{ $jadwal->nama_mk }}"
-                                                                                    data-sks="{{ $jadwal->sks }}"
-                                                                                    data-semester="{{ $jadwal->semester }}"
-                                                                                    data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
-                                                                                    data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                                    data-kelas-id="{{ $jadwal->kelas_id }}">
-                                                                                    <strong>{{ $jadwal->nama_mk }}</strong><br>
-                                                                                    Ruang: {{ $jadwal->kode_ruang }}<br>
-                                                                                    Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
-                                                                                </a>
-                                                                            @endforeach
-                                                                        @else
-                                                                            <span>-</span>
-                                                                        @endif
-                                                                    </td>
-                                                                @endforeach
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center">
-                                    <thead class="bg-primary text-white">
-                                        <tr>
-                                            <th>Jam</th>
-                                            <th>Senin</th>
-                                            <th>Selasa</th>
-                                            <th>Rabu</th>
-                                            <th>Kamis</th>
-                                            <th>Jumat</th>
-                                            <th>Sabtu</th>
-                                            <th>Minggu</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
-                                            $jamMulai = [
-                                                '07:00', '08:00', '09:00', '10:00', '11:00',
-                                                '12:00', '13:00', '14:00', '15:00', '16:00',
-                                                '17:00', '18:00', '19:00', '20:00', '21:00'
-                                            ];
-                                        @endphp
-
-                                        @foreach ($jamMulai as $jam)
-                                            <tr>
-                                                <td>{{ $jam }}</td>
-                                                @foreach ($hari as $h)
-                                                    @php
-                                                        $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($h, $jam) {
-                                                            return $item->hari === $h && $item->jam_mulai === $jam;
-                                                        });
-                                                    @endphp
-                                                    <td>
-                                                    @if ($jadwal_hari->isNotEmpty())
-                                                                @foreach ($jadwal_hari as $jadwal)
-                                                                    <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
-                                                                       data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
-                                                                       data-name="{{ $jadwal->nama_mk }}"
-                                                                       data-sks="{{ $jadwal->sks }}"
-                                                                       data-semester="{{ $jadwal->semester }}"
-                                                                       data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
-                                                                       data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                       data-kelas-id="{{ $jadwal->kelas_id }}">
-                                                                        <strong>{{ $jadwal->nama_mk }}</strong><br>
-                                                                        Ruang: {{ $jadwal->kode_ruang }}<br>
-                                                                        Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
-                                                                    </a>
-                                                                @endforeach
-                                                        @else
-                                                            <span>-</span>
-                                                        @endif
-                                                    </td>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="select-matkul">Pilih Mata Kuliah</label>
+                                        <select id="select-matkul" class="form-control">
+                                            @if ($jadwal_kuliah->isNotEmpty())
+                                                @foreach ($jadwal_kuliah as $item)
+                                                    <option 
+                                                        value="{{ $item->mata_kuliah_kode_mk }}" 
+                                                        data-sks="{{ $item->sks }}"
+                                                        data-semester="{{ $item->semester }}"
+                                                        data-tahun-akademik="{{ $item->tahun_akademik }}"
+                                                        data-ruang="{{ $item->kode_ruang }}"
+                                                        data-kelas-id="{{ $item->kelas_id }}">
+                                                        {{ $item->nama_mk }}
+                                                    </option>
                                                 @endforeach
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                            @else
+                                                <option>-</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header bg-info text-white">
+                                    <h5>Informasi Mahasiswa</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-1"><strong>Nama : {{ $mahasiswa->nama }}</strong></p>
+                                    <p class="mb-1">NIM : {{ $mahasiswa->nim }}</p>
+                                    <p class="text-muted">Email : {{ $mahasiswa->email }}</p>
+                                    <p class="mb-1">Tahun Masuk : {{ $mahasiswa->tahun_masuk }}</p>
+                                    <p class="mb-1">Semester : {{ $mahasiswa->semester }}</p>
+                                    <div class="card mt-3">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5><i class="fas fa-user"></i> Mata Kuliah yang Dipilih</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
+                                            <hr>
+                                            <div id="selected-courses">
+                                                @foreach ($irs as $course)
+                                                    @if ($course->kelas && $course->kelas->mataKuliah)
+                                                        <div class="course-item d-flex justify-content-between align-items-center" 
+                                                             data-sks="{{ $course->kelas->mataKuliah->sks }}" 
+                                                             data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">
+                                                            <div>
+                                                                {{ $course->kelas->mataKuliah->nama_mk }} 
+                                                                ({{ $course->kelas->mataKuliah->sks }} SKS) 
+                                                                {{ $course->kelas->mataKuliah->kode_ruang }}
+                                                            </div>
+                                                            <button class="btn btn-danger btn-sm remove-course" 
+                                                                    data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">Hapus</button>
+                                                        </div>
+                                                    @else
+                                                        <div class="course-item">
+                                                            <p>Data mata kuliah tidak ditemukan untuk kelas ini.</p>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                            <div class="card-footer d-flex justify-content-between">
+                                                <button class="btn btn-success btn-sm" id="save-btn">Simpan</button>
+                                                <button class="btn btn-warning btn-sm" id="edit-btn" style="display:none;">Edit</button>
+                                                <strong>Total SKS: <span id="total-sks">{{ $totalSKS }}</span></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Jadwal Kuliah -->
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead class="bg-primary text-white">
+                                                <tr>
+                                                    <th>Jam</th>
+                                                    @foreach (['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] as $hari)
+                                                        <th>{{ $hari }}</th>
+                                                    @endforeach
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ([ '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00' ] as $jam)
+                                                    <tr>
+                                                        <td>{{ $jam }}</td>
+                                                        @foreach (['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] as $hari)
+                                                            <td>
+                                                                @php
+                                                                    $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
+                                                                        return $item->hari === $hari && $item->jam_mulai === $jam;
+                                                                    });
+                                                                @endphp
+                                                                @if ($jadwal_hari->isNotEmpty())
+                                                                    @foreach ($jadwal_hari as $jadwal)
+                                                                        <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
+                                                                           data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
+                                                                           data-name="{{ $jadwal->nama_mk }}"
+                                                                           data-sks="{{ $jadwal->sks }}"
+                                                                           data-semester="{{ $jadwal->semester }}"
+                                                                           data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
+                                                                           data-ruang="{{ $jadwal->kode_ruang }}"
+                                                                           data-kelas-id="{{ $jadwal->kelas_id }}">
+                                                                            <strong>{{ $jadwal->nama_mk }}</strong><br>
+                                                                            Ruang: {{ $jadwal->kode_ruang }}<br>
+                                                                            Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
+                                                                        </a>
+                                                                    @endforeach
+                                                                @else
+                                                                    <span>-</span>
+                                                                @endif
+                                                            </td>
+                                                        @endforeach
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @elseif ($mahasiswa->role === 'cuti')
-                    <!-- Jika mahasiswa cuti -->
-                    <div class="alert alert-warning text-center">
-                        <h5>Anda Sedang Cuti pada Semester ini</h5>
-                    </div>
-                @else
-                    <!-- Jika status kosong -->
-                    <div class="alert alert-danger text-center">
-                        <h5>Mohon isi Her-Registrasi Dahulu</h5>
-                    </div>
-                @endif
             </div>
-        </div>
+        @elseif ($mahasiswa->role === 'cuti')
+            <div class="alert alert-warning text-center">
+                <h5>Anda Sedang Cuti pada Semester ini</h5>
+            </div>
+        @else
+            <div class="alert alert-danger text-center">
+                <h5>Mohon isi Her-Registrasi Dahulu</h5>
+            </div>
+        @endif
+    </div>
+
+
         
 
 <script>
