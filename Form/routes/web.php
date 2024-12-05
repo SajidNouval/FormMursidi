@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/mhsdb/mhsherreg/compose', [HerRegController::class, 'konsulcompose'])->middleware('userAkses:mahasiswa')->name('konsulcompose');
     Route::get('/sakura/mhsdb/mhsherreg/read', [HerRegController::class, 'konsulread'])->middleware('userAkses:mahasiswa')->name('konsulread');
     Route::get('/sakura/mhsdb/mhsherreg/profil', [DashboardController::class, 'profilmhs'])->middleware('userAkses:mahasiswa')->name('profilmhs');
+    Route::post('/update-status', [HerRegController::class, 'updateStatus'])->middleware('userAkses:mahasiswa')->name('update.status');
 
     Route::get('/sakura/dosendb/dsnakm', [DashboardDSNController::class, 'akademikdsn'])->middleware('userAkses:dosen')->name('akademikdsn');
     Route::get('/sakura/dosendb/konsultasi', [DashboardDSNController::class, 'konsultasidsn'])->middleware('userAkses:dosen')->name('konsultasidsn');
@@ -93,7 +94,7 @@ Route::prefix('dekan')->group(function () {
 
 
 // routes/web.php
-Route::post('/update-status', [HerRegController::class, 'updateStatus'])->name('update.status');
+
 
 Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
 
