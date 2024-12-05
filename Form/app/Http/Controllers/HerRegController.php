@@ -31,11 +31,8 @@ class HerRegController extends Controller
 
 
         // Retrieve the mahasiswa record that matches the logged-in user's ID
-<<<<<<< HEAD
+
         $mahasiswa = Mahasiswa::where('user_id', auth()->id())->first();
-=======
-        $mahasiswa = Mahasiswa::where('user_id', Auth::id())->first();
->>>>>>> 70466398a71fca1409b19b3fcbc1b0643301f220
 
         if ($mahasiswa) {
             // Update the role of the mahasiswa
