@@ -76,7 +76,7 @@
             <div class="row">
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('akademikkpr') }}" class="info-box bg-secondary">
+                <a href="{{ route('jadwal') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Akademik</span>
@@ -87,7 +87,7 @@
           
               <!-- Her-Registrasi Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
+                <a href="{{ route('matkul') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Her-Registrasi</span>

@@ -13,6 +13,7 @@ use App\Http\Controllers\ForgotPWController;
 use App\Http\Controllers\irsController;
 use App\Http\Controllers\HerRegController;
 use App\Http\Controllers\MataKuliahController;
+use App\Http\Controllers\JadwalController;
 
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -46,6 +47,15 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/dosendb/read', [DashboardDSNController::class, 'konsulreaddsn'])->middleware('userAkses:dosen')->name('dsnread');
 
     Route::get('/sakura/kaprodidb/kprakm', [DashboardKPRController::class, 'akademikkpr'])->middleware('userAkses:kaprodi')->name('akademikkpr');
+    
+    // Jadwal
+    Route::get('AkademikKAPRODI.jadwalkaprodi', [JadwalController::class, 'buatjadwal'])->middleware('userAkses:kaprodi')->name('jadwal');
+    Route::post('AkademikKAPRODI.jadwalkaprodi', [JadwalController::class, 'storejadwal'])->middleware('userAkses:kaprodi')->name('jadwal.store');
+    Route::delete('/sakura/jadwal/{id}', [JadwalController::class, 'destroyjadwal'])->name('jadwal.destroy');
+    
+    //---matkul-----
+    Route::get('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'buatmatkul'])->middleware('userAkses:kaprodi')->name('matkul');
+    Route::post('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'storemk'])->middleware('userAkses:kaprodi')->name('matkul.store');
 
 
    
@@ -96,7 +106,11 @@ Route::prefix('dekan')->group(function () {
 // routes/web.php
 
 
-Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
+Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'storemk', 'destroymk']);
 
-Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
+//Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'store', 'destroy']);
 Route::resource('mata_kuliah', MataKuliahController::class);
+
+
+
+
