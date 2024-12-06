@@ -11,7 +11,7 @@ class DashboardKPRController extends Controller
     public function akademikkpr(){
         $user = Auth::user();
         $mataKuliah = Mata_Kuliah::where('kode_mk', $user->id)->get();
-        return view('AkademikKAPRODI.akademikkaprodi', compact('mataKuliah'));
+        return view('AkademikKAPRODI.matkulkaprodi', compact('mataKuliah'));
         
     }
 
