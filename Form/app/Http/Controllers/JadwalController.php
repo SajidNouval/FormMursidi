@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jadwal_Kuliah; // Pastikan Anda menggunakan model yang benar
 use App\Models\Mata_Kuliah; // Model untuk mata kuliah
+use App\Models\Ruang_Kuliah;
 
 class JadwalController extends Controller
 {
@@ -52,8 +53,9 @@ class JadwalController extends Controller
         // Ambil semua jadwal dari database
         $jadwal = Jadwal_Kuliah::all(); // Fetch the jadwal data
 
+        $ruangKuliah = Ruang_Kuliah::where('status', 'disetujui')->get(); // Ambil ruang kuliah yang disetujui
         // Tampilkan view dengan data mata kuliah
-        return view('AkademikKAPRODI.jadwalkaprodi',  compact('mataKuliah', 'jadwal'));
+        return view('AkademikKAPRODI.jadwalkaprodi',  compact('mataKuliah', 'jadwal','ruangKuliah'));
     }
 
     public function storejadwal(Request $request)
