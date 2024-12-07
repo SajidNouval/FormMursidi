@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,8 +186,8 @@
                                                         @foreach (['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] as $hari)
                                                             <td>
                                                                 @php
-                                                                    $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
-                                                                        return $item->hari === $hari && $item->jam_mulai === $jam;
+                                                                   $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
+                                                                      return $item->hari === $hari && date('H:i', strtotime($item->jam_mulai)) === date('H:i', strtotime($jam));
                                                                     });
                                                                 @endphp
                                                                 @if ($jadwal_hari->isNotEmpty())
@@ -200,9 +199,11 @@
                                                                            data-semester="{{ $jadwal->semester }}"
                                                                            data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
                                                                            data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                           data-kelas-id="{{ $jadwal->kelas_id }}">
+                                                                           data-kelas-id="{{ $jadwal->kelas_id }}"
+                                                                           data-kelas="{{ $jadwal->kelas }}">
                                                                             <strong>{{ $jadwal->nama_mk }}</strong><br>
                                                                             Semester: {{$jadwal->semester}}<br>
+                                                                            Kelas: {{$jadwal->kelas}}<br>
                                                                             Ruang: {{ $jadwal->kode_ruang }}<br>
                                                                             Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
                                                                         </a>

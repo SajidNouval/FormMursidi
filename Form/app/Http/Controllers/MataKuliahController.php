@@ -26,7 +26,7 @@ class MataKuliahController extends Controller
 
     public function index(){
         $mataKuliah = Mata_Kuliah::all(); // Ambil semua data mata kuliah
-        return view('AkademikKAPRODI.akademikkaprodi', compact('mataKuliah')); // Ganti 'mata_kuliah.index' dengan nama view Anda
+        return view('AkademikKAPRODI.matkulkaprodi', compact('mataKuliah')); // Ganti 'mata_kuliah.index' dengan nama view Anda
     }
 
     public function destroy($kode_mk)

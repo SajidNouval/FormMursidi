@@ -32,6 +32,11 @@ class Mata_Kuliah extends Model
     // Jika primary key adalah string
     protected $keyType = 'string';
 
+    public function jadwalKuliah()
+    {
+        return $this->hasMany(Jadwal_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
+    }
+
     public function irs()
     {
         return $this->hasMany(IRS::class, 'mata_kuliah_kode_mk', 'kode_mk');

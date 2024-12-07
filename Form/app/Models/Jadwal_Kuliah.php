@@ -29,6 +29,10 @@ class Jadwal_Kuliah extends Model
         'status'
      ];
      
+     public function mataKuliah()
+        {
+            return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
+        }
  
      /**
       * The attributes that should be hidden for serialization.
