@@ -73,7 +73,7 @@
     });
 });
   </script> --}}
-  <script>
+  <!-- <script>
 // Fungsi untuk memuat data semester berdasarkan pilihan dropdown
 function loadSemesterData(semester) {
   if (semester === "") {
@@ -126,4 +126,56 @@ function loadSemesterData(semester) {
   };
   xhr.send();
 }
+</script> -->
+
+
+<script>
+  function loadIrsData() {
+    const semester = document.getElementById('semester-select').value;
+
+    if (!semester) {
+      alert('Semester tidak valid!');
+      return;
+    }
+
+    const url = `/getIrsBySemester/${semester}`;
+
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length === 0) {
+          document.getElementById('semester-data').innerHTML = '<p>Data IRS tidak ditemukan untuk semester ini.</p>';
+          return;
+        }
+
+        let htmlContent = `<table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Semester</th>
+                                <th>Tahun Akademik</th>
+                                <th>Ruang</th>
+                                <th>Total SKS</th>
+                              </tr>
+                            </thead>
+                            <tbody>`;
+
+        data.forEach(item => {
+          htmlContent += `<tr>
+                            <td>${item.semester}</td>
+                            <td>${item.tahun_akademik}</td>
+                            <td>${item.ruang}</td>
+                            <td>${item.total_sks}</td>
+                          </tr>`;
+        });
+
+        htmlContent += `</tbody></table>`;
+
+        document.getElementById('semester-data').innerHTML = htmlContent;
+      })
+      .catch(error => {
+        console.error('Terjadi kesalahan:', error);
+        document.getElementById('semester-data').innerHTML = '<p>Terjadi kesalahan saat mengambil data.</p>';
+      });
+  }
 </script>

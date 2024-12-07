@@ -104,7 +104,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '13:00',
                 'jam_selesai' => '16:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '10',
@@ -115,7 +114,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '13:00',
                 'jam_selesai' => '16:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '11',
@@ -126,7 +124,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '15:00',
                 'jam_selesai' => '18:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '12',
@@ -137,7 +134,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '08:00',
                 'jam_selesai' => '11:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '13',
@@ -148,7 +144,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '08:00',
                 'jam_selesai' => '11:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '14',
@@ -159,7 +154,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '08:00',
                 'jam_selesai' => '11:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '15',
@@ -170,7 +164,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '10:00',
                 'jam_selesai' => '13:00',
                 'status' => 'diajukan',
-
             ],
             [
                 'id' => '16',
@@ -181,7 +174,6 @@ class jadwalkuliahseeder extends Seeder
                 'jam_mulai' => '13:00',
                 'jam_selesai' => '16:00',
                 'status' => 'diajukan',
-
             ],
             
             ];
