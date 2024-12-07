@@ -109,6 +109,7 @@ class irsController extends Controller
 
     public function getIrsData($nim)
     {
+        error_log("sini");
         $irsData = irs::where('mahasiswa_nim', $nim)->get();
         return response()->json($irsData);
 
@@ -129,7 +130,10 @@ class irsController extends Controller
         // Ambil semua IRS yang terkait mahasiswa tersebut
         $irs = irs::with('kelas.mataKuliah')
             ->where('mahasiswa_nim', $mahasiswa->nim)
+            ->join('mata_kuliah', 'mata_kuliah.kode_mk', '=', 'irs.kode_mk')
             ->get();
+
+        error_log($irs);
     
         // Hitung total SKS dari IRS
         $totalSKS = $irs->sum(fn($course) => $course->kelas->mataKuliah->sks ?? 0);
