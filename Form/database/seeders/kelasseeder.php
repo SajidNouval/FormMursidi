@@ -26,7 +26,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 2,
                 'kode_kelas' => 'B' ,
-                'mata_kuliah_kode_mk'=> 'Paik102',
+                'mata_kuliah_kode_mk'=> 'Paik101',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -34,7 +34,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 3,
                 'kode_kelas' => 'C' ,
-                'mata_kuliah_kode_mk'=> 'Paik103',
+                'mata_kuliah_kode_mk'=> 'Paik101',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -42,7 +42,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 4,
                 'kode_kelas' => 'D' ,
-                'mata_kuliah_kode_mk'=> 'Paik104',
+                'mata_kuliah_kode_mk'=> 'Paik101',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -50,7 +50,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 5,
                 'kode_kelas' => 'A' ,
-                'mata_kuliah_kode_mk'=> 'Paik105',
+                'mata_kuliah_kode_mk'=> 'Paik102',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -58,7 +58,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 6,
                 'kode_kelas' => 'B' ,
-                'mata_kuliah_kode_mk'=> 'Paik106',
+                'mata_kuliah_kode_mk'=> 'Paik102',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -66,7 +66,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 7,
                 'kode_kelas' => 'C' ,
-                'mata_kuliah_kode_mk'=> 'Paik107',
+                'mata_kuliah_kode_mk'=> 'Paik102',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -74,7 +74,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 8,
                 'kode_kelas' => 'D' ,
-                'mata_kuliah_kode_mk'=> 'Paik108',
+                'mata_kuliah_kode_mk'=> 'Paik102',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -82,7 +82,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 9,
                 'kode_kelas' => 'A' ,
-                'mata_kuliah_kode_mk'=> 'Paik109',
+                'mata_kuliah_kode_mk'=> 'Paik103',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -90,7 +90,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 10,
                 'kode_kelas' => 'B' ,
-                'mata_kuliah_kode_mk'=> 'Paik110',
+                'mata_kuliah_kode_mk'=> 'Paik103',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -98,7 +98,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 11,
                 'kode_kelas' => 'C' ,
-                'mata_kuliah_kode_mk'=> 'Paik111',
+                'mata_kuliah_kode_mk'=> 'Paik103',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -106,7 +106,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 12,
                 'kode_kelas' => 'D' ,
-                'mata_kuliah_kode_mk'=> 'Paik112',
+                'mata_kuliah_kode_mk'=> 'Paik103',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -114,7 +114,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 13,
                 'kode_kelas' => 'A' ,
-                'mata_kuliah_kode_mk'=> 'Paik113',
+                'mata_kuliah_kode_mk'=> 'Paik104',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -122,7 +122,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 14,
                 'kode_kelas' => 'B' ,
-                'mata_kuliah_kode_mk'=> 'Paik114',
+                'mata_kuliah_kode_mk'=> 'Paik104',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -130,7 +130,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 15,
                 'kode_kelas' => 'C' ,
-                'mata_kuliah_kode_mk'=> 'Paik115',
+                'mata_kuliah_kode_mk'=> 'Paik104',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 
@@ -138,7 +138,7 @@ class kelasseeder extends Seeder
             [
                 'id' => 16,
                 'kode_kelas' => 'D' ,
-                'mata_kuliah_kode_mk'=> 'Paik116',
+                'mata_kuliah_kode_mk'=> 'Paik104',
                 'tahun_akademik' => '2024/2025' ,
                 'kuota' => 30
                 

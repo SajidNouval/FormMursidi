@@ -132,8 +132,8 @@
                                             <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
                                             <hr>
                                             <div id="selected-courses">
-                                                @foreach ($irs as $course)
-                                                    @if ($course->kelas && $course->kelas->mataKuliah)
+                                              @foreach ($irs as $course)
+                                              @if ($course->kelas && $course->kelas->mataKuliah)
                                                         <div class="course-item d-flex justify-content-between align-items-center" 
                                                              data-sks="{{ $course->kelas->mataKuliah->sks }}" 
                                                              data-kode="{{ $course->kelas->mataKuliah->kode_mk }}">
@@ -260,18 +260,20 @@ function removeCourse(courseKodeMK) {
 
 // Fungsi untuk menambahkan mata kuliah ke IRS
 function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId) {
+    console.log(irs);
     if (!irs.some(course => course.mata_kuliah_kode_mk === courseKodeMK)) {
         irs.push({
             mata_kuliah_kode_mk: courseKodeMK,
-            name: courseName,
+            nama_mk: courseName,
             total_sks: parseInt(courseSKS),
             semester: semester,
             tahun_akademik: tahunAkademik,
             ruang_kuliah_kode_ruang: ruang,
             kelas_id: kelasId
         });
-
-        renderSelectedCourses();
+        console.log("render");
+        renderSelectedCourses2();
+        console.log("Sudah");
         updateTotalSKS();
     } else {
         alert('Mata kuliah ini sudah ditambahkan.');
@@ -280,7 +282,8 @@ function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik,
 
 
 // Render daftar mata kuliah yang dipilih
-function renderSelectedCourses() {
+function renderSelectedCourses2() {
+  console.log(irs);
     const selectedCoursesContainer = document.getElementById('selected-courses');
     selectedCoursesContainer.innerHTML = ''; // Kosongkan daftar lama
 
@@ -292,7 +295,7 @@ function renderSelectedCourses() {
         courseDiv.setAttribute('data-id', course.mata_kuliah_kode_mk); // Tambahkan data ID untuk penghapusan
 
         const courseName = document.createElement('span');
-        courseName.textContent = `${course.name} (${course.total_sks} SKS)`;
+        courseName.textContent = `${course.nama_mk} (${course.total_sks} SKS)`;
 
         const removeButton = document.createElement('button');
         removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
@@ -306,6 +309,7 @@ function renderSelectedCourses() {
     });
 
     selectedCoursesContainer.appendChild(fragment);
+    console.log(selectedCoursesContainer.innerHTML);
 }
 
 // Menangani klik tombol "Simpan"

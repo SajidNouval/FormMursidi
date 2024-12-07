@@ -65,7 +65,10 @@ class DashboardController extends Controller
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
             // Ambil data IRS terkait mahasiswa
-            $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)->get();
+            $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)
+                ->join('kelas', 'kelas.id', 'irs.kelas_id')
+                ->join('mata_kuliah', 'mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk')
+                ->get();
             
             // Hitung total SKS
             $totalSKS = $irs->sum('sks');
