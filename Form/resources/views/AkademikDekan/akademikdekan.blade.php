@@ -5,69 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Persetujuan Ruang</title>
   @include('AkademikDekan.header')
-  <style>
-    /* Mengubah background halaman */
-    body {
-      background-color: #D8BFD8; /* Warna ungu pastel */
-    }
-
-    /* Styling kotak status */
-    .status-box {
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      color: white;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .status-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .status-diajukan {
-      background-color: #d6d6d6; /* Abu-abu muda */
-    }
-    .status-diajukan:hover {
-      background-color: #b5b5b5; /* Abu-abu lebih gelap */
-    }
-
-    .status-disetujui {
-      background-color: #28a745; /* Hijau */
-    }
-    .status-disetujui:hover {
-      background-color: #218838; /* Hijau lebih gelap */
-    }
-
-    .status-ditolak {
-      background-color: #dc3545; /* Merah */
-    }
-    .status-ditolak:hover {
-      background-color: #c82333; /* Merah lebih gelap */
-    }
-
-    /* Styling tabel */
-    table {
-      background-color: #FFF;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    table th {
-      background-color: #6c757d; /* Abu-abu gelap */
-      color: white;
-    }
-
-    table td {
-      vertical-align: middle;
-    }
-
-    /* Tombol aksi */
-    .btn-success, .btn-danger {
-      font-size: 14px;
-      border-radius: 5px;
-    }
-  </style>
+  
 </head>
 <body class="hold-transition layout-top-nav layout-navbar-fixed layout-footer-fixed bg-ungubg">
 <div class="wrapper">
@@ -83,11 +21,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Persetujuan Ruang</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('kaprodidb') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('dekandb') }}">Home</a></li>
               <li class="breadcrumb-item active">Persetujuan Ruang</li>
             </ol>
           </div>
@@ -96,40 +33,53 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main Content -->
-    <div class="container mt-5">
+   <!-- Main Content -->
+<div class="container mt-5">
 
-      <!-- Kotak Status -->
-      <div class="row text-center mb-4">
-        <div class="col-md-4">
-          <div class="status-box status-diajukan">
-            <h4>Diajukan</h4>
-            <h3>{{ $ruang_kuliah->where('status', 'diajukan')->count() }}</h3>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="status-box status-disetujui">
-            <h4>Disetujui</h4>
-            <h3>{{ $ruang_kuliah->where('status', 'disetujui')->count() }}</h3>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="status-box status-ditolak">
-            <h4>Ditolak</h4>
-            <h3>{{ $ruang_kuliah->where('status', 'ditolak')->count() }}</h3>
-          </div>
+  <!-- Kotak Status -->
+  <div class="row text-center mb-4">
+    <div class="col-md-4">
+      <div class="info-box bg-secondary">
+        <span class="info-box-icon"><i class="fas fa-file-alt"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Diajukan</span>
+          <span class="info-box-number">{{ $ruang_kuliah->where('status', 'diajukan')->count() }}</span>
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-box bg-success">
+        <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Disetujui</span>
+          <span class="info-box-number">{{ $ruang_kuliah->where('status', 'disetujui')->count() }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-box bg-danger">
+        <span class="info-box-icon"><i class="fas fa-times-circle"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Ditolak</span>
+          <span class="info-box-number">{{ $ruang_kuliah->where('status', 'ditolak')->count() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <!-- Tabel Daftar Ruang -->
-      <h2 class="text-center mb-4">Daftar Ruang</h2>
+  <!-- Tabel Daftar Ruang -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Daftar Ruang</h3>
+    </div>
+    <div class="card-body">
       @if(session('success'))
         <div class="alert alert-success">
           {{ session('success') }}
         </div>
       @endif
-      <table class="table table-bordered table-hover">
-        <thead>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
           <tr>
             <th>Kode Ruang</th>
             <th>Kapasitas</th>
@@ -156,11 +106,11 @@
                 @if ($ruang->status == 'diajukan')
                   <form action="{{ route('dekan.ruang.setujui', $ruang->kode_ruang) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Setujui</button>
                   </form>
                   <form action="{{ route('dekan.ruang.tolak', $ruang->kode_ruang) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Tolak</button>
                   </form>
                 @else
                   <span class="text-muted">Tidak ada aksi</span>
@@ -175,9 +125,16 @@
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
     <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  @include('DashBDEKAN.controllersidebar')
+  <!-- /.control-sidebar -->
 
   <!-- Footer -->
   <footer class="main-footer bg-ungu">

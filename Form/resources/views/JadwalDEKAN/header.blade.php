@@ -10,3 +10,5 @@
 <!-- Tambahkan stylesheet -->
 <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/herreg.css') }}">
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikbaka.css') }}">
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikdekan2.css') }}">

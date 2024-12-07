@@ -10,5 +10,6 @@
 <!-- Tambahkan stylesheet -->
 <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikmhs.css') }}">
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikbaka.css') }}">
  <!-- SweetAlert2 -->
  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">

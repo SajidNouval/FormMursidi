@@ -40,7 +40,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Dekan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -79,8 +78,7 @@
                 <a href="{{ route('akademikdekan') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Akademik</span>
-                    <span class="info-box-number text-white">TA 2024/2025</span>
+                    <span class="info-box-text text-white">Persetujuan Ruang</span>
                   </div>
                 </a>
               </div>
@@ -90,34 +88,13 @@
                 <a href="{{ route('jadwaldekan') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Her-Registrasi</span>
+                    <span class="info-box-text text-white">Persetujuan Jadwal</span>
                   </div>
                 </a>
               </div>
           
-              <!-- Status Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-home"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Status Akademik</span>
-                  </div>
-                </a>
-              </div>
-          
-              <!-- Prestasi Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-star"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Prestasi Akademik</span>
-                  </div>
-                </a>
-              </div>
-              
             </div>
           </div>
-          
         </div>
       </div>
     </section>

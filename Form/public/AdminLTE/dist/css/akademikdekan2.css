@@ -1,0 +1,64 @@
+
+  /* Background halaman */
+  body {
+    background-color: #D8BFD8; /* Warna ungu pastel */
+  }
+  .content-wrapper {
+    background-color: #D8BFD8; /* Warna ungu pastel */
+  }
+
+  /* Kotak persetujuan */
+  .status-box {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    color: #D8BFD8;
+    transition: all 0.3s ease;
+  }
+
+  .status-box:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+  }
+
+  .status-diajukan {
+    background-color: #808080; /* Abu-abu tua */
+  }
+
+  .status-disetujui {
+    background-color: #28a745; /* Hijau */
+  }
+
+  .status-ditolak {
+    background-color: #dc3545; /* Merah */
+  }
+
+  /* Tabel jadwal */
+  .table {
+    background-color: #D8BFD8; /* Ungu pastel */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .table tbody tr:hover {
+    background-color: #c4a0c4; /* Gelap sedikit lebih dari ungu pastel */
+    cursor: pointer;
+  }
+
+  .btn-approve {
+    color: #fff;
+    background-color: #28a745; /* Hijau */
+    border-color: #28a745;
+  }
+
+  .btn-reject {
+    color: #fff;
+    background-color: #dc3545; /* Merah */
+    border-color: #dc3545;
+  }
+
+  .btn-approve:hover,
+  .btn-reject:hover {
+    filter: brightness(85%);
+  }

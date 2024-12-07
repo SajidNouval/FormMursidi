@@ -40,7 +40,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -77,7 +76,7 @@
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
                 <a href="{{ route('jadwal') }}" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-book"></i></span>
+                  <span class="info-box-icon"><i class="fa-solid fa-calendar-days"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Penjadwalan</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>
@@ -88,7 +87,7 @@
               <!-- Her-Registrasi Box -->
               <div class="col-6 col-md-6 mb-3">
                 <a href="{{ route('matkul') }}" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
+                  <span class="info-box-icon"><i class="fa-solid fa-book-open"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Permatkulan</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>

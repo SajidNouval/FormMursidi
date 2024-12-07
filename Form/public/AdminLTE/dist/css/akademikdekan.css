@@ -12,3 +12,156 @@
   .table th, .table td {
     text-align: center;
   }
+
+    /* Mengubah background halaman */
+    body {
+      background-color: #D8BFD8; /* Warna ungu pastel */
+    }
+
+    /* Kotak status */
+.status-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 140px; /* Tinggi tetap untuk keseragaman */
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  margin: 10px 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-box:hover {
+  transform: scale(1.05); /* Efek hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Warna kotak status */
+.status-diajukan {
+  background-color: #6c757d; /* Abu-abu */
+}
+
+.status-disetujui {
+  background-color: #28a745; /* Hijau */
+}
+
+.status-ditolak {
+  background-color: #dc3545; /* Merah */
+}
+
+/* Hover untuk kotak status */
+.status-diajukan:hover {
+  background-color: #5a6268; /* Abu-abu lebih gelap */
+}
+
+.status-disetujui:hover {
+  background-color: #218838; /* Hijau lebih gelap */
+}
+
+.status-ditolak:hover {
+  background-color: #c82333; /* Merah lebih gelap */
+}
+
+/* Tampilan responsif */
+@media (min-width: 768px) {
+  .status-box {
+    height: 150px; /* Tinggi tetap untuk layar lebih besar */
+  }
+}
+
+/* Flexbox untuk layout kotak */
+.row.text-center > .col-md-4 {
+  padding: 10px;
+}
+
+
+    /* Styling tabel */
+    table {
+      background-color: #FFF;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table th {
+      background-color: #6c757d; /* Abu-abu gelap */
+      color: white;
+    }
+
+    table td {
+      vertical-align: middle;
+    }
+
+    /* Tombol aksi */
+    .btn-success, .btn-danger {
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
+    /* Background halaman */
+    body {
+      background-color: #D8BFD8; /* Warna ungu pastel */
+    }
+    .content-wrapper {
+      background-color: #D8BFD8; /* Warna ungu pastel */
+    }
+
+    /* Kotak persetujuan */
+    .status-box {
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      color: #D8BFD8;
+      transition: all 0.3s ease;
+    }
+
+    .status-box:hover {
+      cursor: pointer;
+      filter: brightness(85%);
+    }
+
+    .status-diajukan {
+      background-color: #808080; /* Abu-abu tua */
+    }
+
+    .status-disetujui {
+      background-color: #28a745; /* Hijau */
+    }
+
+    .status-ditolak {
+      background-color: #dc3545; /* Merah */
+    }
+
+    /* Tabel jadwal */
+    .table {
+      background-color: #D8BFD8; /* Ungu pastel */
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table tbody tr:hover {
+      background-color: #c4a0c4; /* Gelap sedikit lebih dari ungu pastel */
+      cursor: pointer;
+    }
+
+    .btn-approve {
+      color: #fff;
+      background-color: #28a745; /* Hijau */
+      border-color: #28a745;
+    }
+
+    .btn-reject {
+      color: #fff;
+      background-color: #dc3545; /* Merah */
+      border-color: #dc3545;
+    }
+
+    .btn-approve:hover,
+    .btn-reject:hover {
+      filter: brightness(85%);
+    }
+
+    

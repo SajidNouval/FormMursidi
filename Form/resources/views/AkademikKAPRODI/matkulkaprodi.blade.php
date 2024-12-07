@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAKURA | Dashboard</title>
+  <title>SAKURA | Permatakulan</title>
   @include('AkademikKAPRODI.header')
   <style>
     /* Mengubah background seluruh halaman */
@@ -35,7 +35,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Akademik</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,88 +47,104 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="container mt-5">
-        <h2>Manajemen Mata Kuliah</h2>
+   <!-- Main content -->
+<div class="container mt-5">
 
-        <!-- Tambah Mata Kuliah -->
-        <h4 class="mt-4">Tambah Mata Kuliah</h4>
-        <form method="POST" action="{{ route('mata_kuliah.store') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="kode_mk" class="form-label">Kode Mata Kuliah</label>
-                <input type="text" class="form-control" id="kode_mk" name="kode_mk" required>
-            </div>
-            <div class="mb-3">
-                <label for="nama_mk" class="form-label">Nama Mata Kuliah</label>
-                <input type="text" class="form-control" id="nama_mk" name="nama_mk" required>
-            </div>
-            <div class="mb-3">
-                <label for="sks" class="form-label">SKS</label>
-                <input type="number" class="form-control" id="sks" name="sks" required>
-            </div>
-            <div class="mb-3">
-                <label for="semester" class="form-label">Semester</label>
-                <input type="number" class="form-control" id="semester" name="semester" required>
-            </div>
-            <div class="mb-3">
-                <label for="jenis" class="form-label">Jenis</label>
-                <select class="form-select" id="jenis" name="jenis" required>
-                    <option value="wajib">Wajib</option>
-                    <option value="pilihan">Pilihan</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="program_studi_kode_prodi" class="form-label">Kode Program Studi</label>
-                <input type="text" class="form-control" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
-            </div>
-            <div class="mb-3">
-                <label for="fakultas_kode_fakultas" class="form-label">Kode Fakultas</label>
-                <input type="text" class="form-control" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
-        </form>
+  <!-- Tambah Mata Kuliah -->
+  <div class="card mt-4">
+      <div class="card-header">
+          <h3 class="card-title">Tambah Mata Kuliah</h3>
+      </div>
+      <form method="POST" action="{{ route('mata_kuliah.store') }}">
+          @csrf
+          <div class="card-body">
+              <div class="form-group">
+                  <label for="kode_mk">Kode Mata Kuliah</label>
+                  <input type="text" class="form-control form-control-border" id="kode_mk" name="kode_mk" required>
+              </div>
+              <div class="form-group">
+                  <label for="nama_mk">Nama Mata Kuliah</label>
+                  <input type="text" class="form-control form-control-border" id="nama_mk" name="nama_mk" required>
+              </div>
+              <div class="form-group">
+                  <label for="sks">SKS</label>
+                  <input type="number" class="form-control form-control-border" id="sks" name="sks" required>
+              </div>
+              <div class="form-group">
+                  <label for="semester">Semester</label>
+                  <input type="number" class="form-control form-control-border" id="semester" name="semester" required>
+              </div>
+              <div class="form-group">
+                  <label for="jenis">Jenis</label>
+                  <select class="custom-select form-control-border" id="jenis" name="jenis" required>
+                      <option value="wajib">Wajib</option>
+                      <option value="pilihan">Pilihan</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="program_studi_kode_prodi">Kode Program Studi</label>
+                  <input type="text" class="form-control form-control-border" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+              </div>
+              <div class="form-group">
+                  <label for="fakultas_kode_fakultas">Kode Fakultas</label>
+                  <input type="text" class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
+              </div>
+          </div>
+          <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Tambah Mata Kuliah</button>
+          </div>
+      </form>
+  </div>
+  <!-- /.card -->
 
-        <!-- Daftar Mata Kuliah -->
-        <h4 class="mt-5">Daftar Mata Kuliah</h4>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Kode MK</th>
-                    <th>Nama MK</th>
-                    <th>SKS</th>
-                    <th>Semester</th>
-                    <th>Jenis</th>
-                    <th>Kode Prodi</th>
-                    <th>Kode Fakultas</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($mataKuliah as $mk)
-                    <tr>
-                        <td>{{ $mk->kode_mk }}</td>
-                        <td>{{ $mk->nama_mk }}</td>
-                        <td>{{ $mk->sks }}</td>
-                        <td>{{ $mk->semester }}</td>
-                        <td>{{ $mk->jenis }}</td>
-                        <td>{{ $mk->program_studi_kode_prodi }}</td>
-                        <td>{{ $mk->fakultas_kode_fakultas }}</td>
-                        <td>
-                            <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="8" class="text-center">Tidak ada data mata kuliah.</td>
-                    </ tr>
-                @endforelse
-            </tbody>
-        </table>
+  <!-- Daftar Mata Kuliah -->
+  <div class="card mt-5">
+      <div class="card-header">
+          <h3 class="card-title">Daftar Mata Kuliah</h3>
+      </div>
+      <div class="card-body">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Kode MK</th>
+                      <th>Nama MK</th>
+                      <th>SKS</th>
+                      <th>Semester</th>
+                      <th>Jenis</th>
+                      <th>Kode Prodi</th>
+                      <th>Kode Fakultas</th>
+                      <th>Aksi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @forelse ($mataKuliah as $mk)
+                      <tr>
+                          <td>{{ $mk->kode_mk }}</td>
+                          <td>{{ $mk->nama_mk }}</td>
+                          <td>{{ $mk->sks }}</td>
+                          <td>{{ $mk->semester }}</td>
+                          <td>{{ $mk->jenis }}</td>
+                          <td>{{ $mk->program_studi_kode_prodi }}</td>
+                          <td>{{ $mk->fakultas_kode_fakultas }}</td>
+                          <td>
+                              <form action="{{ route('mata_kuliah.destroy', $mk->kode_mk) }}" method="POST">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                              </form>
+                          </td>
+                      </tr>
+                  @empty
+                      <tr>
+                          <td colspan="8" class="text-center">Tidak ada data mata kuliah.</td>
+                      </tr>
+                  @endforelse
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!-- /.card -->
+</div>
 
   <!-- Control Sidebar -->
   @include('AkademikKAPRODI.controllersidebar')
