@@ -66,11 +66,21 @@
       </div>
       <div class="mb-3">
           <label for="kelas" class="form-label">Kelas</label>
-          <input type="text" class="form-control" id="kelas" name="kelas" required>
+          <select class="form-select" id="kelas" name="kelas" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+          </select>
       </div>
       <div class="mb-3">
         <label for="ruang" class="form-label">Ruang</label>
-        <input type="text" class="form-control" id="ruang" name="ruang_kuliah_kode_ruang" required>
+        <select class="form-select" id="ruang" name="ruang_kuliah_kode_ruang" required>
+            <option value="" disabled selected>Pilih Ruang</option>
+            @foreach ($ruangKuliah as $ruang)
+                <option value="{{ $ruang->kode_ruang }}">{{ $ruang->kode_ruang }}</option>
+            @endforeach
+        </select>
       </div>
       <div class="mb-3">
           <label for="hari" class="form-label">Hari</label>
@@ -129,8 +139,7 @@
               <th>Kelas</th>
               <th>Hari</th>
               <th>Ruang</th> <!-- New column for Ruang -->
-              <th>Jam Mulai</th>
-              <th>Jam Selesai</th>
+              <th>Jam</th>
               <th>Status</th>
               <th>Aksi </th>
           </tr>
@@ -142,8 +151,7 @@
                   <td>{{ $j->kelas }}</td>
                   <td>{{ $j->hari }}</td>
                   <td>{{ $j->ruang_kuliah_kode_ruang }}</td> <!-- Displaying the Ruang code -->
-                  <td>{{ $j->jam_mulai }}</td>
-                  <td>{{ $j->jam_selesai }}</td>
+                  <td>{{ $j->jam_mulai }} - {{ $j->jam_selesai }}</td>
                   <td>{{ $j->status }}</td>
                   <td>
                       <form action="{{ route('jadwal.destroy', $j->id) }}" method="POST">

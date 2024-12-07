@@ -79,7 +79,7 @@
                 <a href="{{ route('jadwal') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Akademik</span>
+                    <span class="info-box-text text-white">Penjadwalan</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>
                   </div>
                 </a>
@@ -90,31 +90,12 @@
                 <a href="{{ route('matkul') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Her-Registrasi</span>
+                    <span class="info-box-text text-white">Permatkulan</span>
+                    <span class="info-box-number text-white">TA 2024/2025</span>
                   </div>
                 </a>
               </div>
           
-              <!-- Status Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-home"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Status Akademik</span>
-                  </div>
-                </a>
-              </div>
-          
-              <!-- Prestasi Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-star"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Prestasi Akademik</span>
-                  </div>
-                </a>
-              </div>
-              
             </div>
           </div>
           
