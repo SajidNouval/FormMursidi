@@ -16,7 +16,7 @@ class DashboardDEKANController extends Controller
     }
     public function jadwaldekan()
     {
-        $jadwal_kuliah = Jadwal_Kuliah::all();
+        $jadwal_kuliah = Jadwal_Kuliah::join('mata_kuliah', 'mata_kuliah.kode_mk', 'jadwal_kuliah.mata_kuliah_kode_mk')->get();
         $diajukan = $jadwal_kuliah->where('status', 'diajukan')->count();
         $disetujui = $jadwal_kuliah->where('status', 'disetujui')->count();
         $ditolak = $jadwal_kuliah->where('status', 'ditolak')->count();

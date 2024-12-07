@@ -4,13 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ruang_Kuliah;
+use App\Models\Program_Studi;
+use App\Models\Baka;
+
 use Illuminate\Support\Facades\Auth;
 
 class DashboardBAKAController extends Controller
 {
     public function akademikbaka(){
-        $ruangan = Ruang_Kuliah::all();
-        return view('AkademikBAKA.akademikbaka', compact('ruangan'));
+        $ruangan = Ruang_Kuliah::join('program_studi', 'program_studi.kode_prodi', 'ruang_kuliah.program_studi_kode_prodi')
+        ->join('fakultas', 'fakultas.kode_fakultas', 'ruang_kuliah.fakultas_kode_fakultas')
+        ->get();
+
+        $programStudi = Program_Studi::all(); // Ambil data program studi
+
+        return view('AkademikBAKA.akademikbaka', compact('ruangan','programStudi'));
         
     }
 
@@ -22,8 +30,11 @@ class DashboardBAKAController extends Controller
             'kode_ruang' => 'required|string|max:10',
             'kapasitas' => 'required|integer',
             'program_studi_kode_prodi' => 'required|string|max:10', // Pastikan program_studi_kode_prodi divalidasi
-            'fakultas_kode_fakultas' => 'required|string|max:10',
         ]);
+
+        $user = Auth::user();
+        $fakultas = Baka::where('user_id', $user->id)->first()->fakultas_kode_fakultas;
+        error_log($fakultas);
     
 // Simpan data ke database, akan gagal jika constraint dilanggar
     try {
@@ -31,7 +42,7 @@ class DashboardBAKAController extends Controller
             'kode_ruang' => $validatedData['kode_ruang'],
             'kapasitas' => $validatedData['kapasitas'],
             'program_studi_kode_prodi' => $validatedData['program_studi_kode_prodi'],
-            'fakultas_kode_fakultas' => $validatedData['fakultas_kode_fakultas'],
+            'fakultas_kode_fakultas' => $fakultas,
             'status' => 'diajukan',
         ]);
 

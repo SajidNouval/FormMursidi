@@ -135,6 +135,7 @@
                     <th>No</th>
                     <th>Kode Ruang</th>
                     <th>Kode Mata Kuliah</th>
+                    <th>Kelas</th>
                     <th>Hari</th>
                     <th>Jam Mulai</th>
                     <th>Jam Selesai</th>
@@ -147,7 +148,8 @@
                     <tr>
                       <td>{{ $index + 1 }}</td>
                       <td>{{ $jadwal->ruang_kuliah_kode_ruang }}</td>
-                      <td>{{ $jadwal->mata_kuliah_kode_mk }}</td>
+                      <td>{{ $jadwal->nama_mk }}</td>
+                      <td>{{ $jadwal->kelas }}</td>
                       <td>{{ $jadwal->hari }}</td>
                       <td>{{ $jadwal->jam_mulai }}</td>
                       <td>{{ $jadwal->jam_selesai }}</td>

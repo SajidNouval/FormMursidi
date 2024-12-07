@@ -19,7 +19,7 @@ class ruangkuliahseeder extends Seeder
                 'kapasitas' => 35,
                 'program_studi_kode_prodi' => '01',
                 'fakultas_kode_fakultas' => '101',
-                'status' => 'diajukan'
+                'status' => 'disetujui'
             ],
             [
                 'kode_ruang' => 'E102',
