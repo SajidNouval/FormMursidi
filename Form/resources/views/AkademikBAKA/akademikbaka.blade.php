@@ -76,13 +76,14 @@
               <input type="text" class="form-control" id="kapasitas" name="kapasitas" required>
           </div>
           <div class="mb-3">
-            <label for="program_studi_kode_prodi" class="form-label">Kode Program Studi</label>
-            <input type="text" class="form-control" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+            <label for="program_studi_kode_prodi" class="form-label">Program Studi</label>
+            <select class="form-control" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+                <option value="" disabled selected>Pilih Program Studi</option>
+                @foreach($programStudi as $prodi)
+                    <option value="{{ $prodi->kode_prodi }}">{{ $prodi->nama_prodi }}</option>
+                @endforeach
+            </select>
         </div>        
-          <div class="mb-3">
-              <label for="fakultas_kode_fakultas" class="form-label">Kode Fakultas</label>
-              <input type="text" class="form-control" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
-          </div>
           <button type="submit" class="btn btn-primary">Tambah Ruang</button>
       </form>
 
@@ -104,8 +105,8 @@
             <tr>
                 <td>{{ $r->kode_ruang }}</td>
                 <td>{{ $r->kapasitas }}</td>
-                <td>{{ $r->program_studi_kode_prodi }}</td>
-                <td>{{ $r->fakultas_kode_fakultas }}</td>
+                <td>{{ $r->nama_prodi }}</td>
+                <td>{{ $r->nama_fakultas }}</td>
                 <td>{{ $r->status }}</td>
                 <td>
                     <form action="{{ route('ruangan.destroy', $r->kode_ruang) }}" method="POST">
