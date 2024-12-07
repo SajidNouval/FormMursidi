@@ -13,6 +13,7 @@ use App\Http\Controllers\ForgotPWController;
 use App\Http\Controllers\irsController;
 use App\Http\Controllers\HerRegController;
 use App\Http\Controllers\MataKuliahController;
+use App\Http\Controllers\getIrsController;
 
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -100,3 +101,4 @@ Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 's
 
 Route::resource('mata_kuliah', DashboardKPRController::class)->only(['index', 'store', 'destroy']);
 Route::resource('mata_kuliah', MataKuliahController::class);
+Route::get('/getIrsBySemester/{semester}/{nim}', [getIrsController::class, 'getIrsBySemester']);
