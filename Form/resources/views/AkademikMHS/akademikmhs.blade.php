@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,8 +186,8 @@
                                                         @foreach (['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] as $hari)
                                                             <td>
                                                                 @php
-                                                                    $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
-                                                                        return $item->hari === $hari && $item->jam_mulai === $jam;
+                                                                   $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
+                                                                      return $item->hari === $hari && date('H:i', strtotime($item->jam_mulai)) === date('H:i', strtotime($jam));
                                                                     });
                                                                 @endphp
                                                                 @if ($jadwal_hari->isNotEmpty())
@@ -200,8 +199,11 @@
                                                                            data-semester="{{ $jadwal->semester }}"
                                                                            data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
                                                                            data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                           data-kelas-id="{{ $jadwal->kelas_id }}">
+                                                                           data-kelas-id="{{ $jadwal->kelas_id }}"
+                                                                           data-kelas="{{ $jadwal->kelas }}">
                                                                             <strong>{{ $jadwal->nama_mk }}</strong><br>
+                                                                            Semester: {{$jadwal->semester}}<br>
+                                                                            Kelas: {{$jadwal->kelas}}<br>
                                                                             Ruang: {{ $jadwal->kode_ruang }}<br>
                                                                             Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
                                                                         </a>
@@ -597,173 +599,49 @@ document.addEventListener('click', function (event) {
            
 
   
-          <!-- Tab IRS -->
-          <div class="tab-pane fade" id="irs" role="tabpanel">
-            <div class="panel">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Rencana Studi (IRS)</h3>
-
-                    <div class="card-tools">
-                      <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append">
-                          <button type="submit" class="btn btn-default">
-                            <i class="fas fa-search"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card-body">
-                    <!-- Semester Tabs -->
-                    <ul class="nav nav-pills">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="semester1-tab" data-toggle="pill" href="#semester1">Semester 1</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="semester2-tab" data-toggle="pill" href="#semester2">Semester 2</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="semester3-tab" data-toggle="pill" href="#semester3">Semester 3</a>
-                      </li>
-                    </ul>
-
-                    <!-- Tab Content -->
-                    <div class="tab-content mt-3">
-                      <div class="tab-pane fade show active" id="semester1">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00003</td>
-                                <td>Pancasila dan Kewarganegaraan</td>
-                                <td>C</td>
-                                <td>3</td>
-                                <td>A303</td>
-                                <td>BARU</td>
-                                <td>Dr. Drs. Slamet Subekti, M.Hum.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00005</td>
-                                <td>Olahraga</td>
-                                <td>A</td>
-                                <td>1</td>
-                                <td>Lapangan Stadion UNDIP Tembalang</td>
-                                <td>BARU</td>
-                                <td>Dr. Endang Kumaidah, M.Kes.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <!-- Semester 2 -->
-                      <div class="tab-pane fade" id="semester2">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00008</td>
-                                <td>Matematika Dasar</td>
-                                <td>B</td>
-                                <td>3</td>
-                                <td>Ruang 202</td>
-                                <td>BARU</td>
-                                <td>Prof. Budi Santoso, Ph.D.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00010</td>
-                                <td>Pengantar Ilmu Komputer</td>
-                                <td>A</td>
-                                <td>3</td>
-                                <td>Lab 1</td>
-                                <td>BARU</td>
-                                <td>Dr. Siti Hajar, M.T.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <!-- Semester 3 -->
-                      <div class="tab-pane fade" id="semester3">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00015</td>
-                                <td>Struktur Data</td>
-                                <td>C</td>
-                                <td>4</td>
-                                <td>Lab 2</td>
-                                <td>BARU</td>
-                                <td>Dr. Ahmad Zainal, M.Kom.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00017</td>
-                                <td>Aljabar Linier</td>
-                                <td>A</td>
-                                <td>3</td>
-                                <td>Ruang 101</td>
-                                <td>BARU</td>
-                                <td>Prof. Agung Prabowo, S.T., M.T.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <!-- Tab IRS -->
+<div class="tab-pane fade" id="irs" role="tabpanel">
+  <div class="panel">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Rencana Studi (IRS)</h3>
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                  <i class="fas fa-search"></i>
+                </button>
               </div>
             </div>
           </div>
-          <!-- End Tab IRS -->
+        </div>
+
+        <div class="card-body">
+          <!-- Semester Dropdown -->
+          <div class="form-group">
+            <label for="semester-select">Pilih Semester</label>
+            <select id="semester-select" class="form-control" onchange="loadSemesterData(this.value)">
+              <option value="">Pilih Semester</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+            </select>
+          </div>
+
+          <!-- Tab Content -->
+          <div id="semester-data" class="mt-3">
+            <!-- Data Semester akan dimuat di sini menggunakan AJAX -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Tab IRS -->
 
             <!-- Tab KHS -->
             <div class="tab-pane fade" id="khs" role="tabpanel">

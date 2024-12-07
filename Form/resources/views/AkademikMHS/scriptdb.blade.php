@@ -73,3 +73,57 @@
     });
 });
   </script> --}}
+  <script>
+// Fungsi untuk memuat data semester berdasarkan pilihan dropdown
+function loadSemesterData(semester) {
+  if (semester === "") {
+    document.getElementById('semester-data').innerHTML = "";
+    return;
+  }
+
+  // Menyiapkan AJAX request untuk mengambil data dari server
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `/getIrsBySemester/${semester}`, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const irsData = JSON.parse(xhr.responseText);
+      let tableContent = `
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>KODE</th>
+                <th>MATA KULIAH</th>
+                <th>KELAS</th>
+                <th>SKS</th>
+                <th>RUANG</th>
+                <th>STATUS</th>
+                <th>NAMA DOSEN</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+      
+      irsData.forEach((course, index) => {
+        tableContent += `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${course.kode_mk}</td>
+            <td>${course.nama_mk}</td>
+            <td>${course.kelas}</td>
+            <td>${course.sks}</td>
+            <td>${course.ruang}</td>
+            <td>${course.status}</td>
+            <td>${course.dosen}</td>
+          </tr>
+        `;
+      });
+
+      tableContent += `</tbody></table></div>`;
+      document.getElementById('semester-data').innerHTML = tableContent;
+    }
+  };
+  xhr.send();
+}
+</script>

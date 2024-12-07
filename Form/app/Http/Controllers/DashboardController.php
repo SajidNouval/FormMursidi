@@ -42,25 +42,31 @@ class DashboardController extends Controller
         });
     
     // Ambil jadwal kuliah dengan DB::table()
-    $jadwal_kuliah = DB::table('jadwal_kuliah')
-    ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
-    ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
-    ->join('kelas', 'mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk') // Menghubungkan mata_kuliah ke kelas
-    ->select(
-        'jadwal_kuliah.hari',
-        'jadwal_kuliah.jam_mulai',
-        'jadwal_kuliah.jam_selesai',
-        'jadwal_kuliah.mata_kuliah_kode_mk',
-        'mata_kuliah.nama_mk',
-        'ruang_kuliah.kode_ruang',
-        'mata_kuliah.sks',
-        'mata_kuliah.semester',
-        'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
-        'kelas.id as kelas_id',
-    )
-    ->get();
+$jadwal_kuliah = DB::table('jadwal_kuliah')
+->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
+->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
+->join('kelas', function ($join) {
+    $join->on('jadwal_kuliah.kelas', '=', 'kelas.kode_kelas') // Kondisi join kelas berdasarkan kelas
+         ->on('mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk'); // Menghubungkan mata_kuliah ke kelas
+})
+->select(
+    'jadwal_kuliah.hari',
+    'jadwal_kuliah.jam_mulai',
+    'jadwal_kuliah.jam_selesai',
+    'jadwal_kuliah.mata_kuliah_kode_mk',
+    'jadwal_kuliah.kelas',
+    'mata_kuliah.nama_mk',
+    'ruang_kuliah.kode_ruang',
+    'mata_kuliah.sks',
+    'mata_kuliah.semester',
+    'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
+    'kelas.id as kelas_id',
+    'kelas.kode_kelas'
+)
+->get();
 
 
+        error_log($jadwal_kuliah);
 
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
