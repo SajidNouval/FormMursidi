@@ -1,0 +1,66 @@
+<script>
+  // Fungsi untuk mengambil data IRS berdasarkan semester
+  function loadIrsData() {
+    const semester = document.getElementById('semester-select').value;
+
+    // Cek jika semester tidak valid
+    if (!semester) {
+      alert('Semester tidak valid!');
+      return;
+    }
+
+    // URL API untuk mengambil data IRS dengan NIM pengguna yang sedang login
+    const url = `/irs/${semester}`; // Hanya perlu semester karena NIM diambil dari sesi login
+
+    // Menggunakan fetch untuk mengambil data dari server
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        // Jika data kosong, tampilkan pesan
+        if (data.length === 0) {
+          document.getElementById('semester-data').innerHTML = '<p>Data IRS tidak ditemukan untuk semester ini.</p>';
+          return;
+        }
+
+        // Menampilkan data IRS pada halaman
+        let htmlContent = `<table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>Kode MK</th>
+                                <th>Nama MK</th>
+                                <th>Kelas</th>
+                                <th>SKS</th>
+                                <th>Ruang</th>
+                                <th>Dosen</th>
+                                <th>Tahun Akademik</th>
+                                <th>Total SKS</th>
+                              </tr>
+                            </thead>
+                            <tbody>`;
+
+        // Loop untuk menampilkan setiap data IRS
+        data.forEach(item => {
+          htmlContent += `<tr>
+                            <td>${item.kode_mk}</td>
+                            <td>${item.nama_mk}</td>
+                            <td>${item.kelas}</td>
+                            <td>${item.sks}</td>
+                            <td>${item.ruang}</td>
+                            <td>${item.dosen}</td>
+                            <td>${item.tahun_akademik}</td>
+                            <td>${item.total_sks}</td>
+                          </tr>`;
+        });
+
+        htmlContent += `</tbody></table>`;
+
+        // Menambahkan HTML ke dalam div semester-data
+        document.getElementById('semester-data').innerHTML = htmlContent;
+      })
+      .catch(error => {
+        // Menangani jika terjadi error
+        console.error('Terjadi kesalahan:', error);
+        document.getElementById('semester-data').innerHTML = '<p>Terjadi kesalahan saat mengambil data.</p>';
+      });
+  }
+</script>

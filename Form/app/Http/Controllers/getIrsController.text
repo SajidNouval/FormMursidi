@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 use App\Models\Irs;
 use Illuminate\Http\Request;
-use App\Models\Mahasiswa;
+use App\Models\Mahasiswa; // Model Mahasiswa
 use Illuminate\Support\Facades\Auth;
 
 class getIrsController extends Controller
@@ -48,9 +49,13 @@ class getIrsController extends Controller
         // Format data untuk dikirim sebagai JSON
         $data = $irs->map(function ($item) {
             return [
-                'semester' => $item->semester,
-                'tahun_akademik' => $item->tahun_akademik,
+                'kode_mk' => $item->kelas->mataKuliah->kode_mk,
+                'nama_mk' => $item->kelas->mataKuliah->nama_mk,
+                'kelas' => $item->kelas->kode_kelas,
+                'sks' => $item->kelas->mataKuliah->sks,
                 'ruang' => $item->ruang_kuliah_kode_ruang,
+                'dosen' => $item->kelas->mataKuliah->dosenMk->dosen->nama, // Nama dosen
+                'tahun_akademik' => $item->tahun_akademik,
                 'total_sks' => $item->total_sks
             ];
         });

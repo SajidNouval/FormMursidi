@@ -254,7 +254,7 @@ function updateTotalSKS() {
 // Fungsi untuk menghapus mata kuliah dari IRS
 function removeCourse(courseKodeMK) {
     irs = irs.filter(course => course.mata_kuliah_kode_mk !== courseKodeMK);
-    renderSelectedCourses(); // Render ulang daftar mata kuliah
+    renderSelectedCourses2(); // Render ulang daftar mata kuliah
     updateTotalSKS();        // Update total SKS
 }
 
@@ -296,14 +296,19 @@ function renderSelectedCourses2() {
         courseDiv.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-2');
         courseDiv.setAttribute('data-id', course.mata_kuliah_kode_mk); // Tambahkan data ID untuk penghapusan
 
-        const courseName = document.createElement('span');
+        const courseName = document.createElement('div');
         courseName.textContent = `${course.nama_mk} (${course.total_sks} SKS)`;
 
         const removeButton = document.createElement('button');
-        removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+        removeButton.classList.add('btn', 'btn-danger', 'btn-sm','remove-course');
         removeButton.textContent = 'Hapus';
         removeButton.addEventListener('click', () => removeCourse(course.mata_kuliah_kode_mk));
-
+// Cek apakah tombol Simpan sedang aktif atau tidak
+        if (document.getElementById('save-btn').style.display === 'none') {
+            removeButton.style.display = 'none'; // Menyembunyikan tombol Hapus saat Simpan aktif
+        } else {
+            removeButton.style.display = 'inline-block'; // Menampilkan tombol Hapus saat Edit aktif
+        }
         courseDiv.appendChild(courseName);
         courseDiv.appendChild(removeButton);
 
@@ -338,6 +343,10 @@ document.getElementById('save-btn')?.addEventListener('click', () => {
             return response.json(); // Parse response JSON jika berhasil
         })
         .then(data => {
+              const removeButtons = document.querySelectorAll('.remove-course');
+            removeButtons.forEach(button => {
+                button.style.display = 'none';
+            });
             console.log('Simpan IRS berhasil:', data);
             document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
             document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
@@ -374,11 +383,17 @@ document.querySelectorAll('.add-course').forEach(button => {
 function toggleSaveEditButtons(isEditing) {
     document.getElementById('save-btn').style.display = isEditing ? 'none' : 'inline-block';
     document.getElementById('edit-btn').style.display = isEditing ? 'inline-block' : 'none';
+    
 }
 
 // Event listener untuk tombol Edit
 document.getElementById('edit-btn')?.addEventListener('click', () => {
-    toggleSaveEditButtons(false); // Beralih ke mode Simpan
+    // toggleSaveEditButtons(false); // Beralih ke mode Simpan
+      // Menampilkan tombol Hapus dan tombol Edit
+      document.getElementById('save-btn').style.display = 'inline-block'; // Menampilkan tombol Simpan
+    document.getElementById('edit-btn').style.display = 'none'; // Menyembunyikan tombol Edit
+    renderSelectedCourses2();
+    
 });
 
 // Menangani error fetch
@@ -436,45 +451,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Fungsi untuk merender ulang mata kuliah yang sudah dipilih
-function renderSelectedCourses() {
-    const selectedCoursesContainer = document.getElementById('selected-courses');
-    selectedCoursesContainer.innerHTML = ''; // Kosongkan daftar lama
-
-    const fragment = document.createDocumentFragment();
-
-    // Render ulang semua mata kuliah yang ada di dalam array 'irs'
-    irs.forEach(course => {
-        const courseDiv = document.createElement('div');
-        courseDiv.classList.add('course-item', 'd-flex', 'justify-content-between', 'align-items-center');
-        courseDiv.setAttribute('data-sks', course.total_sks);
-        courseDiv.setAttribute('data-kode', course.mata_kuliah_kode_mk);
-
-        const courseName = document.createElement('div');
-        courseName.innerHTML = `${course.name} (${course.total_sks} SKS) ${course.ruang_kuliah_kode_ruang}`;
-
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'remove-course');
-        removeButton.textContent = 'Hapus';
-        removeButton.setAttribute('data-kode', course.mata_kuliah_kode_mk);
-
-        // Menambahkan tombol hapus dengan event listener
-        removeButton.addEventListener('click', () => removeCourse(course.mata_kuliah_kode_mk));
-
-        courseDiv.appendChild(courseName);
-        courseDiv.appendChild(removeButton);
-
-        fragment.appendChild(courseDiv);
-    });
-
-    selectedCoursesContainer.appendChild(fragment);
-}
 
 // Fungsi untuk menghapus mata kuliah
 function removeCourse(courseKodeMK) {
     // Hapus dari array irs
     irs = irs.filter(course => course.mata_kuliah_kode_mk !== courseKodeMK);
-    renderSelectedCourses(); // Render ulang daftar mata kuliah
+    renderSelectedCourses2(); // Render ulang daftar mata kuliah
     updateTotalSKS(); // Perbarui total SKS
 
     // Kirimkan request AJAX untuk menghapus mata kuliah dari server
@@ -599,30 +581,20 @@ document.addEventListener('click', function (event) {
            
 
   
-        <!-- Tab IRS -->
-<div class="tab-pane fade" id="irs" role="tabpanel">
+      <!-- Tab IRS -->
+      <div class="tab-pane fade" id="irs" role="tabpanel">
   <div class="panel">
     <div class="col-12">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Rencana Studi (IRS)</h3>
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="card-body">
           <!-- Semester Dropdown -->
           <div class="form-group">
             <label for="semester-select">Pilih Semester</label>
-            <select id="semester-select" class="form-control" onchange="loadSemesterData(this.value)">
+            <select id="semester-select" class="form-control">
               <option value="">Pilih Semester</option>
               <option value="1">Semester 1</option>
               <option value="2">Semester 2</option>
@@ -631,16 +603,19 @@ document.addEventListener('click', function (event) {
               <option value="5">Semester 5</option>
             </select>
           </div>
+          <button onclick="loadIrsData()" class="btn btn-primary">Tampilkan IRS</button>
 
           <!-- Tab Content -->
           <div id="semester-data" class="mt-3">
-            <!-- Data Semester akan dimuat di sini menggunakan AJAX -->
+            <!-- Data IRS yang dimuat berdasarkan semester -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 <!-- End Tab IRS -->
 
             <!-- Tab KHS -->

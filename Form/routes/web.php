@@ -15,6 +15,7 @@ use App\Http\Controllers\HerRegController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\getIrsController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\lihatIrsController;
 
 
 
@@ -83,7 +84,7 @@ Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('f
 // Menambah mata kuliah ke IRS
 Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
 Route::delete('/irs/{kode_mk}', [irsController::class, 'destroy'])->name('irs.destroy');
-Route::get('/irs/{nim}', [irsController::class, 'getIrsData']);
+// Route::get('/irs/{nim}/{semester}', [irsController::class, 'getIrsBySemester'])->name('getIrsBySemester');
 
 
 Route::prefix('dekan')->group(function () {
@@ -113,8 +114,9 @@ Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'storemk
 //Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'store', 'destroy']);
 Route::resource('mata_kuliah', MataKuliahController::class);
 
-Route::get('/getIrsBySemester/{semester}/{nim}', [getIrsController::class, 'getIrsBySemester']);
+Route::get('/getIrsBySemester/{semester}', [getIrsController::class, 'getIrsBySemester']);
 
+// Route::get('/irs/data', [lihatIrsController::class, 'getIrsData'])->name('irs.data');
 
 
 
