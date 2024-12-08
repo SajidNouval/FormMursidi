@@ -18,6 +18,7 @@ class DashboardController extends Controller
     $user = Auth::user();
     $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
     
+
     // Ambil IRS mahasiswa berdasarkan NIM
     $irs = DB::table('irs')
     ->join('kelas', 'irs.kelas_id', '=', 'kelas.id') // Menggunakan 'id' sebagai primary key di tabel kelas
@@ -67,9 +68,20 @@ $jadwal_kuliah = DB::table('jadwal_kuliah')
 
 
         error_log($jadwal_kuliah);
+// // Menentukan semester ganjil/genap berdasarkan NIM mahasiswa
+// $isGenap = $mahasiswa->semester % 2 === 0; // Genap jika true, Ganjil jika false
+
+// // Filter jadwal kuliah berdasarkan semester ganjil/genap
+// $jadwal_kuliah = $jadwal_kuliah->filter(function ($jadwal) use ($isGenap) {
+//     return $isGenap ? $jadwal->semester % 2 === 0 : $jadwal->semester % 2 !== 0;
+// });
 
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
+            $sks_kumulatif = $mahasiswa->SKS_Kumulatif; // SKS Kumulatif
+            $IPS = $mahasiswa->IPS; // IPS mahasiswa
+            $IPK = $mahasiswa->IPK; // IPK mahasiswa
+            error_log($sks_kumulatif);
             // Ambil data IRS terkait mahasiswa
             $irs = Irs::where('mahasiswa_nim', $mahasiswa->nim)
                 ->join('kelas', 'kelas.id', 'irs.kelas_id')
@@ -93,6 +105,9 @@ $jadwal_kuliah = DB::table('jadwal_kuliah')
             'irs' => $irs,
             'totalSKS' => $totalSKS,
             'jadwal_kuliah' => $jadwal_kuliah,
+            'sks_kumulatif' => $sks_kumulatif,
+            'IPK' => $IPK,
+            'IPS' => $IPS,
         ]);
     }
 

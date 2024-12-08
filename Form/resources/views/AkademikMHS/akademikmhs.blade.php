@@ -123,6 +123,7 @@
                                     <p class="text-muted">Email : {{ $mahasiswa->email }}</p>
                                     <p class="mb-1">Tahun Masuk : {{ $mahasiswa->tahun_masuk }}</p>
                                     <p class="mb-1">Semester : {{ $mahasiswa->semester }}</p>
+                                    <p class="mb-1">SKS_Kumulatif : {{ $mahasiswa->SKS_Kumulatif }}</p>
                                     <div class="card mt-3">
                                         <div class="card-header bg-primary text-white">
                                             <h5><i class="fas fa-user"></i> Mata Kuliah yang Dipilih</h5>
@@ -165,9 +166,13 @@
                         <!-- Kolom Jadwal Kuliah -->
                         <div class="col-md-8">
                             <div class="card">
+                            @if(isset($mahasiswa->semester))
                                 <div class="card-header bg-primary text-white">
-                                    <h5><i class="fas fa-calendar"></i> Jadwal Kuliah</h5>
+                                    <h5><i class="fas fa-calendar"></i> 
+                                    Jadwal Kuliah
+                                  </h5>
                                 </div>
+                                @endif  
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table table-bordered text-center">
@@ -190,26 +195,29 @@
                                                                         return $item->hari === $hari && $item->jam_mulai === $jam;
                                                                     });
                                                                 @endphp
-                                                                @if ($jadwal_hari->isNotEmpty())
-                                                                    @foreach ($jadwal_hari as $jadwal)
+                                                               @if ($jadwal_hari->isNotEmpty())
+                                                                @foreach ($jadwal_hari as $jadwal)
+                                                                    @if ($jadwal->semester%2 == ($mahasiswa->semester%2)) <!-- Menambahkan filter semester -->
                                                                         <a href="javascript:void(0)" class="card mb-2 p-2 add-course"
-                                                                           data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
-                                                                           data-name="{{ $jadwal->nama_mk }}"
-                                                                           data-sks="{{ $jadwal->sks }}"
-                                                                           data-semester="{{ $jadwal->semester }}"
-                                                                           data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
-                                                                           data-ruang="{{ $jadwal->kode_ruang }}"
-                                                                           data-kelas-id="{{ $jadwal->kelas_id }}">
+                                                                          data-id="{{ $jadwal->mata_kuliah_kode_mk }}"
+                                                                          data-name="{{ $jadwal->nama_mk }}"
+                                                                          data-sks="{{ $jadwal->sks }}"
+                                                                          data-semester="{{ $jadwal->semester }}"
+                                                                          data-tahun-akademik="{{ $jadwal->tahun_akademik }}"
+                                                                          data-ruang="{{ $jadwal->kode_ruang }}"
+                                                                          data-kelas-id="{{ $jadwal->kelas_id }}">
                                                                             <strong>{{ $jadwal->nama_mk }}</strong><br>
                                                                             <strong>Kelas '{{$jadwal->kelas}}'<br>
                                                                             Semester: {{$jadwal->semester}}<br></strong>
                                                                             Ruang: {{ $jadwal->kode_ruang }}<br>
                                                                             Jam: {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }}
                                                                         </a>
-                                                                    @endforeach
-                                                                @else
-                                                                    <span>-</span>
-                                                                @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            @else
+                                                                <span>-</span>
+                                                            @endif
+
                                                             </td>
                                                         @endforeach
                                                     </tr>
