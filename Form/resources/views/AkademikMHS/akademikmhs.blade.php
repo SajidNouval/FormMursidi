@@ -558,6 +558,10 @@ document.addEventListener('click', function (event) {
            
 
   
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1df690dc2e32aefaad14910d45a34a2ab545cd52
       <!-- Tab IRS -->
       <div class="tab-pane fade" id="irs" role="tabpanel">
   <div class="panel">
@@ -661,6 +665,10 @@ document.getElementById("show-irs-button").addEventListener("click", function ()
 </script>
 
 <!-- End Tab IRS -->
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1df690dc2e32aefaad14910d45a34a2ab545cd52
 
             <!-- Tab KHS -->
             <div class="tab-pane fade" id="khs" role="tabpanel">
@@ -672,7 +680,7 @@ document.getElementById("show-irs-button").addEventListener("click", function ()
       
                       <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                          <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                          <!-- <input type="text" name="table_search" class="form-control float-right" placeholder="Search"> -->
       
                           <div class="input-group-append">
                             <button type="submit" class="btn btn-default">

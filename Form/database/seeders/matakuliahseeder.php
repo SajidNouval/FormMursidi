@@ -50,6 +50,60 @@ class matakuliahseeder extends Seeder
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
             ],
+            [
+                'kode_mk' => 'Paik090',
+                'nama_mk' => 'GKV',
+                'sks' => 3,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik091',
+                'nama_mk' => 'PBO',
+                'sks' => 3,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik092',
+                'nama_mk' => 'SISCER',
+                'sks' => 3,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik093',
+                'nama_mk' => 'RPL',
+                'sks' => 3,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik094',
+                'nama_mk' => 'MBD',
+                'sks' => 3,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
+            [
+                'kode_mk' => 'Paik095',
+                'nama_mk' => 'IOT',
+                'sks' => 2,
+                'semester' => 4,
+                'jenis'=>'Wajib',
+                'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
+                'fakultas_kode_fakultas' => '101',
+            ],
         ];
 
         foreach ($mtklData as $key=>$val) {
