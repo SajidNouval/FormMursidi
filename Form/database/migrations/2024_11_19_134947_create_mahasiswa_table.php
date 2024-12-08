@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string('tahun_masuk');
             $table->string('semester');
             $table->enum('role', ['aktif', 'cuti', 'kosong' ])->default('kosong');
+            $table->string('nip_doswal');
+            $table->integer('SKS_Kumulatif');
+            $table->float('IPS');
+            $table->float('IPK');
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
-
+            $table->foreign('nip_doswal')->references('nip')->on('dosen')->onDelete('cascade');
         });
         
         

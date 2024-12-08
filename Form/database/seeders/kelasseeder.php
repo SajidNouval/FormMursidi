@@ -143,6 +143,14 @@ class kelasseeder extends Seeder
                 'kuota' => 30
                 
             ],
+            [
+                'id' => 17,
+                'kode_kelas' => 'A' ,
+                'mata_kuliah_kode_mk'=> 'Paik090',
+                'tahun_akademik' => '2024/2025' ,
+                'kuota' => 25
+                
+            ],
 
         ];
         

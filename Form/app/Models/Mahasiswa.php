@@ -36,6 +36,10 @@ class Mahasiswa extends Model
         'tahun_masuk',
         'semester',
         'tahunMasuk',
+        'nip_doswal',
+        'SKS_Kumulatif',
+        'IPS',
+        'IPK',
         'user_id'
     ];
     public function irs()

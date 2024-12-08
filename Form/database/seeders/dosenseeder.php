@@ -57,7 +57,7 @@ class dosenseeder extends Seeder
                 'nip' => '42345632890',
                 'nama' => 'Titah Kelomang',
                 'alamat' => 'Jl. Mulawarman',
-                'email' => 'dosenn2@unpas.ac.id',
+                'email' => 'dosen@gmail.com',
                 'tanggal_lahir' => '1994-09-10',
                 'role' => 'dosen',
                 'periode mulai'=> '2018',

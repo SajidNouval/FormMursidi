@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('khs', function (Blueprint $table) {
-            // $table->id(); // Tambahkan primary key default
+            $table->id(); 
             $table->string('mahasiswa_nim'); // Kolom untuk foreign key mahasiswa
             $table->string('mata_kuliah_kode_mk'); // Kolom untuk foreign key mata kuliah
             $table->string('status');
             $table->string('nilai_huruf');
-            $table->float('IPS');
-            $table->float('IPK');
+            $table->float('Bobot');
+            $table->float('Semester');
             $table->timestamps();
 
-            $table->primary(['mahasiswa_nim', 'mata_kuliah_kode_mk']);
 
             // Tambahkan foreign key
             $table->foreign('mahasiswa_nim')

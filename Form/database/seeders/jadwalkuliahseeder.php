@@ -175,6 +175,16 @@ class jadwalkuliahseeder extends Seeder
                 'jam_selesai' => '16:00',
                 'status' => 'diajukan',
             ],
+            [
+                'id' => '17',
+                'ruang_kuliah_kode_ruang' => 'E204',
+                'mata_kuliah_kode_mk' => 'Paik090',
+                'hari' => 'Senin',
+                'kelas'=> 'A',
+                'jam_mulai' => '16:00',
+                'jam_selesai' => '19:00',
+                'status' => 'diajukan',
+            ],
             
             ];
             foreach ($jdwl_kul as $key=>$val) {

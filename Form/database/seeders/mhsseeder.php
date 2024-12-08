@@ -22,6 +22,10 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '1969-10-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
+                'nip_doswal'=>'42345632890',
+                'SKS_Kumulatif'=>'20',
+                'IPS'=>'2.82',
+                'IPK'=>'2.95',
                 'user_id' => '1'
     
             ],
@@ -33,6 +37,10 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2000-10-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
+                'nip_doswal'=>'42345632890',
+                'SKS_Kumulatif'=>'24',
+                'IPS'=>'3.00',
+                'IPK'=>'3.00',
                 'user_id' => '2'
             ],
             [
@@ -43,6 +51,10 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2001-10-11',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
+                'nip_doswal'=>'42345632890',
+                'SKS_Kumulatif'=>'20',
+                'IPS'=>'2.80',
+                'IPK'=>'2.96',
                 'user_id' => '3'
             ],
             [
@@ -53,6 +65,10 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2004-09-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
+                'nip_doswal'=>'42345632890',
+                'SKS_Kumulatif'=>'20',
+                'IPS'=>'2.75',
+                'IPK'=>'2.90',
                 'user_id' => '4'
             ],
             [
@@ -63,6 +79,10 @@ class mhsseeder extends Seeder
                 'tanggal_lahir'=> '2011-05-15',
                 'tahun_masuk'=>'2022',
                 'semester'=>'5',
+                'nip_doswal'=>'42345632890',
+                'SKS_Kumulatif'=>'24',
+                'IPS'=>'3.00',
+                'IPK'=>'3.69',
                 'user_id' => '5'
             ],
 
