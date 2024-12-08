@@ -558,7 +558,6 @@ document.addEventListener('click', function (event) {
            
 
   
-<<<<<<< Updated upstream
       <!-- Tab IRS -->
       <div class="tab-pane fade" id="irs" role="tabpanel">
   <div class="panel">
@@ -569,7 +568,7 @@ document.addEventListener('click', function (event) {
         </div>
 
         <div class="card-body">
-          <!-- Semester Dropdown -->
+          <!-- Dropdown Pilih Semester -->
           <div class="form-group">
             <label for="semester-select">Pilih Semester</label>
             <select id="semester-select" class="form-control">
@@ -581,189 +580,87 @@ document.addEventListener('click', function (event) {
               <option value="5">Semester 5</option>
             </select>
           </div>
-          <button onclick="loadIrsData()" class="btn btn-primary">Tampilkan IRS</button>
+          <button id="show-irs-button" class="btn btn-primary">Tampilkan IRS</button>
 
-          <!-- Tab Content -->
+          <!-- Tempat untuk menampilkan data IRS -->
           <div id="semester-data" class="mt-3">
-            <!-- Data IRS yang dimuat berdasarkan semester -->
+            <!-- Data akan dimuat di sini -->
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+<!-- JavaScript -->
+<script>
+document.getElementById("show-irs-button").addEventListener("click", function () {
+    const semester = document.getElementById("semester-select").value;
+
+    if (!semester) {
+        alert("Pilih semester terlebih dahulu!");
+        return;
+    }
+
+    const url = `/api/irs/${semester}`; // Pastikan route ini sesuai
+
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Terjadi kesalahan saat mengambil data.");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const container = document.getElementById("semester-data");
+
+            if (data.length === 0) {
+                container.innerHTML = "<div class='alert alert-warning'>Data IRS tidak ditemukan untuk semester ini.</div>";
+                return;
+            }
+
+            // Generate tabel HTML
+            let html = `
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mata Kuliah</th>
+                            <th>Semester</th>
+                            <th>Tahun Akademik</th>
+                            <th>Ruang</th>
+                            <th>Total SKS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach((item) => {
+              console.log(item);
+                html += `
+                    <tr>
+                        <td>${item.kelas.mata_kuliah.nama_mk}</td>
+                        <td>${item.semester}</td>
+                        <td>${item.tahun_akademik}</td>
+                        <td>${item.ruang_kuliah_kode_ruang}</td>
+                        <td>${item.total_sks}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = html;
+        })
+        .catch((error) => {
+            console.error("Error fetching IRS data:", error);
+            document.getElementById("semester-data").innerHTML = "<div class='alert alert-danger'>Terjadi kesalahan saat memuat data IRS.</div>";
+        });
+});
+</script>
 
 <!-- End Tab IRS -->
-=======
-          <!-- Tab IRS -->
-          <div class="tab-pane fade" id="irs" role="tabpanel">
-            <div class="panel">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Rencana Studi (IRS)</h3>
-
-                    <div class="card-tools">
-                      <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append">
-                          <button type="submit" class="btn btn-default">
-                            <i class="fas fa-search"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card-body">
-                    <!-- Semester Tabs -->
-                    <ul class="nav nav-pills">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="semester1-tab" data-toggle="pill" href="#semester1">Semester 1</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="semester2-tab" data-toggle="pill" href="#semester2">Semester 2</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="semester3-tab" data-toggle="pill" href="#semester3">Semester 3</a>
-                      </li>
-                    </ul>
-
-                    <!-- Tab Content -->
-                    <div class="tab-content mt-3">
-                      <div class="tab-pane fade show active" id="semester1">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00003</td>
-                                <td>Pancasila dan Kewarganegaraan</td>
-                                <td>C</td>
-                                <td>3</td>
-                                <td>A303</td>
-                                <td>BARU</td>
-                                <td>Dr. Drs. Slamet Subekti, M.Hum.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00005</td>
-                                <td>Olahraga</td>
-                                <td>A</td>
-                                <td>1</td>
-                                <td>Lapangan Stadion UNDIP Tembalang</td>
-                                <td>BARU</td>
-                                <td>Dr. Endang Kumaidah, M.Kes.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <!-- Semester 2 -->
-                      <div class="tab-pane fade" id="semester2">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00008</td>
-                                <td>Matematika Dasar</td>
-                                <td>B</td>
-                                <td>3</td>
-                                <td>Ruang 202</td>
-                                <td>BARU</td>
-                                <td>Prof. Budi Santoso, Ph.D.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00010</td>
-                                <td>Pengantar Ilmu Komputer</td>
-                                <td>A</td>
-                                <td>3</td>
-                                <td>Lab 1</td>
-                                <td>BARU</td>
-                                <td>Dr. Siti Hajar, M.T.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <!-- Semester 3 -->
-                      <div class="tab-pane fade" id="semester3">
-                        <div class="table-responsive">
-                          <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>NO</th>
-                                <th>KODE</th>
-                                <th>MATA KULIAH</th>
-                                <th>KELAS</th>
-                                <th>SKS</th>
-                                <th>RUANG</th>
-                                <th>STATUS</th>
-                                <th>NAMA DOSEN</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>UUW00015</td>
-                                <td>Struktur Data</td>
-                                <td>C</td>
-                                <td>4</td>
-                                <td>Lab 2</td>
-                                <td>BARU</td>
-                                <td>Dr. Ahmad Zainal, M.Kom.</td>
-                              </tr>
-                              <tr>
-                                <td>2</td>
-                                <td>UUW00017</td>
-                                <td>Aljabar Linier</td>
-                                <td>A</td>
-                                <td>3</td>
-                                <td>Ruang 101</td>
-                                <td>BARU</td>
-                                <td>Prof. Agung Prabowo, S.T., M.T.</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End Tab IRS -->
->>>>>>> Stashed changes
 
             <!-- Tab KHS -->
             <div class="tab-pane fade" id="khs" role="tabpanel">
