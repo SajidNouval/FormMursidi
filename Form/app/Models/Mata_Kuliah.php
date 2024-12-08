@@ -52,6 +52,11 @@ class Mata_Kuliah extends Model
     {
         return $this->belongsToMany(Dosen::class, 'mata_kuliah_dosen', 'mata_kuliah_kode_mk', 'dosen_id');
     }
+    public function kelas()
+{
+    return $this->hasMany(Kelas::class, 'mata_kuliah_kode_mk', 'kode_mk');
+}
+
      /**
      * The attributes that should be hidden for serialization.
      *

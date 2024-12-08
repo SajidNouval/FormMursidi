@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_kelas');
+            $table->enum('kode_kelas', ['A', 'B', 'C', 'D']);
             $table->string('mata_kuliah_kode_mk');
             $table->string('tahun_Akademik');
             $table->string('kuota');

@@ -8,40 +8,28 @@ class PakaController extends Controller
 {
     public function index()
 {
-    // Mengambil data IRS dengan kelas dan mata kuliah
-    $irs = Irs::with(['kelas.mataKuliah', 'mahasiswa'])->get();
-
-// Hapus duplikasi berdasarkan `kelas_id`
-$irs = $irs->unique('kelas_id');
-
+    $irs = Irs::with(['kelas.mataKuliah', 'mahasiswa'])
+        ->get()
+        ->groupBy('mahasiswa_nim'); // Mengelompokkan berdasarkan NIM mahasiswa
 
     return view('AkademikPAKA.akademikpaka', compact('irs'));
 }
+public function approveIrs($id)
+{
+    $irs = Irs::findOrFail($id);
+    Irs::where('mahasiswa_nim', $irs->mahasiswa_nim)
+        ->update(['is_verified' => 1]);
 
+    return redirect()->back()->with('success', 'IRS mahasiswa berhasil disetujui.');
+}
 
-    public function approveIrs($id)
-    {
-        $irs = Irs::findOrFail($id);
+public function rejectIrs($id)
+{
+    $irs = Irs::findOrFail($id);
+    Irs::where('mahasiswa_nim', $irs->mahasiswa_nim)
+        ->update(['is_verified' => -1]);
 
-        // Cek apakah kelas_id sudah ada dan is_verified = 1
-        if (Irs::where('kelas_id', $irs->kelas_id)->where('is_verified', 1)->exists()) {
-            return redirect()->back()->with('error', 'IRS sudah disetujui untuk kelas ini.');
-        }
+    return redirect()->back()->with('success', 'IRS mahasiswa berhasil ditolak.');
+}
 
-        $irs->is_verified = 1;
-        $irs->save();
-
-        return redirect()->back()->with('success', 'IRS berhasil disetujui.');
-    }
-
-
-    public function rejectIrs($id)
-    {
-        // Temukan IRS berdasarkan ID dan set status menjadi Ditolak
-        $irs = Irs::findOrFail($id);
-        $irs->is_verified = -1;
-        $irs->save();
-
-        return redirect()->back()->with('success', 'IRS berhasil ditolak.');
-    }
 }

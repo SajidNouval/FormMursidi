@@ -46,60 +46,83 @@
         <h3 class="card-title">Daftar IRS</h3>
       </div>
       <div class="card-body">
-        <table id="irsTable" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>NIM Mahasiswa</th>
-              <th>Kelas</th>
-              <th>Nama Mata Kuliah</th>
-              <th>SKS</th>
-              <th>Status IRS</th>
-              <th class="text-center">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($irs as $index => $item)
-            <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $item->mahasiswa_nim }}</td>
-                <td>{{ $item->kelas->kode_kelas ?? 'Tidak ada' }}</td>
-                <td>{{ $item->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }}</td>
-                <td>{{ $item->kelas->mataKuliah->sks ?? '0' }}</td>
-                <td>
-                    @if($item->is_verified == 1)
-                        <span class="badge badge-success">Disetujui</span>
-                    @elseif($item->is_verified == -1)
-                        <span class="badge badge-danger">Ditolak</span>
-                    @else
-                        <span class="badge badge-secondary">Diajukan</span>
-                    @endif
-                </td>
-                <td class="text-center">
-                    @if($item->is_verified == 0)
-                    <form action="{{ route('irs.approve', $item->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-success">
-                            <i class="fas fa-check"></i> Setujui
-                        </button>
-                    </form>
-                    <form action="{{ route('irs.reject', $item->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            <i class="fas fa-times"></i> Tolak
-                        </button>
-                    </form>
-                    @else
-                    <span class="text-muted">Tidak ada aksi</span>
-                    @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-        
+        <table id="irsTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>NIM Mahasiswa</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Total SKS</th>
+                    <th>Status IRS</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($irs as $index => $mahasiswaIrs)
+                <!-- Baris Utama -->
+                <tr data-widget="expandable-table" aria-expanded="false">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $mahasiswaIrs->first()->mahasiswa_nim }}</td>
+                    <td>{{ $mahasiswaIrs->first()->mahasiswa->nama ?? 'Tidak ada' }}</td>
+                    <td>{{ $mahasiswaIrs->sum(fn($item) => $item->kelas->mataKuliah->sks ?? 0) }}</td>
+                    <td>
+                        @php
+                            $status = $mahasiswaIrs->first()->is_verified;
+                        @endphp
+                        @if($status == 1)
+                            <span class="badge badge-success">Disetujui</span>
+                        @elseif($status == -1)
+                            <span class="badge badge-danger">Ditolak</span>
+                        @else
+                            <span class="badge badge-secondary">Diajukan</span>
+                        @endif
+                    </td>
+                    <td>
+                        @if($status == 0)
+                        <form action="{{ route('irs.approve', $mahasiswaIrs->first()->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-success">
+                                <i class="fas fa-check"></i> Setujui
+                            </button>
+                        </form>
+                        <form action="{{ route('irs.reject', $mahasiswaIrs->first()->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-times"></i> Tolak
+                            </button>
+                        </form>
+                        @else
+                        <span class="text-muted">Tidak ada aksi</span>
+                        @endif
+                    </td>
+                </tr>
+    
+                <!-- Baris Expandable -->
+                <tr class="expandable-body d-none">
+                    <td colspan="6">
+                        <div class="p-3">
+                            <ul>
+                                @foreach ($mahasiswaIrs as $item)
+                                    <li>
+                                        {{ $item->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }} 
+                                        (Kelas: {{ $item->kelas->kode_kelas ?? '-' }}, 
+                                        SKS: {{ $item->kelas->mataKuliah->sks ?? '0' }},
+                                        Tahun Akademik: {{ $item->kelas->tahun_Akademik ?? '#'}},
+                                        Semester: {{ $item->mahasiswa->semester ?? '#' }},
+                                        )
+
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-      </div>
+    </div>
+        
     </div>
   </div>
 </div>
