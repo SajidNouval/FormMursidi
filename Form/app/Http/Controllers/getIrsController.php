@@ -4,6 +4,8 @@ use App\Models\Irs;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class getIrsController extends Controller
 {
@@ -15,47 +17,46 @@ class getIrsController extends Controller
      */
     public function getIrsBySemester($semester)
     {
-        // Mendapatkan data user yang sedang login
         $user = Auth::user();
-
-        // Mendapatkan data mahasiswa berdasarkan user_id
+        // Debugging auth
+        if (!$user) {
+            return response()->json(['error' => 'User tidak terautentikasi'], 401);
+        }
+    
         $mahasiswa = Mahasiswa::where('user_id', $user->id)->first();
-
-        // Jika mahasiswa tidak ditemukan, kembalikan response error
+    
         if (!$mahasiswa) {
             return response()->json(['error' => 'Mahasiswa tidak ditemukan'], 404);
         }
-
-        // Ambil NIM mahasiswa
+    
         $nim = $mahasiswa->nim;
-
-        // Ambil data IRS berdasarkan semester dan NIM mahasiswa
-        $irs = Irs::with([
-                'kelas',
-                'kelas.mataKuliah',
-                'kelas.mataKuliah.dosenMk',
-                'kelas.mataKuliah.dosenMk.dosen'
-            ])
+    
+        // Tambahkan log untuk debug
+        Log::info('Semester:', ['semester' => $semester]);
+        Log::info('Mahasiswa NIM:', ['nim' => $nim]);
+    
+        $irs = Irs::with(['kelas', 'kelas.mataKuliah'])
             ->where('semester', $semester)
             ->where('mahasiswa_nim', $nim)
             ->get();
-
-        // Jika data IRS tidak ditemukan, kembalikan response kosong
         if ($irs->isEmpty()) {
             return response()->json([], 200);
         }
-
-        // Format data untuk dikirim sebagai JSON
-        $data = $irs->map(function ($item) {
+        return response()->json($irs);
+        
+        error_log("Sini");
+        error_log($irs);
+        Log::info('IRS Data:', $irs->toArray());
+    
+        return response()->json($irs->map(function ($item) {
             return [
+                'nama_mk' => $item->kelas->mata_kuliah->nama_mk,
                 'semester' => $item->semester,
                 'tahun_akademik' => $item->tahun_akademik,
                 'ruang' => $item->ruang_kuliah_kode_ruang,
-                'total_sks' => $item->total_sks
+                'total_sks' => $item->total_sks,
             ];
-        });
-
-        // Mengembalikan response JSON
-        return response()->json($data);
+        }));
     }
+    
 }

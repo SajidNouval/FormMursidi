@@ -558,7 +558,10 @@ document.addEventListener('click', function (event) {
            
 
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1df690dc2e32aefaad14910d45a34a2ab545cd52
       <!-- Tab IRS -->
       <div class="tab-pane fade" id="irs" role="tabpanel">
   <div class="panel">
@@ -569,7 +572,7 @@ document.addEventListener('click', function (event) {
         </div>
 
         <div class="card-body">
-          <!-- Semester Dropdown -->
+          <!-- Dropdown Pilih Semester -->
           <div class="form-group">
             <label for="semester-select">Pilih Semester</label>
             <select id="semester-select" class="form-control">
@@ -581,21 +584,91 @@ document.addEventListener('click', function (event) {
               <option value="5">Semester 5</option>
             </select>
           </div>
-          <button onclick="loadIrsData()" class="btn btn-primary">Tampilkan IRS</button>
+          <button id="show-irs-button" class="btn btn-primary">Tampilkan IRS</button>
 
-          <!-- Tab Content -->
+          <!-- Tempat untuk menampilkan data IRS -->
           <div id="semester-data" class="mt-3">
-            <!-- Data IRS yang dimuat berdasarkan semester -->
+            <!-- Data akan dimuat di sini -->
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+<!-- JavaScript -->
+<script>
+document.getElementById("show-irs-button").addEventListener("click", function () {
+    const semester = document.getElementById("semester-select").value;
+
+    if (!semester) {
+        alert("Pilih semester terlebih dahulu!");
+        return;
+    }
+
+    const url = `/api/irs/${semester}`; // Pastikan route ini sesuai
+
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Terjadi kesalahan saat mengambil data.");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const container = document.getElementById("semester-data");
+
+            if (data.length === 0) {
+                container.innerHTML = "<div class='alert alert-warning'>Data IRS tidak ditemukan untuk semester ini.</div>";
+                return;
+            }
+
+            // Generate tabel HTML
+            let html = `
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mata Kuliah</th>
+                            <th>Semester</th>
+                            <th>Tahun Akademik</th>
+                            <th>Ruang</th>
+                            <th>Total SKS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            data.forEach((item) => {
+              console.log(item);
+                html += `
+                    <tr>
+                        <td>${item.kelas.mata_kuliah.nama_mk}</td>
+                        <td>${item.semester}</td>
+                        <td>${item.tahun_akademik}</td>
+                        <td>${item.ruang_kuliah_kode_ruang}</td>
+                        <td>${item.total_sks}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = html;
+        })
+        .catch((error) => {
+            console.error("Error fetching IRS data:", error);
+            document.getElementById("semester-data").innerHTML = "<div class='alert alert-danger'>Terjadi kesalahan saat memuat data IRS.</div>";
+        });
+});
+</script>
 
 <!-- End Tab IRS -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1df690dc2e32aefaad14910d45a34a2ab545cd52
 
             <!-- Tab KHS -->
             <div class="tab-pane fade" id="khs" role="tabpanel">

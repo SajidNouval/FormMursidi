@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardDEKANController;
 use App\Http\Controllers\DashboardDSNController;
 use App\Http\Controllers\DashboardKPRController;
+use App\Http\Controllers\DashboardPAKAController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -16,8 +17,7 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\getIrsController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\lihatIrsController;
-
-
+use App\Http\Controllers\PakaController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/kaprodidb', [AdminController::class, 'dbkaprodi'])->middleware('userAkses:kaprodi')->name('kaprodidb');
     Route::get('/sakura/dekandb', [AdminController::class, 'dbdekan'])->middleware('userAkses:dekan')->name('dekandb');
     Route::get('/sakura/bakmdb', [AdminController::class, 'dbbakm'])->middleware('userAkses:bakademik')->name('bakadb');
-    Route::get('/sakura/pakmdb', [AdminController::class, 'dbpakm'])->middleware('userAkses:pakademik');
+    Route::get('/sakura/pakmdb', [AdminController::class, 'dbpakm'])->middleware('userAkses:pakademik')->name('pakadb');
     Route::get('/sakura/dosendb', [AdminController::class, 'dbdosen'])->middleware('userAkses:dosen')->name('dosendb');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/sakura/dekandb/{kode_ruang}/setujui', [DashboardDEKANController::class, 'setujui'])->name('dekan.ruang.setujui');
     Route::post('/sakura/dekandb/{kode_ruang}/tolak', [DashboardDEKANController::class, 'tolak'])->name('dekan.ruang.tolak');
 
+    Route::get('/sakura/pakmdb/pakaakm', [DashboardPAKAController::class, 'akademikpaka'])->middleware('userAkses:pakademik')->name('akademikpaka');
+
 });
 
 Route::get('/register', [RegisterController::class, 'halamanregister'])->name('register');
@@ -93,6 +95,11 @@ Route::prefix('dekan')->group(function () {
     Route::post('/sakura/dekandb/jadwal/tolak/{id}', [DashboardDEKANController::class, 'tolakJadwal'])->name('dekan.jadwal.tolak');
 });
 
+
+Route::middleware('auth')->group(function () {
+    Route::post('/paka/setujui/{id}', [PakaController::class, 'setujui'])->name('paka.setujui');
+    Route::post('/paka/tolak/{id}', [PakaController::class, 'tolak'])->name('paka.tolak');
+});
 
 
 // Route::any('/simpanirs', function () {
@@ -114,7 +121,7 @@ Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'storemk
 //Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'store', 'destroy']);
 Route::resource('mata_kuliah', MataKuliahController::class);
 
-Route::get('/getIrsBySemester/{semester}', [getIrsController::class, 'getIrsBySemester']);
+Route::get('/api/irs/{semester}', [getIrsController::class, 'getIrsBySemester'])->middleware('auth');
 
 // Route::get('/irs/data', [lihatIrsController::class, 'getIrsData'])->name('irs.data');
 
