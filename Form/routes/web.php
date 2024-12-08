@@ -121,7 +121,7 @@ Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'storemk
 //Route::resource('mata_kuliah', JadwalController::class)->only(['index', 'store', 'destroy']);
 Route::resource('mata_kuliah', MataKuliahController::class);
 
-Route::get('/getIrsBySemester/{semester}', [getIrsController::class, 'getIrsBySemester']);
+Route::get('/api/irs/{semester}', [getIrsController::class, 'getIrsBySemester'])->middleware('auth');
 
 // Route::get('/irs/data', [lihatIrsController::class, 'getIrsData'])->name('irs.data');
 
