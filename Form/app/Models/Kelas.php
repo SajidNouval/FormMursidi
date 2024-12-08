@@ -40,6 +40,11 @@ class Kelas extends Model
     {
         return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
     }
+    public function irs()
+{
+    return $this->hasMany(Irs::class, 'kelas_id');
+}
+
 
     
 }

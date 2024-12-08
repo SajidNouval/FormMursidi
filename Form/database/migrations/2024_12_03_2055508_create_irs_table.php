@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('tahun_akademik');
             $table->integer('total_sks')->default(0);
             $table->string('ruang_kuliah_kode_ruang');
-            $table->tinyInteger('is_verified');
+            $table->tinyInteger('is_verified')->default(0); // Default 0: Diajukan
+
             $table->tinyInteger('diajukan');
+            
+            
             $table->timestamps();
             // Menambahkan foreign key ke tabel mahasiswa pada kolom nim
             $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswa')->onDelete('cascade');

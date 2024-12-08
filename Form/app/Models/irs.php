@@ -12,6 +12,9 @@ class irs extends Model
     use HasFactory;
 
     protected $table = 'irs'; // Nama tabel di database
+    protected $attributes = [
+        'is_verified' => 0, // 0: Diajukan, 1: Disetujui, -1: Ditolak
+    ];
 
     protected $fillable = [
         'mahasiswa_nim',
@@ -22,6 +25,7 @@ class irs extends Model
         'ruang_kuliah_kode_ruang',
         'is_verified',
         'diajukan',
+        'kode_kelas',
     ];
 
     // Relasi ke tabel kelas
