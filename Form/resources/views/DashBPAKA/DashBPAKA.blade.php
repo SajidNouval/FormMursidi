@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SAKURA | Dashboard</title>
-  @include('DashBMHS.header')
+  @include('DashBPAKA.header')
   <style>
     /* Mengubah background seluruh halaman */
     body {
@@ -27,7 +27,7 @@
   </div>
 
   <!-- Navbar -->
-@include('DashBMHS.navbar')
+@include('DashBPAKA.navbar')
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
@@ -40,7 +40,6 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Pembimbing Akademik</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -62,7 +61,7 @@
             <div class="card bg-secondary text-white d-flex align-items-center p-2">
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
-                <h4 class="font-weight-bold">Mahasiswa</h4>
+                <h4 class="font-weight-bold">Pembimbing Akademik</h4>
                 <p class="mb-1"><strong>nama</strong></p>
                 <p class="mb-1">nim</p>
                 <p class="text-muted">email</p>
@@ -76,45 +75,13 @@
             <div class="row">
               <!-- Akademik Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('akademikmhs') }}" class="info-box bg-secondary">
+                <a href="{{ route('akademikpaka') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fas fa-book"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Akademik</span>
-                    <span class="info-box-number text-white">TA 2024/2025</span>
+                    <span class="info-box-text text-white">Persetujuan IRS</span>
                   </div>
                 </a>
-              </div>
-          
-              <!-- Her-Registrasi Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('herregmhs') }}" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-desktop"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Her-Registrasi</span>
-                  </div>
-                </a>
-              </div>
-          
-              <!-- Status Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-home"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Status Akademik</span>
-                  </div>
-                </a>
-              </div>
-          
-              <!-- Prestasi Akademik Box -->
-              <div class="col-6 col-md-6 mb-3">
-                <a href="/akademik" class="info-box bg-secondary">
-                  <span class="info-box-icon"><i class="fas fa-star"></i></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text text-white">Prestasi Akademik</span>
-                  </div>
-                </a>
-              </div>
-              
+              </div>              
             </div>
           </div>
           
@@ -127,7 +94,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  @include('DashBMHS.controllersidebar')
+  @include('DashBPAKA.controllersidebar')
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
@@ -142,6 +109,6 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-@include('DashBMHS.scriptdb')
+@include('DashBPAKA.scriptdb')
 </body>
 </html>

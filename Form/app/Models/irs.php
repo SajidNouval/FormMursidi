@@ -29,4 +29,10 @@ class irs extends Model
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
+    
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
+    }
+
 }

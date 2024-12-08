@@ -37,7 +37,8 @@ class Kelas extends Model
      */
     public function mataKuliah()
     {
-        return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
+        return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk', 'id');
     }
 
+    
 }

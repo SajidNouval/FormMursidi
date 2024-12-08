@@ -42,7 +42,6 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(IRS::class, 'mahasiswa_nim', 'nim');
     }
-    
 
     /**
      * The attributes that should be hidden for serialization.
