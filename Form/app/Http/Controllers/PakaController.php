@@ -2,42 +2,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\irs;
-use App\Models\Mahasiswa;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Irs;
 
 class PakaController extends Controller
 {
     public function index()
+{
+    // Mengambil data IRS dengan kelas dan mata kuliah
+    $irs = Irs::with(['kelas.mataKuliah', 'mahasiswa'])->get();
+
+// Hapus duplikasi berdasarkan `kelas_id`
+$irs = $irs->unique('kelas_id');
+
+
+    return view('AkademikPAKA.akademikpaka', compact('irs'));
+}
+
+
+    public function approveIrs($id)
     {
-        // Ambil data IRS yang diajukan
-        $irs = irs::where('diajukan', 1)->with('kelas.mataKuliah')->get();
+        $irs = Irs::findOrFail($id);
 
-        // Kirim data ke view
-        return view('AkademikPAKA.akademikpaka', compact('irs'));
-    }
+        // Cek apakah kelas_id sudah ada dan is_verified = 1
+        if (Irs::where('kelas_id', $irs->kelas_id)->where('is_verified', 1)->exists()) {
+            return redirect()->back()->with('error', 'IRS sudah disetujui untuk kelas ini.');
+        }
 
-    public function setujui($id)
-    {
-        // Cari IRS berdasarkan ID
-        $irs = irs::findOrFail($id);
-
-        // Set status is_verified menjadi 1 (disetujui)
         $irs->is_verified = 1;
-        $irs->diajukan = 0; // Set diajukan menjadi 0
         $irs->save();
 
         return redirect()->back()->with('success', 'IRS berhasil disetujui.');
     }
 
-    public function tolak($id)
-    {
-        // Cari IRS berdasarkan ID
-        $irs = irs::findOrFail($id);
 
-        // Set status is_verified menjadi 0 (ditolak)
-        $irs->is_verified = 0;
-        $irs->diajukan = 0; // Set diajukan menjadi 0
+    public function rejectIrs($id)
+    {
+        // Temukan IRS berdasarkan ID dan set status menjadi Ditolak
+        $irs = Irs::findOrFail($id);
+        $irs->is_verified = -1;
         $irs->save();
 
         return redirect()->back()->with('success', 'IRS berhasil ditolak.');
