@@ -81,6 +81,38 @@
                       <option value="pilihan">Pilihan</option>
                   </select>
               </div>
+              <!-- Dropdown for Pengajar 1 -->
+                <div class="form-group">
+                  <label for="pengajar_1">Pengajar 1</label>
+                  <select class="custom-select form-control-border" id="Pengampu1" name="pengampu1" required>
+                      <option value="">Pilih Pengampu</option>
+                      @foreach($dosen as $d)
+                          <option value="{{ $d->id }}">{{ $d->nama }}</option> <!-- Displaying the name of the dosen -->
+                      @endforeach
+                  </select>
+                </div>
+
+                <!-- Dropdown for Pengajar 2 -->
+                <div class="form-group">
+                  <label for="pengajar_2">Pengajar 2</label>
+                  <select class="custom-select form-control-border" id="Pengampu2" name="pengampu2">
+                      <option value="">Pilih Pengampu</option>
+                      @foreach($dosen as $d)
+                          <option value="{{ $d->id }}">{{ $d->nama }}</option>
+                      @endforeach
+                  </select>
+                </div>
+
+                <!-- Dropdown for Pengajar 3 -->
+                <div class="form-group">
+                  <label for="pengajar_3">Pengampu 3</label>
+                  <select class="custom-select form-control-border" id="Pengampu3" name="pengampu3">
+                      <option value="">Pilih Pengampu</option>
+                      @foreach($dosen as $d)
+                          <option value="{{ $d->id }}">{{ $d->nama }}</option>
+                      @endforeach
+                  </select>
+                </div>
               <div class="form-group">
                   <label for="program_studi_kode_prodi">Kode Program Studi</label>
                   <input type="text" class="form-control form-control-border" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
@@ -111,6 +143,7 @@
                       <th>SKS</th>
                       <th>Semester</th>
                       <th>Jenis</th>
+                      <th>Pengajar</th>
                       <th>Kode Prodi</th>
                       <th>Kode Fakultas</th>
                       <th>Aksi</th>
@@ -124,6 +157,9 @@
                           <td>{{ $mk->sks }}</td>
                           <td>{{ $mk->semester }}</td>
                           <td>{{ $mk->jenis }}</td>
+                          <td>
+                            {{ $mk->pengampu1 }}{{ $mk->pengampu2 ? ', ' . $mk->pengampu2 : '' }}{{ $mk->pengampu3 ? ', ' . $mk->pengampu3 : '' }}
+                          </td>
                           <td>{{ $mk->program_studi_kode_prodi }}</td>
                           <td>{{ $mk->fakultas_kode_fakultas }}</td>
                           <td>

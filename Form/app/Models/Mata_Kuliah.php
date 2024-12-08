@@ -20,7 +20,12 @@ class Mata_Kuliah extends Model
         'jenis' ,
         'prodi_id' ,
         'program_studi_kode_prodi',
-        'fakultas_kode_fakultas'
+        'fakultas_kode_fakultas',
+        'pengampu1',
+        'pengampu2',
+        'pengampu3',
+        'pengampu4',
+        'tahun_akademik'
     ];
 
     // Tentukan kolom primary key yang digunakan
@@ -41,9 +46,11 @@ class Mata_Kuliah extends Model
     {
         return $this->hasMany(IRS::class, 'mata_kuliah_kode_mk', 'kode_mk');
     }
-    public function dosenMk()
+
+     // Update the method name to 'dosen' and adjust the relationship
+     public function dosen()
     {
-        return $this->hasMany(Dosen_mk::class, 'mata_kuliah_kode_mk', 'kode_mk');
+        return $this->belongsToMany(Dosen::class, 'mata_kuliah_dosen', 'mata_kuliah_kode_mk', 'dosen_id');
     }
      /**
      * The attributes that should be hidden for serialization.
