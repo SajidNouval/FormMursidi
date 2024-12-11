@@ -59,13 +59,14 @@
       @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="mata_kuliah">Pilih Mata Kuliah</label>
-          <select class="custom-select form-control-border border-width-2" id="mata_kuliah" name="mata_kuliah" required>
-            @foreach ($mataKuliah as $mk)
-            <option value="{{ $mk->kode_mk }}">{{ $mk->nama_mk }}</option>
-            @endforeach
-          </select>
-        </div>
+      <label for="mata_kuliah">Mata Kuliah</label>
+      <select class="custom-select form-control-border border-width-2" id="mata_kuliah" name="mata_kuliah" required>
+          <option value="" disabled selected>Pilih Mata Kuliah</option>
+          @foreach ($mataKuliah as $mk)
+          <option value="{{ $mk->kode_mk }}" data-sks="{{ $mk->sks }}">{{ $mk->nama_mk }} ({{ $mk->sks }} SKS)</option>
+          @endforeach
+      </select>
+      </div>
 
         <div class="form-group">
           <label for="kelas">Kelas</label>
@@ -81,7 +82,7 @@
           <label for="tahun_akademik">Tahun Akademik</label>
           <select class="custom-select rounded-0" id="tahun_akademik" name="tahun_akademik" required>
               <option value="">Pilih Tahun Akademik</option>
-              <option value="2023/2024">2024/2025</option>
+              <option value="2023/2024">2023/2024</option>
               <option value="2024/2025">2024/2025</option>
               <option value="2025/2026">2025/2026</option>
               <option value="2026/2027">2026/2027</option>
@@ -90,20 +91,35 @@
           </select>
       </div>
       {{-- Kuota --}}
-        <div class="form-group">
-          <div class="form-group">
-            <label for="kuota">Kuota</label>
-            <input type="text" class="form-control form-control-border" id="kuota" name="kuota" required>
-        </div>
-        <div class="form-group">
+              <div class="form-group">
           <label for="ruang">Ruang</label>
-          <select class="custom-select form-control-border border-width-2" id="ruang" name="ruang_kuliah_kode_ruang" required>
-            <option value="" disabled selected>Pilih Ruang</option>
-            @foreach ($ruangKuliah as $ruang)
-            <option value="{{ $ruang->kode_ruang }}">{{ $ruang->kode_ruang }}</option>
-            @endforeach
+          <select 
+              class="custom-select form-control-border border-width-2" 
+              id="ruang" 
+              name="ruang_kuliah_kode_ruang" 
+              required>
+              <option value="" disabled selected>Pilih Ruang</option>
+              @foreach ($ruangKuliah as $ruang)
+              <option 
+                  value="{{ $ruang->kode_ruang }}" 
+                  data-kapasitas="{{ $ruang->kapasitas }}">
+                  {{ $ruang->kode_ruang }}
+              </option>
+              @endforeach
           </select>
-        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="kuota">Kuota</label>
+          <input 
+              type="number" 
+              class="form-control form-control-border" 
+              id="kuota" 
+              name="kuota" 
+              placeholder="Pilih ruang dulu"
+              disabled 
+              required>
+      </div>
 
         <div class="form-group">
           <label for="hari">Hari</label>
@@ -116,42 +132,30 @@
           </select>
         </div>
 
-        <div class="form-group">
-          <label for="jam_mulai">Jam Mulai</label>
-          <select class="custom-select form-control-border border-width-2" id="jam_mulai" name="jam_mulai" required>
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-          </select>
-        </div>
+          <div class="form-group">
+      <label for="jam_mulai">Jam Mulai</label>
+      <select class="custom-select form-control-border border-width-2" id="jam_mulai" name="jam_mulai" required>
+          <option value="07:00">07:00</option>
+          <option value="08:00">08:00</option>
+          <option value="09:00">09:00</option>
+          <option value="10:00">10:00</option>
+          <option value="11:00">11:00</option>
+          <option value="12:00">12:00</option>
+          <option value="13:00">13:00</option>
+          <option value="14:00">14:00</option>
+          <option value="15:00">15:00</option>
+          <option value="16:00">16:00</option>
+          <option value="17:00">17:00</option>
+          <option value="18:00">18:00</option>
+      </select>
+  </div>
 
-        <div class="form-group">
+      <div class="form-group">
           <label for="jam_selesai">Jam Selesai</label>
-          <select class="custom-select rounded-0" id="jam_selesai" name="jam_selesai" required>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
+          <select class="custom-select rounded-0" id="jam_selesai" name="jam_selesai" required disabled>
+              <option value="" disabled selected>Pilih Jam Mulai dan Mata Kuliah</option>
           </select>
-        </div>
+      </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Buat Jadwal</button>

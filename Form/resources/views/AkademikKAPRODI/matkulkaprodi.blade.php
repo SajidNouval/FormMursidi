@@ -116,7 +116,7 @@
                   </select>
                 </div>
               <div class="form-group">
-                <label for="program_studi_kode_prodi">Kode Program Studi</label>
+                <label for="program_studi_kode_prodi">Program Studi</label>
                 <select class="form-control form-control-border" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
                     <option value="">Pilih Program Studi</option>
                     @foreach($programStudis as $prodi)
@@ -127,9 +127,9 @@
               <div class="form-group">
                   {{-- <label for="fakultas_kode_fakultas">Kode Fakultas</label>
                   <input type="text" class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required> --}}
-                <label for="fakultas_kode_fakultas">Kode Fakultas</label>
+                <label for="fakultas_kode_fakultas">Fakultas</label>
                 <select class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
-                    <option value="">Kode Fakultas</option>
+                    <option value="">Fakultas</option>
                     @foreach($fakultas as $fk)
                         <option value="{{ $fk->kode_fakultas }}">{{ $fk->nama_fakultas }}</option>
                     @endforeach
