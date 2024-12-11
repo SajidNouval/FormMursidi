@@ -80,3 +80,86 @@
       }
   });
 </script>
+
+<!-- Pilih RUANG DULU -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ruangSelect = document.getElementById('ruang');
+        const kuotaInput = document.getElementById('kuota');
+
+        // Event listener untuk perubahan pada select ruang
+        ruangSelect.addEventListener('change', function () {
+            const selectedOption = ruangSelect.options[ruangSelect.selectedIndex];
+            const kapasitas = selectedOption.getAttribute('data-kapasitas');
+
+            if (kapasitas) {
+                // Aktifkan input kuota
+                kuotaInput.disabled = false;
+
+                // Set placeholder untuk kapasitas maksimal
+                kuotaInput.placeholder = `Maksimal: ${kapasitas}`;
+
+                // Validasi input kuota saat diubah
+                kuotaInput.addEventListener('input', function () {
+                    if (parseInt(kuotaInput.value) > parseInt(kapasitas)) {
+                        alert(`Kuota tidak boleh melebihi kapasitas ruang (${kapasitas}).`);
+                        kuotaInput.value = kapasitas; // Reset nilai ke kapasitas maksimal
+                    }
+                });
+            } else {
+                // Nonaktifkan input kuota jika tidak ada ruang yang dipilih
+                kuotaInput.disabled = true;
+                kuotaInput.placeholder = 'Pilih ruang dulu';
+                kuotaInput.value = '';
+            }
+        });
+    });
+</script>
+
+<!-- JAM MULAI-JAM SELESAI -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mataKuliahSelect = document.getElementById('mata_kuliah');
+        const jamMulaiSelect = document.getElementById('jam_mulai');
+        const jamSelesaiSelect = document.getElementById('jam_selesai');
+
+        // Fungsi untuk menghitung jam selesai
+        function calculateJamSelesai(jamMulai, sks) {
+            const [hours, minutes] = jamMulai.split(':').map(Number);
+            const totalHours = hours + parseInt(sks); // Tambahkan SKS ke jam mulai
+            return totalHours + ':' + String(minutes).padStart(2, '0'); // Format kembali
+        }
+
+        // Fungsi untuk memperbarui dropdown jam selesai
+        function updateJamSelesai() {
+            const selectedJamMulai = jamMulaiSelect.value;
+            const selectedMataKuliah = mataKuliahSelect.options[mataKuliahSelect.selectedIndex];
+            const sks = selectedMataKuliah.getAttribute('data-sks');
+
+            if (selectedJamMulai && sks) {
+                // Reset dropdown jam selesai
+                jamSelesaiSelect.innerHTML = '';
+
+                // Hitung waktu selesai
+                const jamSelesai = calculateJamSelesai(selectedJamMulai, sks);
+
+                // Tambahkan opsi ke dropdown jam selesai
+                const option = document.createElement('option');
+                option.value = jamSelesai;
+                option.textContent = jamSelesai;
+                jamSelesaiSelect.appendChild(option);
+
+                // Aktifkan dropdown jam selesai
+                jamSelesaiSelect.disabled = false;
+            } else {
+                // Nonaktifkan dropdown jika tidak ada jam mulai atau mata kuliah
+                jamSelesaiSelect.innerHTML = '<option value="" disabled selected>Pilih Jam Mulai dan Mata Kuliah</option>';
+                jamSelesaiSelect.disabled = true;
+            }
+        }
+
+        // Event listeners
+        mataKuliahSelect.addEventListener('change', updateJamSelesai);
+        jamMulaiSelect.addEventListener('change', updateJamSelesai);
+    });
+</script>
