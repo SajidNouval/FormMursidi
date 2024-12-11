@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jadwal_Kuliah; // Pastikan Anda menggunakan model yang benar
+use App\Models\Kelas; // Pastikan Anda menggunakan model yang benar
 use App\Models\Mata_Kuliah; // Model untuk mata kuliah
 use App\Models\Ruang_Kuliah;
 use App\Models\Dosen;
@@ -53,67 +54,65 @@ class JadwalController extends Controller
 //JADWAL------------------------------------------------------
     public function buatjadwal()
     {
-        // Ambil semua mata kuliah dari database
-        $mataKuliah = Mata_Kuliah::all();
+        // Ambil data mata kuliah dengan kode program studi '01'
+    $mataKuliah = Mata_Kuliah::where('program_studi_kode_prodi', '01')->get();
 
-        // Ambil semua jadwal dari database
-        $jadwal = Jadwal_Kuliah::all(); // Fetch the jadwal data
+    // Ambil semua jadwal dari database
+    $jadwal = Jadwal_Kuliah::all();
 
-        $ruangKuliah = Ruang_Kuliah::where('status', 'disetujui')->get(); // Ambil ruang kuliah yang disetujui
-        // Tampilkan view dengan data mata kuliah
-        return view('AkademikKAPRODI.jadwalkaprodi',  compact('mataKuliah', 'jadwal','ruangKuliah'));
+    $ruangKuliah = Ruang_Kuliah::where('status', 'disetujui')
+    ->where('program_studi_kode_prodi', '01')
+    ->get();
+
+    // Tampilkan view dengan data yang sudah difilter
+    return view('AkademikKAPRODI.jadwalkaprodi', compact('mataKuliah', 'jadwal', 'ruangKuliah'));
     }
 
     public function storejadwal(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'mata_kuliah' => 'required',
-            'hari' => 'required',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
-            'kelas' => 'required', // Validasi kelas
-            'ruang_kuliah_kode_ruang' => 'required', // Validasi ruang
-        ]);
+{
+    // Validasi input
+    $validated = $request->validate([
+        'mata_kuliah' => 'required',
+        'hari' => 'required',
+        'jam_mulai' => 'required|in:07:00,08:00,09:00,10:00,11:00,12:00,13:00,14:00,15:00,16:00,17:00,18:00,kosong',
+        'jam_selesai' => 'required|in:08:00,09:00,10:00,11:00,12:00,13:00,14:00,15:00,16:00,17:00,18:00,19:00,20:00,kosong',
+        'kelas' => 'required',
+        'ruang_kuliah_kode_ruang' => 'required|exists:ruang_kuliah,kode_ruang',
+    ]);
 
-        // Cek apakah jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama
-        $jadwal = Jadwal_Kuliah::where('hari', $request->hari)
-            ->where('ruang_kuliah_kode_ruang', $request->ruang_kuliah_kode_ruang)
-            ->where('jam_mulai', '<=', $request->jam_mulai)
-            ->where('jam_selesai', '>=', $request->jam_selesai)
-            ->first();
+    // Cek apakah jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama
+    $jadwal = Jadwal_Kuliah::where('hari', $request->hari)
+        ->where('ruang_kuliah_kode_ruang', $request->ruang_kuliah_kode_ruang)
+        ->where('jam_mulai', '<=', $request->jam_mulai)
+        ->where('jam_selesai', '>=', $request->jam_selesai)
+        ->first();
 
-        if ($jadwal) {
-            return redirect()->back()->with('error', 'Jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama');
-        }
-
-        // Cek apakah jadwal sudah ada untuk mata kuliah yang sama pada hari, kelas, dan ruang yang sama
-        $jadwal = Jadwal_Kuliah::where('mata_kuliah_kode_mk', $request->mata_kuliah)
-            ->where('hari', $request->hari)
-            ->where('kelas', $request->kelas)
-            ->where('ruang_kuliah_kode_ruang', $request->ruang_kuliah_kode_ruang)
-            ->where('jam_mulai', '<=', $request->jam_mulai)
-            ->where('jam_selesai', '>=', $request->jam_selesai)
-            ->first();
-
-        if ($jadwal) {
-            return redirect()->back()->with('error', 'Jadwal sudah ada untuk mata kuliah ini pada hari, kelas, dan ruang yang sama');
-        }
-
-        // Simpan data jadwal ke database
-        Jadwal_Kuliah::create([
-            'mata_kuliah_kode_mk' => $request->mata_kuliah,
-            'hari' => $request->hari,
-            'ruang_kuliah_kode_ruang' => $request->ruang_kuliah_kode_ruang,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'kelas' => $request->kelas, // Simpan kelas
-            'status' => 'diajukan', // Status default
-        ]);
-
-        // Redirect kembali dengan pesan sukses
-        return redirect()->back()->with('success', 'Jadwal berhasil dibuat!');
+    if ($jadwal) {
+        return redirect()->back()->with('error', 'Jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama');
     }
+
+    // Simpan data jadwal ke database
+    Jadwal_Kuliah::create([
+        'mata_kuliah_kode_mk' => $request->mata_kuliah,
+        'hari' => $request->hari,
+        'ruang_kuliah_kode_ruang' => $request->ruang_kuliah_kode_ruang,
+        'jam_mulai' => $request->jam_mulai,
+        'jam_selesai' => $request->jam_selesai,
+        'kelas' => $request->kelas,
+        'status' => 'diajukan', // Status default
+    ]);
+
+    Kelas::create([
+        'kode_kelas' => $request->kelas,
+        'mata_kuliah_kode_mk' => $request->mata_kuliah,
+        'tahun_akademik' => $request->tahun_akademik,
+        'kuota' => $request->kuota
+
+    ]);
+
+    // Redirect kembali dengan pesan sukses
+    return redirect()->back()->with('success', 'Jadwal berhasil dibuat!');
+}
 
     public function destroyjadwal($id)
     {

@@ -76,7 +76,25 @@
             <option value="D">D</option>
           </select>
         </div>
-
+        {{-- Tahun Akademik --}}
+        <div class="form-group">
+          <label for="tahun_akademik">Tahun Akademik</label>
+          <select class="custom-select rounded-0" id="tahun_akademik" name="tahun_akademik" required>
+              <option value="">Pilih Tahun Akademik</option>
+              <option value="2023/2024">2024/2025</option>
+              <option value="2024/2025">2024/2025</option>
+              <option value="2025/2026">2025/2026</option>
+              <option value="2026/2027">2026/2027</option>
+              <option value="2027/2028">2027/2028</option>
+              <!-- Tambahkan tahun akademik sesuai kebutuhan -->
+          </select>
+      </div>
+      {{-- Kuota --}}
+        <div class="form-group">
+          <div class="form-group">
+            <label for="kuota">Kuota</label>
+            <input type="text" class="form-control form-control-border" id="kuota" name="kuota" required>
+        </div>
         <div class="form-group">
           <label for="ruang">Ruang</label>
           <select class="custom-select form-control-border border-width-2" id="ruang" name="ruang_kuliah_kode_ruang" required>

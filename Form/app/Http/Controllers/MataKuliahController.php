@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Dosen;
+use App\Models\Fakultas;
 use App\Models\Mata_Kuliah;
 use Illuminate\Http\Request;
+use App\Models\Program_Studi;
+
 
 class MataKuliahController extends Controller
 {
@@ -24,10 +29,31 @@ class MataKuliahController extends Controller
         return redirect()->route('mata_kuliah.index')->with('success', 'Mata kuliah berhasil ditambahkan.');
     }
 
+    // Prodi
+    // public function prodi()
+    // {
+    //      // Mengambil semua data dari tabel program_studi
+    //      $programStudis = Program_Studi::all();
+    //      $dosens = Dosen::all();
+    //      $mataKuliah = Mata_Kuliah::all();
+    //      $fakultas = Fakultas::all();
+         
+    
+    //      // Mengirimkan data ke view
+    //      return view('AkademikKAPRODI.matkulkaprodi', compact('programStudis','dosens','mataKuliah','fakultas'));
+    // }
+
     public function index(){
-        $mataKuliah = Mata_Kuliah::all(); // Ambil semua data mata kuliah
-        return view('AkademikKAPRODI.matkulkaprodi', compact('mataKuliah')); // Ganti 'mata_kuliah.index' dengan nama view Anda
+         $programStudis = Program_Studi::all();
+         $dosens = Dosen::all();
+         $mataKuliah = Mata_Kuliah::all();
+         $fakultas = Fakultas::all();
+         
+    
+         // Mengirimkan data ke view
+         return view('AkademikKAPRODI.matkulkaprodi', compact('programStudis','dosens','mataKuliah','fakultas'));
     }
+    
 
     public function destroy($kode_mk)
     {
@@ -45,4 +71,8 @@ class MataKuliahController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->route('mata_kuliah.index')->with('success', 'Mata Kuliah berhasil dihapus.');
     }
+
+
+    
+    
 }

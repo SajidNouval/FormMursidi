@@ -19,6 +19,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\lihatIrsController;
 use App\Http\Controllers\PakaController;
 
+
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 
@@ -57,9 +58,9 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('/sakura/jadwal/{id}', [JadwalController::class, 'destroyjadwal'])->name('jadwal.destroy');
     
     //---matkul-----
-    Route::get('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'buatmatkul'])->middleware('userAkses:kaprodi')->name('matkul');
     Route::post('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'storemk'])->middleware('userAkses:kaprodi')->name('matkul.store');
-
+    Route::get('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'buatmatkul'])->middleware('userAkses:kaprodi')->name('matkul');
+    Route::get('AkademikKAPRODI.matkulkaprodi', [MataKuliahController::class, 'index'])->middleware('userAkses:kaprodi')->name('programStudis');
 
    
 

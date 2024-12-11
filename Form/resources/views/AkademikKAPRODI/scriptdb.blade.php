@@ -50,3 +50,33 @@
       }
     }
   </script>
+
+<script>
+  document.getElementById('sks').addEventListener('input', function (event) {
+      const sksInput = this.value;
+      const errorText = document.getElementById('sksError');
+
+      // Validasi kustom
+      if (sksInput < 1) {
+          errorText.style.display = 'block'; // Tampilkan pesan error
+          this.setCustomValidity('SKS Harus Diisi Minimal 1'); // Set pesan error
+      } else {
+          errorText.style.display = 'none'; // Sembunyikan pesan error
+          this.setCustomValidity(''); // Reset validasi
+      }
+  });
+
+  document.getElementById('semester').addEventListener('input', function (event) {
+      const semesterInput = this.value;
+      const errorText = document.getElementById('semesterError');
+
+      // Validasi kustom
+      if (semesterInput < 1) {
+          errorText.style.display = 'block'; // Tampilkan pesan error
+          this.setCustomValidity('Semester Harus Diisi Minimal 1'); // Set pesan error
+      } else {
+          errorText.style.display = 'none'; // Sembunyikan pesan error
+          this.setCustomValidity(''); // Reset validasi
+      }
+  });
+</script>

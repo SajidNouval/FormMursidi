@@ -68,11 +68,13 @@
               </div>
               <div class="form-group">
                   <label for="sks">SKS</label>
-                  <input type="number" class="form-control form-control-border" id="sks" name="sks" required>
+                  <input type="number" class="form-control form-control-border" id="sks" name="sks" min="1" required>
+                  <small id="sksError" class="text-danger" style="display: none;">SKS Harus Diisi Minimal 1</small>
               </div>
               <div class="form-group">
                   <label for="semester">Semester</label>
-                  <input type="number" class="form-control form-control-border" id="semester" name="semester" required>
+                  <input type="number" class="form-control form-control-border" id="semester" name="semester" min="1" required>
+                  <small id="semesterError" class="text-danger" style="display: none;">Semester Harus Diisi Minimal 1</small>
               </div>
               <div class="form-group">
                   <label for="jenis">Jenis</label>
@@ -86,7 +88,7 @@
                   <label for="pengajar_1">Pengajar 1</label>
                   <select class="custom-select form-control-border" id="Pengampu1" name="pengampu1" required>
                       <option value="">Pilih Pengampu</option>
-                      @foreach($dosen as $d)
+                      @foreach($dosens as $d)
                           <option value="{{ $d->id }}">{{ $d->nama }}</option> <!-- Displaying the name of the dosen -->
                       @endforeach
                   </select>
@@ -97,7 +99,7 @@
                   <label for="pengajar_2">Pengajar 2</label>
                   <select class="custom-select form-control-border" id="Pengampu2" name="pengampu2">
                       <option value="">Pilih Pengampu</option>
-                      @foreach($dosen as $d)
+                      @foreach($dosens as $d)
                           <option value="{{ $d->id }}">{{ $d->nama }}</option>
                       @endforeach
                   </select>
@@ -108,18 +110,30 @@
                   <label for="pengajar_3">Pengampu 3</label>
                   <select class="custom-select form-control-border" id="Pengampu3" name="pengampu3">
                       <option value="">Pilih Pengampu</option>
-                      @foreach($dosen as $d)
+                      @foreach($dosens as $d)
                           <option value="{{ $d->id }}">{{ $d->nama }}</option>
                       @endforeach
                   </select>
                 </div>
               <div class="form-group">
-                  <label for="program_studi_kode_prodi">Kode Program Studi</label>
-                  <input type="text" class="form-control form-control-border" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+                <label for="program_studi_kode_prodi">Kode Program Studi</label>
+                <select class="form-control form-control-border" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>
+                    <option value="">Pilih Program Studi</option>
+                    @foreach($programStudis as $prodi)
+                        <option value="{{ $prodi->kode_prodi }}">{{ $prodi->nama_prodi }}</option>
+                    @endforeach
+                </select>
               </div>
               <div class="form-group">
-                  <label for="fakultas_kode_fakultas">Kode Fakultas</label>
-                  <input type="text" class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
+                  {{-- <label for="fakultas_kode_fakultas">Kode Fakultas</label>
+                  <input type="text" class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required> --}}
+                <label for="fakultas_kode_fakultas">Kode Fakultas</label>
+                <select class="form-control form-control-border" id="fakultas_kode_fakultas" name="fakultas_kode_fakultas" required>
+                    <option value="">Kode Fakultas</option>
+                    @foreach($fakultas as $fk)
+                        <option value="{{ $fk->kode_fakultas }}">{{ $fk->nama_fakultas }}</option>
+                    @endforeach
+                </select>
               </div>
           </div>
           <div class="card-footer">
