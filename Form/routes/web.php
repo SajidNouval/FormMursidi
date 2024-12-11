@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function(){
     
     //---matkul-----
     Route::post('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'storemk'])->middleware('userAkses:kaprodi')->name('matkul.store');
-    Route::get('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'buatmatkul'])->middleware('userAkses:kaprodi')->name('matkul');
+    // Route::get('AkademikKAPRODI.matkulkaprodi', [JadwalController::class, 'buatmatkul'])->middleware('userAkses:kaprodi')->name('matkul');
     Route::get('AkademikKAPRODI.matkulkaprodi', [MataKuliahController::class, 'index'])->middleware('userAkses:kaprodi')->name('programStudis');
 
    

@@ -13,18 +13,18 @@ class JadwalController extends Controller
 {
 
 //MATKUL------------------------------------------------
-    public function buatmatkul()
-    {
+    // public function buatmatkul()
+    // {
         
-        // Ambil semua mata kuliah dari database
-        $mataKuliah = Mata_Kuliah::all();
-        $dosen = Dosen::all(); // Assuming you have a Dosen model
+    //     // Ambil semua mata kuliah dari database
+    //     $mataKuliah = Mata_Kuliah::all();
+    //     $dosen = Dosen::all(); // Assuming you have a Dosen model
 
 
 
-        // Tampilkan view dengan data mata kuliah
-        return view('AkademikKAPRODI.matkulkaprodi', compact('mataKuliah','dosen'));
-    }
+    //     // Tampilkan view dengan data mata kuliah
+    //     return view('AkademikKAPRODI.matkulkaprodi', compact('mataKuliah','dosen'));
+    // }
     public function storemk(Request $request)
     {
         $request->validate([

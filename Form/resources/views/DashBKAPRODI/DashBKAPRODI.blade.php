@@ -86,7 +86,7 @@
           
               <!-- Her-Registrasi Box -->
               <div class="col-6 col-md-6 mb-3">
-                <a href="{{ route('matkul') }}" class="info-box bg-secondary">
+                <a href="{{ route('programStudis') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fa-solid fa-book-open"></i></span>
                   <div class="info-box-content">
                     <span class="info-box-text text-white">Permatkulan</span>
