@@ -100,7 +100,9 @@ Route::prefix('dekan')->group(function () {
     Route::get('/sakura/dekandb/jadwal', [DashboardDEKANController::class, 'jadwaldekan'])->name('dekan.jadwal.index');
     Route::post('/sakura/dekandb/jadwal/setujui/{id}', [DashboardDEKANController::class, 'setujuiJadwal'])->name('dekan.jadwal.setujui');
     Route::post('/sakura/dekandb/jadwal/tolak/{id}', [DashboardDEKANController::class, 'tolakJadwal'])->name('dekan.jadwal.tolak');
+    Route::post('/sakura/dekandb/jadwal/setujui-semua', [DashboardDEKANController::class, 'setujuiSemuaJadwal'])->name('dekan.jadwal.setujuiSemua');
 });
+
 
 
 
