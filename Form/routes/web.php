@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/dekandb/ruang', [DashboardDEKANController::class, 'akademikdekan'])->name('dekan.ruang.index');
     Route::post('/sakura/dekandb/{kode_ruang}/setujui', [DashboardDEKANController::class, 'setujui'])->name('dekan.ruang.setujui');
     Route::post('/sakura/dekandb/{kode_ruang}/tolak', [DashboardDEKANController::class, 'tolak'])->name('dekan.ruang.tolak');
+    Route::post('/sakura/dekandb/setujui-semua', [DashboardDEKANController::class, 'setujuiSemua'])->name('dekan.ruang.setujuiSemua');
+
 
     Route::get('/sakura/pakmdb/pakaakm', [PakaController::class, 'index'])->middleware('userAkses:pakademik')->name('akademikpaka');
     Route::post('/approve/{id}', [PakaController::class, 'approveIrs'])->middleware('userAkses:pakademik')->name('irs.approve');

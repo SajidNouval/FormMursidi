@@ -31,29 +31,33 @@ class DashboardBAKAController extends Controller
             'kapasitas' => 'required|integer',
             'program_studi_kode_prodi' => 'required|string|max:10', // Pastikan program_studi_kode_prodi divalidasi
         ]);
-
-        $user = Auth::user();
-        $fakultas = Baka::where('user_id', $user->id)->first()->fakultas_kode_fakultas;
-        error_log($fakultas);
     
-// Simpan data ke database, akan gagal jika constraint dilanggar
-    try {
-        Ruang_Kuliah::create([
-            'kode_ruang' => $validatedData['kode_ruang'],
-            'kapasitas' => $validatedData['kapasitas'],
-            'program_studi_kode_prodi' => $validatedData['program_studi_kode_prodi'],
-            'fakultas_kode_fakultas' => $fakultas,
-            'status' => 'diajukan',
-        ]);
-
-        return redirect()->back()->with('success', 'Ruangan berhasil ditambahkan.');
-
-    } catch (\Illuminate\Database\QueryException $e) {
-        // Tangani error karena pelanggaran constraint unik
-        return redirect()->back()->withErrors([
-            'kode_ruang' => 'Ruangan dengan kode ini sudah digunakan oleh prodi lain.',
-        ]);
-    }
+        // Cari fakultas berdasarkan kode prodi yang dipilih
+        $programStudi = Program_Studi::where('kode_prodi', $validatedData['program_studi_kode_prodi'])->first();
+        $fakultas = $programStudi ? $programStudi->fakultas_kode_fakultas : null;
+    
+        // Cek apakah fakultas ditemukan
+        if (!$fakultas) {
+            return redirect()->back()->withErrors(['program_studi_kode_prodi' => 'Fakultas untuk program studi ini tidak ditemukan.']);
+        }
+    
+        // Simpan data ke database
+        try {
+            Ruang_Kuliah::create([
+                'kode_ruang' => $validatedData['kode_ruang'],
+                'kapasitas' => $validatedData['kapasitas'],
+                'program_studi_kode_prodi' => $validatedData['program_studi_kode_prodi'],
+                'fakultas_kode_fakultas' => $fakultas,
+                'status' => 'diajukan',
+            ]);
+    
+            return redirect()->back()->with('success', 'Ruangan berhasil ditambahkan.');
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Tangani error karena pelanggaran constraint unik
+            return redirect()->back()->withErrors([
+                'kode_ruang' => 'Ruangan dengan kode ini sudah digunakan oleh prodi lain.',
+            ]);
+        }
     }
     
     // Menghapus ruangan
