@@ -25,24 +25,32 @@ class DashboardDEKANController extends Controller
 
     public function jadwaldekan()
     {
+        // Ambil semua jadwal kuliah
         $jadwal_kuliah = Jadwal_Kuliah::join('mata_kuliah', 'mata_kuliah.kode_mk', 'jadwal_kuliah.mata_kuliah_kode_mk')->get();
+    
+        // Hitung jumlah status jadwal
         $diajukan = $jadwal_kuliah->where('status', 'diajukan')->count();
         $disetujui = $jadwal_kuliah->where('status', 'disetujui')->count();
         $ditolak = $jadwal_kuliah->where('status', 'ditolak')->count();
-
+    
         return view('JadwalDEKAN.jadwaldekan', compact('jadwal_kuliah', 'diajukan', 'disetujui', 'ditolak'));
     }
-
-    // Mengubah status ruang menjadi "disetujui"
-    public function setujui($kode_ruang)
+    
+    // Mengubah status semua jadwal menjadi "disetujui"
+    public function setujuiSemuaJadwal(Request $request)
     {
-        $ruang = Ruang_Kuliah::findOrFail($kode_ruang);
-        $ruang->status = 'disetujui';
-        $ruang->save();
-
-        return redirect()->route('dekan.ruang.index')->with('success', 'Ruang telah disetujui.');
+        // Ambil semua jadwal yang statusnya 'diajukan'
+        $jadwalDiajukan = Jadwal_Kuliah::where('status', 'diajukan')->get();
+    
+        // Update status semua jadwal menjadi 'disetujui'
+        foreach ($jadwalDiajukan as $jadwal) {
+            $jadwal->status = 'disetujui';
+            $jadwal->save();
+        }
+    
+        return redirect()->route('dekan.jadwal.index')->with('success', 'Semua jadwal telah disetujui.');
     }
-
+    
     // Mengubah status ruang menjadi "ditolak"
     public function tolak($kode_ruang)
     {
@@ -95,4 +103,6 @@ class DashboardDEKANController extends Controller
 
         return redirect()->route('dekan.jadwal.index')->with('error', 'Jadwal telah ditolak.');
     }
+
+
 }
