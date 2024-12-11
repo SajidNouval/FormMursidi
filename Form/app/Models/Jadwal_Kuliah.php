@@ -33,6 +33,13 @@ class Jadwal_Kuliah extends Model
         {
             return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');
         }
+
+    public function irs()
+    {
+        return $this->belongsTo(Irs::class, 'mata_kuliah_kode_mk', 'mata_kuliah_kode_mk');
+    }
+
+    
  
      /**
       * The attributes that should be hidden for serialization.

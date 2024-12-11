@@ -11,6 +11,7 @@ class PakaController extends Controller
     $irs = Irs::with(['kelas.mataKuliah', 'mahasiswa'])
         ->get()
         ->groupBy('mahasiswa_nim'); // Mengelompokkan berdasarkan NIM mahasiswa
+    
 
     return view('AkademikPAKA.akademikpaka', compact('irs'));
 }

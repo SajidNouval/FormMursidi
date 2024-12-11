@@ -39,4 +39,8 @@ class irs extends Model
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_nim', 'nim');
     }
 
+    public function jadwalkuliah(){
+        return $this->hasOne(Jadwal_Kuliah::class, 'mata_kuliah_kode_mk', 'mata_kuliah_kode_mk');
+    }
+
 }

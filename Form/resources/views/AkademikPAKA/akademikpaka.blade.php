@@ -21,24 +21,25 @@
     <!-- Kotak Status -->
     <div class="row text-center mb-4">
       <div class="col-md-4">
-        <div class="status-box status-diajukan">
-          <h4>Diajukan</h4>
-          <h5>{{ $irs->where('is_verified', 0)->count() }}</h5>
-        </div>
+          <div class="status-box status-diajukan">
+              <h4>Diajukan</h4>
+              <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == 0)->count() }}</h5>
+          </div>
       </div>
       <div class="col-md-4">
-        <div class="status-box status-disetujui">
-          <h4>Disetujui</h4>
-          <h5>{{ $irs->where('is_verified', 1)->count() }}</h5>
-        </div>
+          <div class="status-box status-disetujui">
+              <h4>Disetujui</h4>
+              <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == 1)->count() }}</h5>
+          </div>
       </div>
       <div class="col-md-4">
-        <div class="status-box status-ditolak">
-          <h4>Ditolak</h4>
-          <h5>{{ $irs->where('is_verified', -1)->count() }}</h5>
-        </div>
+          <div class="status-box status-ditolak">
+              <h4>Ditolak</h4>
+              <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == -1)->count() }}</h5>
+          </div>
       </div>
-    </div>
+  </div>
+  
 
     <!-- Daftar IRS -->
     <div class="card">
@@ -105,7 +106,7 @@
                             <ul>
                                 @foreach ($mahasiswaIrs as $item)
                                     <li>
-                                        {{ $item->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }} 
+                                        {{ $item->jadwalkuliah->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }} 
                                         (Kelas: {{ $item->kelas->kode_kelas ?? '-' }}, 
                                         SKS: {{ $item->kelas->mataKuliah->sks ?? '0' }},
                                         Tahun Akademik: {{ $item->kelas->tahun_Akademik ?? '#'}},
@@ -137,7 +138,7 @@
     </div>
   </footer>
 </div>
-<!-- ./wrapper -->
+<!-- ./wrapper -->  
 
 <!-- Scripts -->
 @include('AkademikPAKA.scriptdb')
