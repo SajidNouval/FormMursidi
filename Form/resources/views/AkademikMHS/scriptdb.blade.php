@@ -294,7 +294,7 @@ function removeCourse(courseKodeMK) {
     });
 }
 
-const sksKumulatif = @json($sks_kumulatif); // Ambil data SKS kumulatif dari backend
+// const sksKumulatif = @json($sks_kumulatif); // Ambil data SKS kumulatif dari backend
 
 // Fungsi untuk menambahkan mata kuliah ke IRS
 function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId, sksKumulatif) {
@@ -306,11 +306,11 @@ function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik,
 
     // console.log("Total SKS yang sudah diambil:", totalSKS);  // Debugging untuk melihat nilai total SKS
 
-    if (newTotalSKS > sksKumulatif) {
-        // Jika SKS melebihi, tampilkan alert dan hentikan proses
-        alert(`Pemilihan IRS tidak boleh melebihi SKS kumulatif yang dimiliki: ${sksKumulatif}`);
+    // if (newTotalSKS > sksKumulatif) {
+    //     // Jika SKS melebihi, tampilkan alert dan hentikan proses
+    //     alert(`Pemilihan IRS tidak boleh melebihi SKS kumulatif yang dimiliki: ${sksKumulatif}`);
      
-    }
+    // }
 
     // Jika SKS total masih valid (tidak melebihi SKS kumulatif)
     // Periksa apakah mata kuliah sudah ada dalam IRS
