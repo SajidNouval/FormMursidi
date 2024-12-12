@@ -15,15 +15,24 @@ class MataKuliahController extends Controller
     {
         $request->validate([
             'kode_mk' => 'required|string|unique:mata_kuliah',
-            'nama_mk' => 'required|string',
+            'nama_mk' => 'required|string|unique:mata_kuliah,nama_mk',
             'sks' => 'required|integer',
             'semester' => 'required|integer',
             'jenis' => 'required|string',
             'program_studi_kode_prodi' => 'required|string',
             'fakultas_kode_fakultas' => 'required|string',
-            'dosen_nip' => 'nullable|string',
+            'pengampu1' => 'required|string', // Pastikan ini diatur sebagai required jika perlu
+            'pengampu2' => 'nullable|string',
+            'pengampu3' => 'nullable|string',
+            'tahun_akademik' => 'nullable',
+        ], [
+            'kode_mk.unique' => 'Kode mata kuliah sudah ada. Silakan gunakan kode yang berbeda.',
+            'nama_mk.unique' => 'Nama mata kuliah sudah ada. Silakan gunakan nama yang berbeda.',
+            'kode_mk.required' => 'Kode mata kuliah harus diisi.',
+            'nama_mk.required' => 'Nama mata kuliah harus diisi.',
+            // Anda dapat menambahkan pesan kesalahan lainnya di sini jika diperlukan
         ]);
-
+    
         Mata_Kuliah::create($request->all());
 
         return redirect()->route('mata_kuliah.index')->with('success', 'Mata kuliah berhasil ditambahkan.');

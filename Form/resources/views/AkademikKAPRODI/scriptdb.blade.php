@@ -163,3 +163,35 @@
         jamMulaiSelect.addEventListener('change', updateJamSelesai);
     });
 </script>
+
+
+<script>
+    function updatePengajarOptions() {
+        // Ambil nilai yang dipilih dari dropdown
+        const pengampu1 = document.getElementById('pengampu1').value;
+        const pengampu2 = document.getElementById('pengampu2').value;
+        const pengampu3 = document.getElementById('pengampu3').value;
+
+        // Buat array untuk menyimpan pengajar yang sudah dipilih
+        const selectedPengajars = [pengampu1, pengampu2, pengampu3];
+
+        // Ambil semua dropdown pengajar
+        const dropdowns = [document.getElementById('pengampu1'), document.getElementById('pengampu2'), document.getElementById('pengampu3')];
+
+        // Loop melalui setiap dropdown
+        dropdowns.forEach(dropdown => {
+            // Ambil semua opsi dalam dropdown
+            const options = dropdown.querySelectorAll('option');
+
+            // Loop melalui setiap opsi
+            options.forEach(option => {
+                // Jika opsi adalah salah satu yang sudah dipilih, sembunyikan opsi tersebut
+                if (selectedPengajars.includes(option.value) && option.value !== "") {
+                    option.style.display = 'none'; // Sembunyikan opsi
+                } else {
+                    option.style.display = 'block'; // Tampilkan opsi
+                }
+            });
+        });
+    }
+</script>
