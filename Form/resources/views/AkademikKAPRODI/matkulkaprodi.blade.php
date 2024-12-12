@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAKURA | Permatakulan</title>
+  <title>SAKURA | Manajemen Matakuliah</title>
   @include('AkademikKAPRODI.header')
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
@@ -51,7 +51,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Kelola Matakuliah</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -102,16 +102,12 @@
               <div class="form-group">
                   <label for="sks">SKS</label>
                   <input type="number" class="form-control @error('sks') is-invalid @enderror" id="sks" name="sks" min="1" max="6" value="{{ old('sks') }}" required>
-                  @error('sks')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                  <small id="sksError" class="text-danger" style="display: none;">SKS Harus Diisi Minimal 1</small>
               </div>
               <div class="form-group">
                   <label for="semester">Semester</label>
                   <input type="number" class="form-control @error('semester') is-invalid @enderror" id="semester" name="semester" min="1" max="14" value="{{ old('semester') }}" required>
-                  @error('semester')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
+                  <small id="semesterError" class="text-danger" style="display: none;">Semester Harus Diisi Minimal 1</small>
               </div>
               <div class="form-group">
                   <label for="jenis">Jenis</label>
@@ -124,20 +120,38 @@
                   @enderror
               </div>
               <!-- Dropdown for Pengajar -->
-              @for ($i = 1; $i <= 3; $i++)
-                  <div class="form-group">
-                      <label for="pengampu{{ $i }}">Pengajar {{ $i }}</label>
-                      <select class="form-control @error('pengampu'.$i) is-invalid @enderror" id="pengampu{{ $i }}" name="pengampu{{ $i }}" required onchange="updatePengajarOptions()">
-                          <option value="">Pilih Pengampu</option>
-                          @foreach($dosens as $d)
-                              <option value="{{ $d->nama }}" {{ old('pengampu'.$i) == $d->nama ? 'selected' : '' }}>{{ $d->nama }}</option>
-                          @endforeach
-                      </select>
-                      @error('pengampu'.$i)
-                          <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
-                  </div>
-              @endfor
+              <!-- Dropdown for Pengajar 1 -->
+              <div class="form-group">
+                <label for="pengampu1">Pengajar 1</label>
+                <select class="custom-select form-control-border" id="pengampu1" name="pengampu1" required onchange="updatePengajarOptions()">
+                    <option value="">Pilih Pengampu</option>
+                    @foreach($dosens as $d)
+                        <option value="{{ $d->nama }}">{{ $d->nama }}</option> <!-- Displaying the name of the dosen -->
+                    @endforeach
+                </select>
+              </div>
+
+              <!-- Dropdown for Pengajar 2 -->
+              <div class="form-group">
+                <label for="pengampu2">Pengajar 2</label>
+                <select class="custom-select form-control-border" id="pengampu2" name="pengampu2" onchange="updatePengajarOptions()">
+                    <option value="">Pilih Pengampu</option>
+                    @foreach($dosens as $d)
+                        <option value="{{ $d->nama }}">{{ $d->nama }}</option>
+                    @endforeach
+                </select>
+              </div>
+
+              <!-- Dropdown for Pengajar 3 -->
+              <div class="form-group">
+                <label for="pengampu3">Pengampu 3</label>
+                <select class="custom-select form-control-border" id="pengampu3" name="pengampu3" onchange="updatePengajarOptions()">
+                    <option value="">Pilih Pengampu</option>
+                    @foreach($dosens as $d)
+                        <option value="{{ $d->nama }}">{{ $d->nama }}</option>
+                    @endforeach
+                </select>
+              </div>
               <div class="form-group">
                   <label for="program _studi_kode_prodi">Program Studi</label>
                   <select class="form-control @error('program_studi_kode_prodi') is-invalid @enderror" id="program_studi_kode_prodi" name="program_studi_kode_prodi" required>

@@ -22,6 +22,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Irfan Sibudi',
+                'pengampu2' => 'Titah Kelomang',
             ],
             [
                 'kode_mk' => 'Paik102',
@@ -31,6 +33,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Titah Kelomang',
+                'pengampu2' => 'Sajid Ironi',
             ],
             [
                 'kode_mk' => 'Paik103',
@@ -40,6 +44,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Titah Kelomang',
+                'pengampu2' => 'Irfan Sibudi',
             ],
             [
                 'kode_mk' => 'Paik104',
@@ -49,6 +55,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Alwi Hambali',
             ],
             [
                 'kode_mk' => 'Paik090',
@@ -58,6 +65,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Alwi Hambali',
             ],
             [
                 'kode_mk' => 'Paik091',
@@ -67,6 +75,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Alwi Hambali',
             ],
             [
                 'kode_mk' => 'Paik092',
@@ -76,6 +85,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Alwi Hambali',
+                'pengampu2' => 'Irfan Sibudi',
             ],
             [
                 'kode_mk' => 'Paik093',
@@ -85,6 +96,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Sajid Ironi',
             ],
             [
                 'kode_mk' => 'Paik094',
@@ -94,6 +106,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Sajid Ironi',
             ],
             [
                 'kode_mk' => 'Paik095',
@@ -103,6 +116,8 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Sajid Ironi',
+                'pengampu2' => 'Irfan Sibudi',
             ],
             [
                 'kode_mk' => 'Paik105',
@@ -112,6 +127,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Sajid Ironi',
             ],
             [
                 'kode_mk' => 'Paik106',
@@ -121,6 +137,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Sajid Ironi',
             ],
             [
                 'kode_mk' => 'Paik107',
@@ -130,6 +147,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Wajib',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Irfan Sibudi',
             ],
             [
                 'kode_mk' => 'Paik108',
@@ -139,6 +157,7 @@ class matakuliahseeder extends Seeder
                 'jenis'=>'Pilihan',
                 'program_studi_kode_prodi' => '01', // Sesuaikan dengan kolom yang ada
                 'fakultas_kode_fakultas' => '101',
+                'pengampu1' => 'Irfan Sibudi',
             ],
         ];
 
