@@ -34,11 +34,12 @@ class JadwalController extends Controller
             'semester' => 'required|integer',
             'kelas' => 'required',
             'tipe' => 'required',
-            'pengajar1' => 'required', // Validasi untuk pengajar1
-            'pengajar2' => 'required', // Validasi untuk pengajar2
-            'pengajar3' => 'required', // Validasi untuk pengajar3
+            'pengampu1' => 'required', // Validasi untuk pengajar1
+            'pengampu2' => 'nullable', // Validasi untuk pengajar2
+            'pengampu3' => 'nullable', // Validasi untuk pengajar3
             'tahun_akademik' => 'required', // Validasi untuk tahun akademik
         ]);
+
 
         Mata_Kuliah::createmk($request->all());
 
@@ -80,15 +81,20 @@ class JadwalController extends Controller
         'ruang_kuliah_kode_ruang' => 'required|exists:ruang_kuliah,kode_ruang',
     ]);
 
+    //dd($request->all());
+
     // Cek apakah jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama
     $jadwal = Jadwal_Kuliah::where('hari', $request->hari)
         ->where('ruang_kuliah_kode_ruang', $request->ruang_kuliah_kode_ruang)
-        ->where('jam_mulai', '<=', $request->jam_mulai)
-        ->where('jam_selesai', '>=', $request->jam_selesai)
+        ->where(function ($query) use ($request) {
+            $query->where('jam_mulai', '<', $request->jam_selesai) // Jadwal baru mulai sebelum jadwal yang ada selesai
+                ->where('jam_selesai', '>', $request->jam_mulai); // Jadwal baru selesai setelah jadwal yang ada mulai
+        })
         ->first();
 
     if ($jadwal) {
-        return redirect()->back()->with('error', 'Jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama');
+        return redirect()->back()->withErrors(['jadwal' => 'Jadwal sudah ada untuk ruang yang sama pada hari dan waktu yang sama.'])
+                                 ->withInput();
     }
 
     // Simpan data jadwal ke database
