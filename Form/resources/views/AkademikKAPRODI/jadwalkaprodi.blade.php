@@ -31,6 +31,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+            <h1 class="m-0">Penjadwalan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -80,6 +81,7 @@
             <div class="form-group">
               <label for="kelas">Kelas</label>
               <select class="custom-select rounded-0" id="kelas" name="kelas" required>
+                <option value="">Pilih Kelas</option>
                 <option value="A" {{ old('kelas') == 'A' ? 'selected' : '' }}>A</option>
                 <option value="B" {{ old('kelas') == 'B' ? 'selected' : '' }}>B</option>
                 <option value="C" {{ old('kelas') == 'C' ? 'selected' : '' }}>C</option>

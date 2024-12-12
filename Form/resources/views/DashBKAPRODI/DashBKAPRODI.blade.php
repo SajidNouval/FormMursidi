@@ -89,7 +89,7 @@
                 <a href="{{ route('programStudis') }}" class="info-box bg-secondary">
                   <span class="info-box-icon"><i class="fa-solid fa-book-open"></i></span>
                   <div class="info-box-content">
-                    <span class="info-box-text text-white">Permatkulan</span>
+                    <span class="info-box-text text-white">Kelola Matakuliah</span>
                     <span class="info-box-number text-white">TA 2024/2025</span>
                   </div>
                 </a>
