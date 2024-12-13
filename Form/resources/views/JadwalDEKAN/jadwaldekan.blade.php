@@ -125,6 +125,8 @@
     </div>
   </div>
 
+  @include("JadwalDEKAN.controllersidebar")
+
   <!-- Footer -->
   <footer class="main-footer bg-ungu">
     <strong>SAKURA &copy; 2024 <a href="https://SAKURAIRS.COM">SAKURA</a>.</strong>
