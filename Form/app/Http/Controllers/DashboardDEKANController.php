@@ -50,7 +50,14 @@ class DashboardDEKANController extends Controller
     
         return redirect()->route('dekan.jadwal.index')->with('success', 'Semua jadwal telah disetujui.');
     }
-    
+    public function setujui($kode_ruang)
+{
+    $ruang = Ruang_Kuliah::findOrFail($kode_ruang);
+    $ruang->status = 'disetujui';
+    $ruang->save();
+
+    return redirect()->route('dekan.ruang.index')->with('success', 'Ruang telah disetujui.');
+}
     // Mengubah status ruang menjadi "ditolak"
     public function tolak($kode_ruang)
     {
