@@ -361,38 +361,61 @@ document.getElementById('save-btn')?.addEventListener('click', () => {
         irs: irs // Data IRS yang telah disiapkan
     };
 
-    // Kirim data IRS ke server
-    console.log('Mengirim data:', formData);
-    fetch('/simpanirs', {
-        method: 'POST', // Metode POST untuk menyimpan data
+    // Langkah 1: Validasi SKS melalui endpoint cekSksKumulatif
+    fetch('/cekSksKumulatif', {
+        method: 'POST', // Metode POST untuk validasi
         headers: {
             'Content-Type': 'application/json', // Tipe konten JSON
             'X-CSRF-TOKEN': csrfToken // Sertakan CSRF token untuk keamanan
         },
-        body: JSON.stringify(formData) // Kirim data dalam format JSON
+        body: JSON.stringify(formData) // Kirim data IRS untuk validasi
     })
-    .then(response => {
-        console.log('Response status:', response.status);
-        if (!response.ok) {
-            throw new Error(`HTTP error ${response.status}`);
-        }
-        return response.json(); // Parse response JSON jika berhasil
-    })
+    .then(response => response.json())
     .then(data => {
-        const removeButtons = document.querySelectorAll('.remove-course');
-        removeButtons.forEach(button => {
-            button.style.display = 'none';
+        if (data.status === 'invalid') {
+            // Jika SKS tidak valid, tampilkan pesan error dan hentikan proses
+            alert(data.message);
+            console.error('Validasi gagal:', data);
+            return;
+        }
+
+        // Langkah 2: Jika validasi berhasil, kirim data IRS ke endpoint simpanirs
+        fetch('/simpanirs', {
+            method: 'POST', // Metode POST untuk menyimpan data
+            headers: {
+                'Content-Type': 'application/json', // Tipe konten JSON
+                'X-CSRF-TOKEN': csrfToken // Sertakan CSRF token untuk keamanan
+            },
+            body: JSON.stringify(formData) // Kirim data dalam format JSON
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}`);
+            }
+            return response.json(); // Parse response JSON jika berhasil
+        })
+        .then(data => {
+            const removeButtons = document.querySelectorAll('.remove-course');
+            removeButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+            console.log('Simpan IRS berhasil:', data);
+            document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
+            document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
+            alert('Data IRS berhasil disimpan.');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Gagal menyimpan IRS. Periksa kembali data atau coba lagi.');
         });
-        console.log('Simpan IRS berhasil:', data);
-        document.getElementById('edit-btn').style.display = 'inline-block'; // Tampilkan tombol Edit
-        document.getElementById('save-btn').style.display = 'none'; // Sembunyikan tombol Simpan
-        alert('Data IRS berhasil disimpan.');
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('Gagal menyimpan IRS. Periksa kembali data atau coba lagi.');
+        console.error('Error saat validasi SKS:', error);
+        alert('Terjadi kesalahan saat validasi SKS. Coba lagi.');
     });
 });
+
 
 // Menangani klik pada jadwal kuliah untuk menambahkannya
 document.querySelectorAll('.add-course').forEach(button => {

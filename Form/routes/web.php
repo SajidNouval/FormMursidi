@@ -91,6 +91,7 @@ Route::post('/simpanregister', [LoginController::class, 'simpanregister'])->name
 Route::get('/forgotpw', [ForgotPWController::class, 'halamanforgotpw'])->name('forgotpw');
 
 // Menambah mata kuliah ke IRS
+Route::post('/cekSksKumulatif', [irsController::class, 'cekSksKumulatif'])->name('cekSksKumulatif');
 Route::post('/simpanirs', [irsController::class, 'simpanirs'])->name('simpanirs');
 Route::delete('/irs/{kode_mk}', [irsController::class, 'destroy'])->name('irs.destroy');
 // Route::get('/irs/{nim}/{semester}', [irsController::class, 'getIrsBySemester'])->name('getIrsBySemester');
