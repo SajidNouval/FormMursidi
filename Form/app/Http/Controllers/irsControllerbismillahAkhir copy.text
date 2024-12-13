@@ -15,6 +15,25 @@ class irsController extends Controller
 {
     public function simpanirs(Request $request)
     {
+        error_log("masuk");
+        error_log($request);
+
+
+        // $request->validate([
+        //     'irs' => 'required|array',
+        //     'irs.*.mata_kuliah_kode_mk' => 'required|string|exists:mata_kuliah,kode_mk',
+        //     'irs.*.semester' => 'required|integer',
+        //     'irs.*.tahun_akademik' => 'required|string',
+        //     'irs.*.total_sks' => 'required|integer|min:1',
+        //     'irs.*.ruang_kuliah_kode_ruang' => 'nullable|string',
+        // ]);
+
+        error_log('cek');
+        
+
+        // Log data request untuk debugging
+        // Log::info('Data Request:', $request->all());
+
     
         // Ambil NIM mahasiswa berdasarkan user yang sedang login
         $userId = Auth::user()->id;
@@ -25,13 +44,18 @@ class irsController extends Controller
         }
     
         $mahasiswaNim = $mahasiswa->nim;
-        // Ambil SKS Kumulatif mahasiswa
-    $sksKumulatif = $mahasiswa->SKS_Kumulatif;
-
-    // Hitung total SKS dari mata kuliah yang ditambahkan
-    $totalSksToAdd = 0;
+        Log::info('Mahasiswa NIM:', ['nim' => $mahasiswaNim]);
+        
+        // error_log("ok");
+        // error_log($mahasiswaNim);
+        // error_log($request->collect('irs'));
+        // Iterasi setiap data IRS yang dikirimkan
         foreach ($request->collect('irs') as $course) {
-         
+            // error_log('log');
+            // error_log(json_encode($course));
+            // error_log('udah');
+            // Log::info('Processing course:', $course);
+    
             // Pastikan semester ada
             if (!isset($course['semester'])) {
                 return response()->json(['error' => 'Semester is required for each course'], 400);
@@ -40,7 +64,9 @@ class irsController extends Controller
     
             // Cari mata kuliah berdasarkan kode MK
             $mataKuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
+            error_log('ada');
             if (!$mataKuliah) {
+                Log::warning('Mata kuliah tidak ditemukan:', ['kode_mk' => $course['mata_kuliah_kode_mk']]);
                 return response()->json(['error' => 'Mata kuliah dengan kode ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
             }
 
@@ -48,21 +74,13 @@ class irsController extends Controller
             $kelas = Kelas::where('mata_kuliah_kode_mk', $course['mata_kuliah_kode_mk'])
                           ->where('tahun_akademik', $course['tahun_akademik'] ?? $course['tahun_Akademik'])
                           ->first();
+            error_log('kelas ok');
 
             if (!$kelas) {
+                Log::warning('Kelas tidak ditemukan:', ['kode_mk' => $course['mata_kuliah_kode_mk']]);
                 return response()->json(['error' => 'Kelas untuk mata kuliah ' . $course['mata_kuliah_kode_mk'] . ' tidak ditemukan'], 404);
             }
             
-            $existingIrs = Irs::where('mahasiswa_nim', $mahasiswaNim)
-            ->whereHas('kelas.mataKuliah', function ($query) use ($mataKuliah) {
-                $query->where('mata_kuliah.kode_mk', $mataKuliah->kode_mk);
-            })
-            ->exists();
-
-            // Jika sudah ada, abaikan dan lanjutkan ke course berikutnya
-            if ($existingIrs) {
-            continue; // Tidak menambah jika sudah ada
-            }
             // Simpan atau update IRS
             Irs::create(
                 [
@@ -76,12 +94,12 @@ class irsController extends Controller
                     'diajukan' => $course['diajukan'] ?? 0, // Nilai default jika tidak ada
                 ]
             );
+            error_log('selesai');
+            Log::info('IRS berhasil disimpan atau diperbarui:', $course);
         }
     
         return response()->json(['message' => 'Simpan IRS berhasil', 'data' => $request->input('irs')], 200);
     }
-
-
     public function destroy($kode_mk)
 {
     // Cari IRS berdasarkan kode mata kuliah
@@ -94,7 +112,7 @@ class irsController extends Controller
         return response()->json(['message' => 'Mata kuliah berhasil dihapus.'], 200);
     }
 
-    // return response()->json(['message' => 'Mata kuliah tidak ditemukan.'], 404);
+    return response()->json(['message' => 'Mata kuliah tidak ditemukan.'], 404);
 }
 
     public function getIrsData($nim)

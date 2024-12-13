@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 
+
 class getIrsController extends Controller
 {
     /**
@@ -42,11 +43,11 @@ class getIrsController extends Controller
         if ($irs->isEmpty()) {
             return response()->json([], 200);
         }
-        return response()->json($irs);
+        // return response()->json($irs);
         
-        error_log("Sini");
-        error_log($irs);
-        Log::info('IRS Data:', $irs->toArray());
+        // error_log("Sini");
+        // error_log($irs);
+        // Log::info('IRS Data:', $irs->toArray());
     
         return response()->json($irs->map(function ($item) {
             return [

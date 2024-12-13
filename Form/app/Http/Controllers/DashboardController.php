@@ -43,38 +43,63 @@ class DashboardController extends Controller
         });
     
     // Ambil jadwal kuliah dengan DB::table()
-$jadwal_kuliah = DB::table('jadwal_kuliah')
-->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
-->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
-->join('kelas', function ($join) {
-    $join->on('jadwal_kuliah.kelas', '=', 'kelas.kode_kelas') // Kondisi join kelas berdasarkan kelas
-         ->on('mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk'); // Menghubungkan mata_kuliah ke kelas
-})
-->select(
-    'jadwal_kuliah.hari',
-    'jadwal_kuliah.jam_mulai',
-    'jadwal_kuliah.jam_selesai',
-    'jadwal_kuliah.mata_kuliah_kode_mk',
-    'jadwal_kuliah.kelas',
-    'mata_kuliah.nama_mk',
-    'ruang_kuliah.kode_ruang',
-    'mata_kuliah.sks',
-    'mata_kuliah.semester',
-    'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
-    'kelas.id as kelas_id',
-    'kelas.kode_kelas'
-)
-->get();
+        $jadwal_kuliah = DB::table('jadwal_kuliah')
+        ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
+        ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
+        ->join('kelas', function ($join) {
+            $join->on('jadwal_kuliah.kelas', '=', 'kelas.kode_kelas') // Kondisi join kelas berdasarkan kelas
+                ->on('mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk'); // Menghubungkan mata_kuliah ke kelas
+        })
+        ->select(
+            'jadwal_kuliah.hari',
+            'jadwal_kuliah.jam_mulai',
+            'jadwal_kuliah.jam_selesai',
+            'jadwal_kuliah.mata_kuliah_kode_mk',
+            'jadwal_kuliah.kelas',
+            'mata_kuliah.nama_mk',
+            'ruang_kuliah.kode_ruang',
+            'mata_kuliah.sks',
+            'mata_kuliah.semester',
+            'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
+            'kelas.id as kelas_id',
+            'kelas.kode_kelas'
+        )
+        ->get();
 
+        $jadwal_tampilan = DB::table('jadwal_kuliah')
+        ->join('mata_kuliah', 'jadwal_kuliah.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
+        ->join('ruang_kuliah', 'jadwal_kuliah.ruang_kuliah_kode_ruang', '=', 'ruang_kuliah.kode_ruang')
+        ->join('kelas', function ($join) {
+            $join->on('jadwal_kuliah.kelas', '=', 'kelas.kode_kelas') // Kondisi join kelas berdasarkan kelas
+                ->on('mata_kuliah.kode_mk', '=', 'kelas.mata_kuliah_kode_mk'); // Menghubungkan mata_kuliah ke kelas
+        })
+        ->where('jadwal_kuliah.status', 'disetujui')
+        ->where('ruang_kuliah.status', 'disetujui')
+        ->select(
+            'jadwal_kuliah.hari',
+            'jadwal_kuliah.jam_mulai',
+            'jadwal_kuliah.jam_selesai',
+            'jadwal_kuliah.mata_kuliah_kode_mk',
+            'jadwal_kuliah.kelas',
+            'mata_kuliah.nama_mk',
+            'ruang_kuliah.kode_ruang',
+            'mata_kuliah.sks',
+            'mata_kuliah.semester',
+            'kelas.tahun_akademik', // Mengambil tahun akademik dari kelas
+            'kelas.id as kelas_id',
+            'kelas.kode_kelas'
+        )
+        ->get();
 
-        error_log($jadwal_kuliah);
-// // Menentukan semester ganjil/genap berdasarkan NIM mahasiswa
-// $isGenap = $mahasiswa->semester % 2 === 0; // Genap jika true, Ganjil jika false
+      
+        $jadwal_pilihan = $jadwal_tampilan->groupBy('mata_kuliah_kode_mk')
+        ->map(function ($group) {
+            return $group->first(); // Ambil hanya satu jadwal dari setiap grup mata kuliah
+        })
+        ->values(); // Reset indeks
 
-// // Filter jadwal kuliah berdasarkan semester ganjil/genap
-// $jadwal_kuliah = $jadwal_kuliah->filter(function ($jadwal) use ($isGenap) {
-//     return $isGenap ? $jadwal->semester % 2 === 0 : $jadwal->semester % 2 !== 0;
-// });
+        // error_log($jadwal_kuliah);
+
 
         // Pastikan $mahasiswa tidak null sebelum mengambil data terkait
         if ($mahasiswa) {
@@ -108,6 +133,8 @@ $jadwal_kuliah = DB::table('jadwal_kuliah')
             'sks_kumulatif' => $sks_kumulatif,
             'IPK' => $IPK,
             'IPS' => $IPS,
+            'jadwal_pilihan' => $jadwal_pilihan,
+            'jadwal_tampilan' => $jadwal_tampilan,
         ]);
     }
 
