@@ -84,34 +84,37 @@
                     <div class="row">
                         <!-- Kolom Tambah Mata Kuliah -->
                         <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-header bg-primary text-white">
-                                    <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="select-matkul">Pilih Mata Kuliah</label>
-                                        <select id="select-matkul" class="form-control">
-                                            @if ($jadwal_kuliah->isNotEmpty())
-                                                @foreach ($jadwal_kuliah as $item)
-                                                    <option 
-                                                        value="{{ $item->mata_kuliah_kode_mk }}" 
-                                                        data-sks="{{ $item->sks }}"
-                                                        data-semester="{{ $item->semester }}"
-                                                        data-tahun-akademik="{{ $item->tahun_akademik }}"
-                                                        data-ruang="{{ $item->kode_ruang }}"
-                                                        data-kelas-id="{{ $item->kelas_id }}">
-                                                        {{ $item->nama_mk }}
-                                                    </option>
-                                                @endforeach
-                                            @else
-                                                <option>-</option>
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
-                                </div>
-                            </div>
+                        <div class="card mb-3">
+                          <div class="card-header bg-primary text-white">
+                              <h5><i class="fas fa-plus-circle"></i> Tambahkan Mata Kuliah</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="form-group">
+                                  <label for="select-matkul">Pilih Mata Kuliah</label>
+                                  <select id="select-matkul" class="form-control">
+                                      @if ($jadwal_pilihan->isNotEmpty())
+                                          @foreach ($jadwal_pilihan as $item)
+                                              <option 
+                                                  value="{{ $item->mata_kuliah_kode_mk }}" 
+                                                  data-sks="{{ $item->sks }}"
+                                                  data-semester="{{ $item->semester }}"
+                                                  data-tahun-akademik="{{ $item->tahun_akademik }}"
+                                                  data-ruang="{{ $item->kode_ruang }}"
+                                                  data-kelas-id="{{ $item->kelas_id }}">
+                                                  Mata Kuliah: {{  $item->nama_mk  }}, 
+                                                  SKS: {{  $item->sks  }},
+                                                  Semester: {{  $item->semester  }}
+                                              </option>
+                                          @endforeach
+                                      @else
+                                          <option>-</option>
+                                      @endif
+                                  </select>
+                              </div>
+                              <button class="btn btn-primary btn-block mt-3">Tambahkan</button>
+                          </div>
+                      </div>
+
 
                             <div class="card mb-3">
                                 <div class="card-header bg-info text-white">
@@ -129,7 +132,7 @@
                                             <h5><i class="fas fa-user"></i> Mata Kuliah yang Dipilih</h5>
                                         </div>
                                         <div class="card-body">
-                                            <h6><strong>Mata Kuliah yang Dipilih</strong></h6>
+                                            <h6><strong>Mata Kuliah yang Dipilih Mahasiswa</strong></h6>
                                             <hr>
                                             <div id="selected-courses">
                                               @foreach ($irs as $course)
@@ -191,7 +194,7 @@
                                                         @foreach (['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'] as $hari)
                                                             <td>
                                                                 @php
-                                                                    $jadwal_hari = $jadwal_kuliah->filter(function ($item) use ($hari, $jam) {
+                                                                    $jadwal_hari = $jadwal_tampilan->filter(function ($item) use ($hari, $jam) {
                                                                         return $item->hari === $hari && $item->jam_mulai === $jam;
                                                                     });
                                                                 @endphp

@@ -294,26 +294,10 @@ function removeCourse(courseKodeMK) {
     });
 }
 
-// const sksKumulatif = @json($sks_kumulatif); // Ambil data SKS kumulatif dari backend
-
 // Fungsi untuk menambahkan mata kuliah ke IRS
-function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId, sksKumulatif) {
+function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik, ruang, kelasId) {
   // Hitung total SKS yang sudah diambil
-  const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
-  const newTotalSKS = totalSKS + parseInt(courseSKS);
-  
-    // Hitung total SKS setelah penambahan mata kuliah
-
-    // console.log("Total SKS yang sudah diambil:", totalSKS);  // Debugging untuk melihat nilai total SKS
-
-    // if (newTotalSKS > sksKumulatif) {
-    //     // Jika SKS melebihi, tampilkan alert dan hentikan proses
-    //     alert(`Pemilihan IRS tidak boleh melebihi SKS kumulatif yang dimiliki: ${sksKumulatif}`);
-     
-    // }
-
-    // Jika SKS total masih valid (tidak melebihi SKS kumulatif)
-    // Periksa apakah mata kuliah sudah ada dalam IRS
+  // const totalSKS = irs.reduce((total, course) => total + course.total_sks, 0);
       if (!irs.some(course => course.mata_kuliah_kode_mk === courseKodeMK)) {
 
           irs.push({
@@ -325,7 +309,6 @@ function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik,
             ruang_kuliah_kode_ruang: ruang,
             kelas_id: kelasId
         });
-
         // Panggil fungsi untuk merender dan menghitung ulang SKS
             renderSelectedCourses2();
             updateTotalSKS();
@@ -333,14 +316,6 @@ function addCourse(courseKodeMK, courseName, courseSKS, semester, tahunAkademik,
               // Tampilkan alert jika mata kuliah sudah ada di IRS
               alert('Mata kuliah ini sudah ditambahkan.');
           }
-        
-        
-        // Tambahkan mata kuliah ke IRS
-       
-      
-    
-    
-    
 }
 
 
@@ -480,3 +455,19 @@ document.addEventListener('click', function (event) {
     }
 });
 </script>
+
+
+<!-- Pilih Mata Kuliah -->
+<script>
+
+  document.getElementById('select-matkul').addEventListener('change', function() {
+      var selectedOption = this.options[this.selectedIndex];
+      var sks = selectedOption.getAttribute('data-sks');
+      var semester = selectedOption.getAttribute('data-semester');
+      
+      // Menampilkan detail pada elemen tertentu (misalnya di bawah dropdown)
+      document.getElementById('matkul-sks').innerText = 'SKS: ' + sks;
+      document.getElementById('matkul-semester').innerText = 'Semester: ' + semester;
+  });
+
+</script>  
