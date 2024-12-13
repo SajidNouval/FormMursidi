@@ -109,7 +109,7 @@
                             <ul>
                                 @foreach ($mahasiswaIrs as $item)
                                     <li>
-                                        {{ $item->jadwalkuliah->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }} 
+                                        {{ $item->kelas->mataKuliah->nama_mk ?? 'Tidak ada' }}
                                         (Kelas: {{ $item->kelas->kode_kelas ?? '-' }}, 
                                         SKS: {{ $item->kelas->mataKuliah->sks ?? '0' }},
                                         Tahun Akademik: {{ $item->kelas->tahun_Akademik ?? '#'}},

@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('fakultas_kode_fakultas'); // Foreign key to fakultas
             $table->string('pengampu1')->nullable(); // First lecturer
             $table->string('pengampu2')->nullable(); // Second lecturer
-            $table->string('pengampu3')->nullable(); // Third lecturer
-            $table->string('pengampu4')->nullable(); // Fourth lecturer
+            $table->string('pengampu3')->nullable(); // Third lecturer// Fourth lecturer
             $table->string('tahun_akademik')->nullable(); // Academic year
             $table->timestamps(); // Created at and updated at timestamps
 

@@ -16,6 +16,7 @@ class irsController extends Controller
     public function simpanirs(Request $request)
     {
         error_log("masuk");
+        error_log($request);
 
 
         // $request->validate([
@@ -88,7 +89,7 @@ class irsController extends Controller
                     'tahun_akademik' => $course['tahun_akademik'] ?? $course['tahun_Akademik'],
                     'total_sks' => $course['total_sks'],
                     'ruang_kuliah_kode_ruang' => $course['ruang_kuliah_kode_ruang'],
-                    'kelas_id' => $kelas->id, // Menghubungkan dengan ID kelas
+                    'kelas_id' => $course['kelas_id'], // Menghubungkan dengan ID kelas
                     'is_verified' => $course['is_verified'] ?? 0, // Nilai default jika tidak ada
                     'diajukan' => $course['diajukan'] ?? 0, // Nilai default jika tidak ada
                 ]
@@ -152,7 +153,5 @@ class irsController extends Controller
         ]);
     }
     
-    
-
 
 }

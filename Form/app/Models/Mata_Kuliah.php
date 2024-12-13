@@ -18,13 +18,11 @@ class Mata_Kuliah extends Model
         'sks' ,
         'semester' ,
         'jenis' ,
-        'prodi_id' ,
         'program_studi_kode_prodi',
         'fakultas_kode_fakultas',
         'pengampu1',
         'pengampu2',
         'pengampu3',
-        'pengampu4',
         'tahun_akademik'
     ];
 
