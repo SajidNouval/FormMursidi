@@ -25,11 +25,7 @@ class irsController extends Controller
         }
     
         $mahasiswaNim = $mahasiswa->nim;
-        // Ambil SKS Kumulatif mahasiswa
-    $sksKumulatif = $mahasiswa->SKS_Kumulatif;
-
-    // Hitung total SKS dari mata kuliah yang ditambahkan
-    $totalSksToAdd = 0;
+        
         foreach ($request->collect('irs') as $course) {
          
             // Pastikan semester ada
@@ -134,6 +130,78 @@ class irsController extends Controller
             'totalSKS' => $totalSKS,
         ]);
     }
+
+    // GET SKS
+    public function cekSksKumulatif(Request $request)
+{
+    // Ambil NIM mahasiswa berdasarkan user yang sedang login
+    $userId = Auth::user()->id;
+    $mahasiswa = Mahasiswa::where('user_id', $userId)->first();
+
+    if (!$mahasiswa) {
+        return response()->json(['error' => 'Mahasiswa tidak ditemukan'], 404);
+    }
+
+    $mahasiswaNim = $mahasiswa->nim;
+
+    // Ambil SKS Kumulatif mahasiswa
+    $sksKumulatif = $mahasiswa->SKS_Kumulatif;
+
+    // Hitung total SKS yang telah diambil sebelumnya
+    // $totalSksExisting = Irs::where('mahasiswa_nim', $mahasiswaNim)
+    //     ->join('kelas', 'irs.kelas_id', '=', 'kelas.id')
+    //     ->join('mata_kuliah', 'kelas.mata_kuliah_kode_mk', '=', 'mata_kuliah.kode_mk')
+    //     ->sum('mata_kuliah.sks');
+
+    // Hitung total SKS dari mata kuliah yang akan ditambahkan
+    $totalSksToAdd = 0;
+    $totalSksExisting = 0;
+    $totalSksKeseluruhan=0;
+    foreach ($request->collect('irs') as $course) {
+        $mataKuliah = Mata_Kuliah::where('kode_mk', $course['mata_kuliah_kode_mk'])->first();
+        if ($mataKuliah) {
+            $totalSksToAdd += $mataKuliah->sks;
+        }
+    }
+
+    // Hitung total SKS keseluruhan
+    $totalSksKeseluruhan = $totalSksExisting + $totalSksToAdd;
+
+    // Periksa apakah SKS melebihi batas
+    if ($totalSksKeseluruhan > $sksKumulatif) {
+        return response()->json([
+            'status' => 'invalid',
+            'message' => 'SKS yang diajukan melebihi SKS Kumulatif mahasiswa',
+            'sks_terambil' => $totalSksExisting,
+            'sks_diajukan' => $totalSksToAdd,
+            'sks_kumulatif' => $sksKumulatif
+        ], 400);
+    }
+    
+    // Jika total SKS yang diambil sama dengan atau kurang dari SKS kumulatif, lanjutkan
+    if ($totalSksKeseluruhan <= $sksKumulatif) {
+        return response()->json([
+            'status' => 'valid',
+            'message' => 'SKS yang diajukan valid',
+            'sks_terambil' => $totalSksExisting,
+            'sks_diajukan' => $totalSksToAdd,
+            'sks_kumulatif' => $sksKumulatif
+        ], 200);
+    }
+    $totalSksToAdd = 0;
+    $totalSksExisting = 0;
+    $totalSksKeseluruhan=0;
+
+
+    // return response()->json([
+    //     'status' => 'valid',
+    //     'message' => 'SKS yang diajukan valid',
+    //     'sks_terambil' => $totalSksExisting,
+    //     'sks_diajukan' => $totalSksToAdd,
+    //     'sks_kumulatif' => $sksKumulatif
+    // ], 200);
+}
+
     
 
 }
