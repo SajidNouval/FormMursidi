@@ -22,24 +22,27 @@
     <div class="row text-center mb-4">
       <div class="col-md-4">
           <div class="status-box status-diajukan">
+              <i class="fas fa-clock"></i>
               <h4>Diajukan</h4>
               <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == 0)->count() }}</h5>
           </div>
       </div>
       <div class="col-md-4">
           <div class="status-box status-disetujui">
+              <i class="fas fa-check-circle"></i>
               <h4>Disetujui</h4>
               <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == 1)->count() }}</h5>
           </div>
       </div>
       <div class="col-md-4">
           <div class="status-box status-ditolak">
+              <i class="fas fa-times-circle"></i>
               <h4>Ditolak</h4>
               <h5>{{ $irs->where(fn($group) => $group->first()->is_verified == -1)->count() }}</h5>
           </div>
       </div>
   </div>
-  
+    
 
     <!-- Daftar IRS -->
     <div class="card">

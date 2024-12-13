@@ -6,3 +6,31 @@
   .content-wrapper {
     background-color: #D8BFD8; /* Warna ungu pastel untuk konten utama */
   }
+
+  .status-box {
+    display: flex;
+    align-items: center; /* Menyelaraskan ikon dan teks secara vertikal */
+    justify-content: center; /* Mengatur teks dan ikon berada di tengah */
+}
+
+.status-box i {
+    font-size: 1.5rem; /* Ukuran ikon yang lebih kecil dan pas dengan teks */
+    margin-right: 10px; /* Memberikan jarak antara ikon dan teks */
+}
+
+.status-diajukan i {
+    color: #ffcc00; /* Warna kuning terang untuk Diajukan */
+}
+
+.status-disetujui i {
+    color: #28a745; /* Warna hijau untuk Disetujui */
+}
+
+.status-ditolak i {
+    color: #dc3545; /* Warna merah untuk Ditolak */
+}
+
+.status-box h4, .status-box h5 {
+    margin: 0; /* Menghilangkan margin pada teks */
+    font-weight: normal; /* Mengatur font agar tidak terlalu tebal */
+}
