@@ -61,12 +61,20 @@
             <div class="card bg-secondary text-white d-flex align-items-center p-2">
               <div class="card-body text-center">
                 <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
+                <h4 class="font-weight-bold">Mahasiswa</h4>
+                <p class="mb-1"><strong>{{ $kaprodi->nama }}</strong></p>
+                <p class="mb-1">{{ $kaprodi->nim }}</p>
+                <p class="text-muted">{{ $kaprodi->email }}</p>
+                <a href="{{ route('profilmhs') }}" class="text-info">Lihat Selengkapnya</a>
+              </div>
+              {{-- <div class="card-body text-center">
+                <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
                 <h4 class="font-weight-bold">Pembimbing Akademik</h4>
                 <p class="mb-1"><strong>nama</strong></p>
                 <p class="mb-1">nim</p>
                 <p class="text-muted">email</p>
                 <a href="#" class="text-info">Lihat Selengkapnya</a>
-              </div>
+              </div> --}}
             </div>
           </div>
     

@@ -51,7 +51,7 @@ class AdminController extends Controller
     
         $user = Auth::user();
         // Pastikan role 'kaprodi' di-filter jika ada kemungkinan user lain masuk
-        $kaprodi = Dosen::where('user_id', $user->id)
+        $kaprodi = Dosen::where('user_id', 2)
             ->where('user_id', 2)
             ->first();
     
