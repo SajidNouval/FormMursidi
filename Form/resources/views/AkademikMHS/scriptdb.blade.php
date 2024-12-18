@@ -181,7 +181,6 @@ function loadSemesterData(semester) {
 </script>
 
 
-<!-- JavaScript -->
 <script>
 document.getElementById("show-irs-button").addEventListener("click", function () {
     const semester = document.getElementById("semester-select").value;
@@ -201,6 +200,7 @@ document.getElementById("show-irs-button").addEventListener("click", function ()
             return response.json();
         })
         .then((data) => {
+            console.log(data);  // Debug untuk melihat data yang diterima
             const container = document.getElementById("semester-data");
 
             if (data.length === 0) {
@@ -224,13 +224,16 @@ document.getElementById("show-irs-button").addEventListener("click", function ()
             `;
 
             data.forEach((item) => {
-              console.log(item);
+                // Memastikan akses data yang aman
+                const mataKuliah = item.kelas && item.kelas.mata_kuliah ? item.kelas.mata_kuliah.nama_mk : 'Mata Kuliah Tidak Ditemukan';
+                const ruang = item.ruang_kuliah_kode_ruang || 'Ruang Tidak Ditemukan';  // Menggunakan fallback untuk ruang
+
                 html += `
                     <tr>
-                        <td>${item.kelas.mata_kuliah.nama_mk}</td>
+                        <td>${item.nama_mk}</td>
                         <td>${item.semester}</td>
                         <td>${item.tahun_akademik}</td>
-                        <td>${item.ruang_kuliah_kode_ruang}</td>
+                        <td>${item.ruang}</td>
                         <td>${item.total_sks}</td>
                     </tr>
                 `;
@@ -249,6 +252,7 @@ document.getElementById("show-irs-button").addEventListener("click", function ()
         });
 });
 </script>
+
 
 
 
