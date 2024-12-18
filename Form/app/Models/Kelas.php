@@ -36,6 +36,7 @@ class Kelas extends Model
      *
      * @return array<string, string>
      */
+    // Relasi ke MataKuliah
     public function mataKuliah()
     {
         return $this->belongsTo(Mata_Kuliah::class, 'mata_kuliah_kode_mk', 'kode_mk');

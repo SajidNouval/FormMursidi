@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Irs;
-use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
-
 
 class getIrsController extends Controller
 {
@@ -40,18 +40,30 @@ class getIrsController extends Controller
             ->where('semester', $semester)
             ->where('mahasiswa_nim', $nim)
             ->get();
+            
         if ($irs->isEmpty()) {
             return response()->json([], 200);
         }
-        // return response()->json($irs);
+
+        // Menambahkan logging data IRS
+        Log::info('IRS Data:', $irs->toArray());
         
-        // error_log("Sini");
-        // error_log($irs);
-        // Log::info('IRS Data:', $irs->toArray());
-    
         return response()->json($irs->map(function ($item) {
+            $kelas = $item->kelas;
+            $mataKuliah = $kelas->mataKuliah ?? null; // Pastikan relasi ada
+            
+            // Log nama mata kuliah untuk debugging
+            Log::info('Mata Kuliah:', [
+                'kode_mk' => $mataKuliah ? $mataKuliah->kode_mk : 'Tidak Ada',
+                'nama_mk' => $mataKuliah ? $mataKuliah->nama_mk : 'Tidak Ada',
+            ]);
+            Log::info('IRS',[
+                'Ruang' => $item ? $item->ruang_kuliah_kode_ruang : 'Tidak ada',
+            ]);
+
             return [
-                'nama_mk' => $item->kelas->mata_kuliah->nama_mk,
+                'nama_mk' => $mataKuliah ? $mataKuliah->nama_mk : 'Mata Kuliah Tidak Ditemukan', // Pengecekan null
+                'kode_mk' => $mataKuliah ? $mataKuliah->kode_mk : 'Kode MK Tidak Ditemukan', // Pengecekan null
                 'semester' => $item->semester,
                 'tahun_akademik' => $item->tahun_akademik,
                 'ruang' => $item->ruang_kuliah_kode_ruang,
@@ -59,5 +71,4 @@ class getIrsController extends Controller
             ];
         }));
     }
-    
 }
