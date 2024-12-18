@@ -81,6 +81,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/sakura/pakmdb/pakaakm', [PakaController::class, 'index'])->middleware('userAkses:pakademik')->name('akademikpaka');
     Route::post('/approve/{id}', [PakaController::class, 'approveIrs'])->middleware('userAkses:pakademik')->name('irs.approve');
     Route::patch('/reject/{id}', [PakaController::class, 'rejectIrs'])->middleware('userAkses:pakademik')->name('irs.reject');
+    Route::get('/sakura/pakmdb/rekappaka', [DashboardPAKAController::class, 'rekappaka'])->middleware('userAkses:pakademik')->name('rekappaka');
 
 
 

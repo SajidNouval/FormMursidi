@@ -141,10 +141,11 @@
                         @csrf
                         <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Setujui</button>
                       </form>
-                      <form action="{{ route('dekan.ruang.tolak', $ruang->kode_ruang) }}" method="POST" style="display:inline;">
+                      <form action="{{ route('dekan.ruang.tolak', $ruang->kode_ruang) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menolak ruang ini?');">
                         @csrf
                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Tolak</button>
                       </form>
+                      
                     @else
                       <span class="text-muted">Tidak ada aksi</span>
                     @endif

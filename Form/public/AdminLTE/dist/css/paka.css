@@ -1,0 +1,54 @@
+/* Background dan Card */
+.content-wrapper {
+    background-color: #d8bfd8; /* Warna ungu pastel */
+    padding-top: 50px;
+}
+
+.card {
+    background-color: #fff;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #6a0dad;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #d8bfd8;
+}
+
+/* Status Box */
+.status-box {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.status-belum i, .status-sudah i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #6a0dad;
+}
+
+h4, h5 {
+    margin: 0;
+    font-weight: bold;
+    color: #4b0082; /* Warna teks */
+}
+
+/* List */
+ul {
+    list-style-type: disc;
+    padding-left: 25px;
+}
+
+li {
+    margin: 5px 0;
+    color: #333;
+}

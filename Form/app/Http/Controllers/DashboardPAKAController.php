@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\irs;
+use App\Models\Mahasiswa;
 
 class DashboardPAKAController extends Controller
 {
@@ -13,5 +14,17 @@ class DashboardPAKAController extends Controller
 
         // Kirim data ke view
         return view('AkademikPAKA.akademikpaka', compact('irs'));
+    }
+
+    public function rekappaka()
+    {
+        // Ambil data mahasiswa
+        $mahasiswa = Mahasiswa::all();
+
+        // Ambil data IRS untuk semester aktif
+        $semesterAktif = '2024/2025'; // Contoh nilai, sesuaikan dengan data sebenarnya
+        $irs = Irs::where('tahun_akademik', $semesterAktif)->get();
+
+        return view('RekapPAKA.rekappaka', compact('mahasiswa', 'irs'));
     }
 }

@@ -52,8 +52,8 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
+     <!-- Main content -->
+     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- Profile Box -->
@@ -67,14 +67,6 @@
                 <p class="text-muted">{{ $kaprodi->email }}</p>
                 <a href="{{ route('profilmhs') }}" class="text-info">Lihat Selengkapnya</a>
               </div>
-              {{-- <div class="card-body text-center">
-                <img src="{{ asset('AdminLTE/dist/img/pp.jpg') }}" alt="user-avatar" class="img-circle img-fluid mb-3" style="width: 100px;">
-                <h4 class="font-weight-bold">Pembimbing Akademik</h4>
-                <p class="mb-1"><strong>nama</strong></p>
-                <p class="mb-1">nim</p>
-                <p class="text-muted">email</p>
-                <a href="#" class="text-info">Lihat Selengkapnya</a>
-              </div> --}}
             </div>
           </div>
     
@@ -89,10 +81,19 @@
                     <span class="info-box-text text-white">Persetujuan IRS</span>
                   </div>
                 </a>
-              </div>              
+              </div>  
+
+              <!-- Rekap Mahasiswa Box -->
+              <div class="col-6 col-md-6 mb-3">
+                <a href="{{ route('rekappaka') }}" class="info-box bg-secondary">
+                  <span class="info-box-icon"><i class="fas fa-user-graduate"></i></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text text-white">Rekap Mahasiswa</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
-          
         </div>
       </div>
     </section>

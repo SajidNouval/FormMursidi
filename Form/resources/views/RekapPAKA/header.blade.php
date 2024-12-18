@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="{{asset('AdminLTE/dist/css/adminlte.min.css')}}">
 <!-- Tambahkan stylesheet -->
 <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/custom.css') }}">
-<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikbaka.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikpaka.css') }}"> --}}
-<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikdekan.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikbaka.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/paka.css') }}">
+
+<link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/akademikpaka.css') }}">
  <!-- SweetAlert2 -->
  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
